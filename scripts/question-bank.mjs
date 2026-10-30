@@ -1,6 +1,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { springQuestions } from './spring-bank.mjs';
 
 let sequence = 0;
 
@@ -2161,6 +2162,7 @@ const questions = [
       'Each call pushes a frame on that thread stack. The frame stores locals and operand state and is discarded when the call returns. Metaspace is process-wide storage for loaded classes, not for one invocation.',
     reference: 'Java Virtual Machine Specification — Frames (§2.6) and Method Area (§2.5.4)',
   }),
+  ...springQuestions.map((fields) => q(fields)),
 ];
 
 const difficulties = new Set(['easy', 'medium', 'hard']);
@@ -2196,12 +2198,40 @@ for (const question of questions) {
   categoryCount[question.category] = (categoryCount[question.category] ?? 0) + 1;
 }
 
-if (questions.length !== 139) throw new Error(`Expected 139 questions, found ${questions.length}`);
-if (typeCount.single !== 105 || typeCount.multiple !== 15 || typeCount.truefalse !== 19) {
-  throw new Error(`Unexpected type mix ${JSON.stringify(typeCount)}`);
+const coreQuestions = questions.slice(0, 139);
+const addedQuestions = questions.slice(139);
+const coreTypeCount = { single: 0, multiple: 0, truefalse: 0 };
+const coreDifficultyCount = { easy: 0, medium: 0, hard: 0 };
+for (const question of coreQuestions) {
+  coreTypeCount[question.type] += 1;
+  coreDifficultyCount[question.difficulty] += 1;
 }
-if (difficultyCount.easy !== 31 || difficultyCount.medium !== 77 || difficultyCount.hard !== 31) {
-  throw new Error(`Unexpected difficulty mix ${JSON.stringify(difficultyCount)}`);
+if (springQuestions.length !== 100) {
+  throw new Error(`Expected 100 Spring questions, found ${springQuestions.length}`);
+}
+if (questions.length !== 239) throw new Error(`Expected 239 questions, found ${questions.length}`);
+if (coreTypeCount.single !== 105 || coreTypeCount.multiple !== 15 || coreTypeCount.truefalse !== 19) {
+  throw new Error(`Unexpected core type mix ${JSON.stringify(coreTypeCount)}`);
+}
+if (
+  coreDifficultyCount.easy !== 31 ||
+  coreDifficultyCount.medium !== 77 ||
+  coreDifficultyCount.hard !== 31
+) {
+  throw new Error(`Unexpected core difficulty mix ${JSON.stringify(coreDifficultyCount)}`);
+}
+if (
+  addedQuestions.some(
+    (question) => question.category !== 'Spring' && question.category !== 'Spring Boot',
+  )
+) {
+  throw new Error('Spring bank contains an unexpected category');
+}
+if (!addedQuestions.some((question) => question.category === 'Spring')) {
+  throw new Error('Missing Spring category');
+}
+if (!addedQuestions.some((question) => question.category === 'Spring Boot')) {
+  throw new Error('Missing Spring Boot category');
 }
 
 const output = resolve(dirname(fileURLToPath(import.meta.url)), '../public/assets/questions.json');

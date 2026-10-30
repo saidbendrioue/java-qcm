@@ -4521,5 +4521,3222 @@
     "explanation": "Each call pushes a frame on that thread stack. The frame stores locals and operand state and is discarded when the call returns. Metaspace is process-wide storage for loaded classes, not for one invocation.",
     "reference": "Java Virtual Machine Specification — Frames (§2.6) and Method Area (§2.5.4)",
     "id": "q139"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "What does the Spring Framework core give an application?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A container that creates objects and wires their dependencies, plus support for concerns such as transactions and web MVC"
+      },
+      {
+        "id": "b",
+        "text": "A replacement for the Java Virtual Machine"
+      },
+      {
+        "id": "c",
+        "text": "A relational database that stores every bean"
+      },
+      {
+        "id": "d",
+        "text": "A browser runtime for Java classes"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Spring is a framework on top of Java. Its core container manages beans and dependencies. Other projects add web, data, security, and similar capabilities, but they do not replace the JVM or the database.",
+    "reference": "Spring Framework docs — Overview",
+    "id": "q140"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "Which setup starts a small Spring application without Spring Boot?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A @Configuration class that declares beans, passed to a new AnnotationConfigApplicationContext"
+      },
+      {
+        "id": "b",
+        "text": "A main method that only calls new on each service and never creates a context"
+      },
+      {
+        "id": "c",
+        "text": "An empty persistence.xml file and no context"
+      },
+      {
+        "id": "d",
+        "text": "A module-info.java file with no bean definitions"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "AnnotationConfigApplicationContext reads the Java configuration class, refreshes the container, and creates the declared singletons. Objects built only with new are outside that container, so Spring does not inject their dependencies.",
+    "reference": "Spring Framework docs — Java-based container configuration",
+    "id": "q141"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "What is Inversion of Control in Spring?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The container creates collaborators and supplies them, instead of each class constructing the concrete objects it uses"
+      },
+      {
+        "id": "b",
+        "text": "Each class calls new on the concrete classes it needs"
+      },
+      {
+        "id": "c",
+        "text": "The compiler rejects constructors"
+      },
+      {
+        "id": "d",
+        "text": "Beans are loaded only through ServiceLoader, and the Spring container is not involved"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Control of object creation moves from application code to the container. Dependency injection is how Spring does that: the container passes collaborators in, usually through the constructor.",
+    "reference": "Spring Framework docs — The IoC container",
+    "id": "q142"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "How does an ApplicationContext differ from a plain BeanFactory?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It adds events, message sources, and resource loading, and it creates singleton beans when the context refreshes"
+      },
+      {
+        "id": "b",
+        "text": "It is only a map of strings and cannot create beans"
+      },
+      {
+        "id": "c",
+        "text": "It replaces the garbage collector"
+      },
+      {
+        "id": "d",
+        "text": "It compiles Java source files"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "BeanFactory is the basic registry. ApplicationContext extends it and eagerly instantiates non-lazy singletons on refresh. It also publishes application events and can resolve messages and resources.",
+    "reference": "Spring Framework docs — BeanFactory or ApplicationContext",
+    "id": "q143"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "multiple",
+    "category": "Spring",
+    "question": "Which injection styles does Spring support?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Constructor injection"
+      },
+      {
+        "id": "b",
+        "text": "Setter injection"
+      },
+      {
+        "id": "c",
+        "text": "Field injection"
+      },
+      {
+        "id": "d",
+        "text": "Injection only through a public static void main parameter"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "Spring can inject through a constructor, a setter, or a field. Constructor injection is the usual choice because the dependency is required and the field can be final. A main parameter is not an injection style.",
+    "reference": "Spring Framework docs — Dependencies and configuration",
+    "id": "q144"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "multiple",
+    "category": "Spring",
+    "question": "Which of these are built-in Spring bean scopes?",
+    "options": [
+      {
+        "id": "a",
+        "text": "singleton"
+      },
+      {
+        "id": "b",
+        "text": "prototype"
+      },
+      {
+        "id": "c",
+        "text": "request"
+      },
+      {
+        "id": "d",
+        "text": "refresh"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "singleton is the default: one instance per container. prototype creates an instance each time the container supplies the bean. request, session, application, and websocket are web scopes. refresh is not a scope. A prototype injected once into a singleton is not created again on later calls unless the singleton looks it up each time.",
+    "reference": "Spring Framework docs — Bean scopes",
+    "id": "q145"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "How do you register an instance of a library class whose source you cannot annotate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Return it from a @Bean method in a @Configuration class"
+      },
+      {
+        "id": "b",
+        "text": "Add @Component to the third-party source file"
+      },
+      {
+        "id": "c",
+        "text": "Call new in a controller and expect Spring to inject that local variable"
+      },
+      {
+        "id": "d",
+        "text": "List the class name in a properties file with no bean definition"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "@Component works when component scanning can see your class. A type you do not own is registered by a @Bean method, which returns the instance the container should manage. A local new expression is not a bean definition.",
+    "reference": "Spring Framework docs — @Bean",
+    "id": "q146"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "truefalse",
+    "category": "Spring",
+    "question": "The Spring core container creates beans, injects their dependencies, and manages their lifecycle.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "That is the job of the IoC container. It instantiates configured beans, wires collaborators, calls lifecycle callbacks, and closes them when the context closes.",
+    "reference": "Spring Framework docs — Container overview",
+    "id": "q147"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "What do a Spring XML file and a @Configuration class have in common?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Both can declare the beans the container should manage"
+      },
+      {
+        "id": "b",
+        "text": "Both are executed by the browser"
+      },
+      {
+        "id": "c",
+        "text": "Both replace javac"
+      },
+      {
+        "id": "d",
+        "text": "The context starts only when the file is named beans.xml"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "XML and Java configuration are two ways to describe beans. The file or class name is yours to choose. The context loads the resource or class you pass it, not a single mandatory filename.",
+    "reference": "Spring Framework docs — Configuration metadata",
+    "id": "q148"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "What does new AnnotationConfigApplicationContext(AppConfig.class) do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Creates and refreshes a context from that Java configuration class"
+      },
+      {
+        "id": "b",
+        "text": "Starts an embedded Tomcat with no further configuration"
+      },
+      {
+        "id": "c",
+        "text": "Reads only YAML files"
+      },
+      {
+        "id": "d",
+        "text": "Registers every class on the classpath, annotated or not"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "The constructor registers AppConfig and refreshes the context, which creates the beans that configuration defines. It does not by itself start a web server, and component scanning registers only the types you tell it to scan.",
+    "reference": "Spring Framework docs — AnnotationConfigApplicationContext",
+    "id": "q149"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "What is aspect-oriented programming used for in an application?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Applying behavior such as transactions or logging around many methods without copying that behavior into each method"
+      },
+      {
+        "id": "b",
+        "text": "Replacing classes with database tables"
+      },
+      {
+        "id": "c",
+        "text": "Defining a SQL dialect"
+      },
+      {
+        "id": "d",
+        "text": "The same mechanism as extends"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "AOP modularizes cross-cutting behavior. Spring applies that behavior with proxies around bean methods, so the business method stays focused on its own job.",
+    "reference": "Spring Framework docs — AOP concepts",
+    "id": "q150"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "How does proxy-based Spring AOP apply advice?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It wraps Spring beans and intercepts method calls that come through the proxy, using a JDK proxy or CGLIB"
+      },
+      {
+        "id": "b",
+        "text": "It rewrites every .java file on disk before javac runs"
+      },
+      {
+        "id": "c",
+        "text": "It advises objects that were created with new and never registered as beans"
+      },
+      {
+        "id": "d",
+        "text": "It can only print logs and cannot implement transactions"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Spring AOP is proxy-based and applies to Spring beans. Calls that go through the proxy can be advised. Objects created with new, and private or self-invoked methods, are not intercepted by that proxy. @Transactional is itself implemented with this mechanism.",
+    "reference": "Spring Framework docs — Spring AOP proxies",
+    "id": "q151"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "In Spring AOP, what is the difference between a pointcut and an advice?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A pointcut selects join points; an advice is the action that runs at those join points"
+      },
+      {
+        "id": "b",
+        "text": "They are two names for a bean scope"
+      },
+      {
+        "id": "c",
+        "text": "A pointcut is the HTTP response body"
+      },
+      {
+        "id": "d",
+        "text": "An advice is the database username"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "The pointcut is the predicate, for example \"execution of methods on @Service beans\". The advice is the before, after, or around logic that runs when the predicate matches.",
+    "reference": "Spring Framework docs — Declaring a pointcut and advice",
+    "id": "q152"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "What is a join point in Spring AOP?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A method execution on a Spring bean, which is the point Spring AOP can advise"
+      },
+      {
+        "id": "b",
+        "text": "A row in a SQL table"
+      },
+      {
+        "id": "c",
+        "text": "The TCP port of the web server"
+      },
+      {
+        "id": "d",
+        "text": "A field write, which Spring AOP proxies advise by default"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "A join point is a point in execution where advice could run. Spring AOP join points are method executions. Field access is an AspectJ join point, not one that Spring AOP proxies advise.",
+    "reference": "Spring Framework docs — Spring AOP capabilities and goals",
+    "id": "q153"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "truefalse",
+    "category": "Spring",
+    "question": "A cross-cutting concern is behavior that appears across otherwise unrelated parts of an application, which is the kind of behavior Spring AOP is meant to apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "A concern is a responsibility of the application. A cross-cutting concern, such as security or transactions, shows up in many modules. AOP exists so that behavior is written once and applied at matching join points.",
+    "reference": "Spring Framework docs — AOP concepts",
+    "id": "q154"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "multiple",
+    "category": "Spring",
+    "question": "Which of these are advice kinds in Spring AOP?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Before"
+      },
+      {
+        "id": "b",
+        "text": "After returning"
+      },
+      {
+        "id": "c",
+        "text": "Around"
+      },
+      {
+        "id": "d",
+        "text": "On compilation of every JDK class"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "Spring AOP advice can run before a method, after it returns, after it throws, after it finishes either way, or around the call. It does not hook compilation of the JDK.",
+    "reference": "Spring Framework docs — Declaring advice",
+    "id": "q155"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "What do you need in a non-Boot application so that an @Aspect is applied?",
+    "options": [
+      {
+        "id": "a",
+        "text": "@EnableAspectJAutoProxy, and the aspect class registered as a bean"
+      },
+      {
+        "id": "b",
+        "text": "@EnableWebMvc by itself"
+      },
+      {
+        "id": "c",
+        "text": "server.port set to 80"
+      },
+      {
+        "id": "d",
+        "text": "The aspect class implementing Runnable"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "@EnableAspectJAutoProxy turns on proxy-based AOP. The @Aspect class must still be a bean so Spring can find its advice. The name refers to the AspectJ annotations; it does not by itself mean compile-time weaving.",
+    "reference": "Spring Framework docs — @EnableAspectJAutoProxy",
+    "id": "q156"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "What does the @Aspect annotation mark?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A class that holds pointcuts and advice"
+      },
+      {
+        "id": "b",
+        "text": "A JPA entity"
+      },
+      {
+        "id": "c",
+        "text": "A request mapping"
+      },
+      {
+        "id": "d",
+        "text": "A bean that must not be registered in the context"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "@Aspect marks the class that contains advice. Spring AOP still needs that class to be a bean. It is not a persistence or web-mapping annotation.",
+    "reference": "Spring Framework docs — @Aspect",
+    "id": "q157"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Spring",
+    "question": "Why does a public method on a Spring bean fail to run its @Transactional advice when it calls a second transactional method with this.other()?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The call stays inside the target object and never enters the proxy that applies the advice"
+      },
+      {
+        "id": "b",
+        "text": "Spring ignores @Transactional on public methods"
+      },
+      {
+        "id": "c",
+        "text": "this.other() always starts a new transaction of propagation REQUIRES_NEW"
+      },
+      {
+        "id": "d",
+        "text": "Proxies advise only private methods"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "The proxy sits in front of the bean. External callers hit the proxy. A self-call uses the raw instance, so the second @Transactional is not applied. Move the called method to another bean, or inject the proxied self, if the second transaction boundary matters.",
+    "reference": "Spring Framework docs — Understanding AOP proxies",
+    "id": "q158"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "How does Spring sit between application code and a database?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It provides templates, exception translation, and transaction demarcation on top of JDBC or an ORM"
+      },
+      {
+        "id": "b",
+        "text": "It replaces the database server"
+      },
+      {
+        "id": "c",
+        "text": "It allows queries only as stored procedures"
+      },
+      {
+        "id": "d",
+        "text": "It opens a new database for each bean"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Spring does not implement the database. It integrates JDBC and ORMs, translates vendor exceptions, and can bind a transaction to a thread while a service method runs.",
+    "reference": "Spring Framework docs — Data access",
+    "id": "q159"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "What is DataAccessException?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The root of an unchecked hierarchy Spring uses so callers are not forced to declare vendor checked exceptions such as SQLException"
+      },
+      {
+        "id": "b",
+        "text": "A checked exception that every repository method must declare"
+      },
+      {
+        "id": "c",
+        "text": "The exception thrown when a bean is missing"
+      },
+      {
+        "id": "d",
+        "text": "An HTTP 404 status type"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "JdbcTemplate and the ORM integration translate persistence failures into DataAccessException subclasses. Those exceptions are unchecked, so repository methods do not have to declare SQLException.",
+    "reference": "Spring Framework docs — DataAccessException",
+    "id": "q160"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "truefalse",
+    "category": "Spring",
+    "question": "JdbcTemplate holds the repeated JDBC workflow, including resource cleanup and exception translation, while the caller supplies the SQL and the mapping.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "That is the template pattern in Spring JDBC. The template gets a connection, runs the statement, maps results through a callback such as RowMapper, translates SQLException, and releases resources.",
+    "reference": "Spring Framework docs — JdbcTemplate",
+    "id": "q161"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "How do you run a query with JdbcTemplate?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Inject a JdbcTemplate built on a DataSource and call a method such as query or update"
+      },
+      {
+        "id": "b",
+        "text": "Build a new DriverManager connection inside every JdbcTemplate method yourself"
+      },
+      {
+        "id": "c",
+        "text": "Call it from a static initializer before any DataSource exists"
+      },
+      {
+        "id": "d",
+        "text": "Use it with no DataSource"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "JdbcTemplate needs a DataSource. After that it is safe to share. query and update take the SQL, bind parameters, and return mapped results or the update count.",
+    "reference": "Spring Framework docs — JdbcTemplate",
+    "id": "q162"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "multiple",
+    "category": "Spring",
+    "question": "On which thrown types does @Transactional roll back by default?",
+    "options": [
+      {
+        "id": "a",
+        "text": "RuntimeException"
+      },
+      {
+        "id": "b",
+        "text": "Error"
+      },
+      {
+        "id": "c",
+        "text": "A checked Exception, with no rollbackFor attribute"
+      },
+      {
+        "id": "d",
+        "text": "A normal return from the method"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b"
+    ],
+    "explanation": "The default rule rolls back on runtime exceptions and errors, and commits when a checked exception leaves the method. rollbackFor changes that. A self-call that never enters the transactional proxy does not start this rule at all.",
+    "reference": "Spring Framework docs — @Transactional rollback rules",
+    "id": "q163"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "How does Spring support ORM frameworks such as Hibernate and JPA?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It can share one transaction manager with the ORM and, through Spring Data, implement repository interfaces"
+      },
+      {
+        "id": "b",
+        "text": "It forbids Hibernate"
+      },
+      {
+        "id": "c",
+        "text": "ORM in Spring means the controller writes SQL strings only"
+      },
+      {
+        "id": "d",
+        "text": "An EntityManager cannot participate in a Spring transaction"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Spring configures the EntityManager factory and binds the persistence context to the transaction it manages. Spring Data JPA then implements repository interfaces on top of that.",
+    "reference": "Spring Framework docs — ORM integration",
+    "id": "q164"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "multiple",
+    "category": "Spring",
+    "question": "Which types are part of typical Spring JDBC use?",
+    "options": [
+      {
+        "id": "a",
+        "text": "DataSource"
+      },
+      {
+        "id": "b",
+        "text": "JdbcTemplate"
+      },
+      {
+        "id": "c",
+        "text": "RowMapper"
+      },
+      {
+        "id": "d",
+        "text": "HttpSession"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "The pool is a DataSource, JdbcTemplate runs the SQL, and RowMapper turns each row into an object. HttpSession is a web API, not a JDBC type. NamedParameterJdbcTemplate is the variant that binds :name parameters.",
+    "reference": "Spring Framework docs — JDBC core classes",
+    "id": "q165"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "What is Spring MVC?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A web framework that uses DispatcherServlet as the front controller and controller beans to handle requests"
+      },
+      {
+        "id": "b",
+        "text": "A Swing toolkit"
+      },
+      {
+        "id": "c",
+        "text": "A replacement for the HTTP protocol"
+      },
+      {
+        "id": "d",
+        "text": "An object-relational mapper"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Spring MVC implements the model-view-controller style for HTTP. DispatcherServlet receives the request and delegates to a mapped controller method.",
+    "reference": "Spring Framework docs — Spring Web MVC",
+    "id": "q166"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "Which sequence matches a Spring MVC request?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A handler mapping finds the controller method, then a view is resolved or a message converter writes the body"
+      },
+      {
+        "id": "b",
+        "text": "The browser calls a repository and skips the servlet"
+      },
+      {
+        "id": "c",
+        "text": "The server calls main for every HTTP request"
+      },
+      {
+        "id": "d",
+        "text": "A batch job reads the HTTP body before any servlet runs"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "DispatcherServlet asks a HandlerMapping for the method, a HandlerAdapter invokes it, then either a ViewResolver renders a view or an HttpMessageConverter writes a @ResponseBody result.",
+    "reference": "Spring Framework docs — Processing requests",
+    "id": "q167"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "What do @Controller and @RequestMapping do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "@Controller marks a web controller bean; @RequestMapping maps a path and HTTP details to a handler method"
+      },
+      {
+        "id": "b",
+        "text": "@Controller opens a database transaction by itself"
+      },
+      {
+        "id": "c",
+        "text": "@RequestMapping sets the server port"
+      },
+      {
+        "id": "d",
+        "text": "Both annotations are valid only on interfaces"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "@Controller is a stereotype Spring MVC detects. @RequestMapping, and composed annotations such as @GetMapping, bind the method to a request. A mapping on the class is a path prefix.",
+    "reference": "Spring Framework docs — @Controller and @RequestMapping",
+    "id": "q168"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "truefalse",
+    "category": "Spring",
+    "question": "DispatcherServlet is the front controller that receives the HTTP request and delegates to handler mappings.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "It is the entry servlet of Spring MVC. It does not run SQL and it does not replace Spring Security. Filters in the servlet container run before it sees the request.",
+    "reference": "Spring Framework docs — DispatcherServlet",
+    "id": "q169"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "How does a controller method receive a web request?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The mapping annotation selects the method, and arguments such as @PathVariable or @RequestBody carry the input"
+      },
+      {
+        "id": "b",
+        "text": "The method polls System.in"
+      },
+      {
+        "id": "c",
+        "text": "The controller constructor opens a ServerSocket"
+      },
+      {
+        "id": "d",
+        "text": "@Scheduled invokes the method for every HTTP call"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Spring MVC converts the request into method arguments. @PathVariable reads the URI, @RequestParam reads a query or form field, and @RequestBody reads the converted body.",
+    "reference": "Spring Framework docs — Handler methods",
+    "id": "q170"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "Where do servlet filters sit relative to a controller in a Spring MVC application?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Filters run first, then DispatcherServlet dispatches to the controller, then a view or a message converter completes the response"
+      },
+      {
+        "id": "b",
+        "text": "The controller runs before the socket is accepted"
+      },
+      {
+        "id": "c",
+        "text": "The view resolver runs before the request arrives"
+      },
+      {
+        "id": "d",
+        "text": "The repository chooses the controller"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "The servlet container applies filters, then the servlet. DispatcherServlet then runs the MVC pipeline. HandlerInterceptor hooks are inside that servlet, not a replacement for filters.",
+    "reference": "Spring Framework docs — DispatcherServlet request lifecycle",
+    "id": "q171"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "How do you validate a @RequestBody in Spring MVC?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Add Jakarta Bean Validation constraints and @Valid so a failure raises MethodArgumentNotValidException"
+      },
+      {
+        "id": "b",
+        "text": "Validation runs only when the Java field is named valid"
+      },
+      {
+        "id": "c",
+        "text": "@Valid never fails a request"
+      },
+      {
+        "id": "d",
+        "text": "Bean Validation removes the need for a controller"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "@Valid or @Validated triggers the validator on that argument. For a @RequestBody, a failure becomes MethodArgumentNotValidException, which you can map to HTTP 400. A BindingResult parameter placed immediately after the argument handles the errors locally instead. The validator implementation, such as Hibernate Validator, must be on the classpath.",
+    "reference": "Spring Framework docs — Validation",
+    "id": "q172"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "How does @RestController differ from @Controller?",
+    "options": [
+      {
+        "id": "a",
+        "text": "@RestController includes @ResponseBody, so the return value is the response body rather than a view name"
+      },
+      {
+        "id": "b",
+        "text": "@RestController methods can return only void"
+      },
+      {
+        "id": "c",
+        "text": "@Controller methods cannot be annotated with @ResponseBody"
+      },
+      {
+        "id": "d",
+        "text": "The two annotations differ only by package and behave the same"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "@RestController is @Controller plus @ResponseBody. A String returned from a @RestController method is written as the body. The same String from a plain @Controller method is treated as a view name unless that method has @ResponseBody.",
+    "reference": "Spring Framework docs — @RestController",
+    "id": "q173"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "What does Spring Security add to an application?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A filter chain that can authenticate the caller and authorize HTTP routes and methods"
+      },
+      {
+        "id": "b",
+        "text": "A CSS library"
+      },
+      {
+        "id": "c",
+        "text": "Replacement TLS certificates and nothing else"
+      },
+      {
+        "id": "d",
+        "text": "An annotation that encrypts the JVM heap"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Spring Security is a filter-based security framework. It establishes the caller and then decides whether that caller may reach a path or invoke a method.",
+    "reference": "Spring Security docs — Servlet security",
+    "id": "q174"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "How do authentication and authorization differ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Authentication establishes who the caller is; authorization decides what that identity may do"
+      },
+      {
+        "id": "b",
+        "text": "They are the same check"
+      },
+      {
+        "id": "c",
+        "text": "Authorization runs before any identity exists, and authentication is only a log line"
+      },
+      {
+        "id": "d",
+        "text": "Authentication is a database index"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "A login or token check authenticates. Rules such as \"this role may POST /orders\" authorize. A request can be authenticated and still be forbidden.",
+    "reference": "Spring Security docs — Authentication and authorization",
+    "id": "q175"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "How do you configure HTTP security in Spring Security 6?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Declare a SecurityFilterChain bean and define the request rules on it"
+      },
+      {
+        "id": "b",
+        "text": "Extend WebSecurityConfigurerAdapter, which Security 6 still requires"
+      },
+      {
+        "id": "c",
+        "text": "Put a password attribute on every @RestController"
+      },
+      {
+        "id": "d",
+        "text": "Set the context path to /secure and add no other rules"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "The current style is a SecurityFilterChain @Bean that receives HttpSecurity. WebSecurityConfigurerAdapter was removed in Spring Security 6, so new applications do not extend it.",
+    "reference": "Spring Security docs — SecurityFilterChain",
+    "id": "q176"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "What is a Principal in Spring Security?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The authenticated caller. Authentication extends Principal and is stored in the SecurityContext"
+      },
+      {
+        "id": "b",
+        "text": "The JPA @Id annotation"
+      },
+      {
+        "id": "c",
+        "text": "The first constructor parameter of every bean"
+      },
+      {
+        "id": "d",
+        "text": "The Maven parent POM"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "After authentication, the SecurityContext holds an Authentication. That object is a Principal. Its getPrincipal() value is often a UserDetails instance or the username.",
+    "reference": "Spring Security docs — SecurityContext",
+    "id": "q177"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "Which setup matches a typical token-based REST API?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Stateless sessions, with each request authenticated by a bearer token or basic credentials"
+      },
+      {
+        "id": "b",
+        "text": "permitAll on every exchange, and the password stored in a cookie named admin"
+      },
+      {
+        "id": "c",
+        "text": "A SecurityContext populated once at build time from a static initializer"
+      },
+      {
+        "id": "d",
+        "text": "REST routes cannot be protected"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "A token API usually sets the session policy to stateless so the server does not create an HTTP session. Each call presents its own credentials. Browser form apps are different: they keep a session and CSRF protection.",
+    "reference": "Spring Security docs — Session management",
+    "id": "q178"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "What does @PreAuthorize do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Runs an authorization expression before the method when method security is enabled"
+      },
+      {
+        "id": "b",
+        "text": "Maps an HTTP path"
+      },
+      {
+        "id": "c",
+        "text": "Encrypts the return value"
+      },
+      {
+        "id": "d",
+        "text": "Replaces authentication"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "@PreAuthorize is method security. The expression, such as hasRole(\"ADMIN\"), must pass before the method runs. Enable it with @EnableMethodSecurity. Like other proxy advice, a self-call does not trigger it.",
+    "reference": "Spring Security docs — Method security",
+    "id": "q179"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "truefalse",
+    "category": "Spring",
+    "question": "WebSecurityConfigurerAdapter is the recommended base class for HTTP security configuration in Spring Security 6.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "The adapter is gone in Spring Security 6. Configure a SecurityFilterChain bean instead. Spring Boot 3 applications use that Security 6 model.",
+    "reference": "Spring Security docs — Migrate to SecurityFilterChain",
+    "id": "q180"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Spring",
+    "question": "When does Spring Security CSRF protection apply by default on the servlet stack?",
+    "options": [
+      {
+        "id": "a",
+        "text": "To state-changing requests, so a browser client must send the expected CSRF token"
+      },
+      {
+        "id": "b",
+        "text": "To GET requests only, and POST is ignored"
+      },
+      {
+        "id": "c",
+        "text": "It is always disabled, including for browser form logins"
+      },
+      {
+        "id": "d",
+        "text": "It is a database constraint and does not involve HTTP"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "CSRF protection is on by default. Safe methods such as GET, HEAD, OPTIONS, and TRACE are not checked. A cookie-based browser app should keep it. A stateless bearer-token API often disables it because the browser does not attach that credential automatically.",
+    "reference": "Spring Security docs — CSRF",
+    "id": "q181"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "How is Spring commonly used to build microservices?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Each service is a Spring Boot process, and Spring Cloud adds discovery, config, a gateway, and resilience helpers"
+      },
+      {
+        "id": "b",
+        "text": "Every service must share one ApplicationContext in one process"
+      },
+      {
+        "id": "c",
+        "text": "Spring can start only one jar on a machine"
+      },
+      {
+        "id": "d",
+        "text": "A microservice must be an EJB"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "A microservice is a separately deployed application. Spring Boot packages that application. Spring Cloud projects address the distributed problems around it. The services do not share one in-process context.",
+    "reference": "Spring Cloud docs — Overview",
+    "id": "q182"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "multiple",
+    "category": "Spring",
+    "question": "Which of these belong to the usual Spring Cloud toolkit?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Service discovery"
+      },
+      {
+        "id": "b",
+        "text": "Centralized configuration"
+      },
+      {
+        "id": "c",
+        "text": "An API gateway"
+      },
+      {
+        "id": "d",
+        "text": "JdbcTemplate"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "Spring Cloud covers distributed-system concerns such as discovery, config, gateway routing, and circuit breakers. JdbcTemplate is core Spring JDBC, not a Cloud project.",
+    "reference": "Spring Cloud docs — Features",
+    "id": "q183"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "truefalse",
+    "category": "Spring",
+    "question": "Eureka is a service registry: instances register themselves, and clients look up other instances by service name.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "A Eureka server stores registrations. Clients register on startup and query the registry to find collaborators. It is not a database, a web server, or a password encoder.",
+    "reference": "Spring Cloud Netflix docs — Eureka",
+    "id": "q184"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "How does client-side load balancing work with Spring Cloud?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Spring Cloud LoadBalancer chooses an instance after the client resolves a service name"
+      },
+      {
+        "id": "b",
+        "text": "The browser picks a random pod, and discovery is not used"
+      },
+      {
+        "id": "c",
+        "text": "Netflix Ribbon is required, and Spring Cloud LoadBalancer cannot replace it"
+      },
+      {
+        "id": "d",
+        "text": "JdbcTemplate balances SQL queries across HTTP services"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "A @LoadBalanced RestClient, RestTemplate, or WebClient can use a service name instead of one host. Spring Cloud LoadBalancer selects an instance. Ribbon is the older client.",
+    "reference": "Spring Cloud docs — Spring Cloud LoadBalancer",
+    "id": "q185"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "What is Spring Cloud Config used for?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Serving externalized configuration, often from Git, so services do not bake every environment setting into the jar"
+      },
+      {
+        "id": "b",
+        "text": "Replacing application.properties with a format Boot cannot read"
+      },
+      {
+        "id": "c",
+        "text": "The CSRF filter"
+      },
+      {
+        "id": "d",
+        "text": "Storing HTTP sessions inside a controller field"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "The config server exposes properties from a backend such as a Git repository. Clients import that config at startup. Local application.properties still works; the server is for shared, environment-specific config.",
+    "reference": "Spring Cloud Config docs",
+    "id": "q186"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "What does a circuit breaker do when a downstream service is failing?",
+    "options": [
+      {
+        "id": "a",
+        "text": "After repeated failures it opens and further calls fail fast or run a fallback until a trial call is allowed"
+      },
+      {
+        "id": "b",
+        "text": "It retries forever on the request thread"
+      },
+      {
+        "id": "c",
+        "text": "It is a SQL isolation level"
+      },
+      {
+        "id": "d",
+        "text": "It shuts down the JVM when one bean fails to start"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Closed means calls go through. Open means calls are rejected quickly so threads are not stuck on a dead dependency. Half-open lets a trial through. Spring Cloud Circuit Breaker commonly delegates to Resilience4j.",
+    "reference": "Spring Cloud Circuit Breaker docs",
+    "id": "q187"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "What is Spring Cloud Gateway?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A reactive edge application that routes requests with predicates and filters"
+      },
+      {
+        "id": "b",
+        "text": "A JPA repository base class"
+      },
+      {
+        "id": "c",
+        "text": "A replacement that removes DispatcherServlet from every service and bans WebFlux"
+      },
+      {
+        "id": "d",
+        "text": "Another name for the Eureka server"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "The gateway is its own Spring WebFlux process at the edge. Routes match predicates such as a path and can rewrite, authenticate, or limit requests. It is not the service registry.",
+    "reference": "Spring Cloud Gateway docs",
+    "id": "q188"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "How does Spring support reactive programming?",
+    "options": [
+      {
+        "id": "a",
+        "text": "WebFlux and Project Reactor types, Mono and Flux, represent asynchronous publishers and subscribers"
+      },
+      {
+        "id": "b",
+        "text": "By making every method synchronized"
+      },
+      {
+        "id": "c",
+        "text": "By polling a database in a tight loop"
+      },
+      {
+        "id": "d",
+        "text": "Only with a blocking servlet thread and RestTemplate"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Reactive streams push data when the subscriber is ready. Spring WebFlux is the reactive web stack and uses Reactor. Spring MVC remains the servlet stack.",
+    "reference": "Spring Framework docs — WebFlux",
+    "id": "q189"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "What is Spring WebFlux?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The reactive web stack, which can run on Netty, with controllers that return Mono or Flux"
+      },
+      {
+        "id": "b",
+        "text": "A release that deleted Spring MVC from the framework"
+      },
+      {
+        "id": "c",
+        "text": "An XML parser"
+      },
+      {
+        "id": "d",
+        "text": "A batch job definition"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "WebFlux is an alternative to Spring MVC, not a removal of it. spring-boot-starter-webflux uses Netty by default. Annotated controllers and functional RouterFunction routes are both supported.",
+    "reference": "Spring Framework docs — WebFlux overview",
+    "id": "q190"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "truefalse",
+    "category": "Spring",
+    "question": "In reactive streams, backpressure means the subscriber tells the publisher how many items it can accept.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "The subscriber requests a number of items. A well-behaved publisher does not emit more than that demand. A larger thread pool with an unbounded queue is not backpressure.",
+    "reference": "Reactive Streams specification — Subscription.request",
+    "id": "q191"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Spring",
+    "question": "How do you keep a WebFlux endpoint non-blocking?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Return Mono or Flux and call downstream services with WebClient, without blocking the event-loop thread"
+      },
+      {
+        "id": "b",
+        "text": "Call block() on the Netty event loop for every downstream request"
+      },
+      {
+        "id": "c",
+        "text": "Use RestTemplate inside the WebFlux controller as the recommended client"
+      },
+      {
+        "id": "d",
+        "text": "Return a view name from a functional route and read a JDBC ResultSet on the event loop"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "The event loop should not wait on blocking IO. WebClient returns a publisher. block(), RestTemplate, and JDBC on that thread stall every other request sharing the loop.",
+    "reference": "Spring Framework docs — WebClient",
+    "id": "q192"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "When should a test avoid loading a Spring ApplicationContext?",
+    "options": [
+      {
+        "id": "a",
+        "text": "When the test targets one class and can pass its collaborators as mocks"
+      },
+      {
+        "id": "b",
+        "text": "Never. Every test must boot the full application and a real database"
+      },
+      {
+        "id": "c",
+        "text": "Unit tests are not allowed to call methods"
+      },
+      {
+        "id": "d",
+        "text": "@SpringBootTest is required to construct one object with new"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "A unit test constructs the class under test and mocks neighbors. Load a slice such as @WebMvcTest, or the full @SpringBootTest context, only when the behavior depends on Spring.",
+    "reference": "Spring Framework docs — Testing",
+    "id": "q193"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "truefalse",
+    "category": "Spring",
+    "question": "The Spring TestContext framework can cache an ApplicationContext and reuse it for tests that share the same configuration.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Starting a context is expensive, so the TestContext framework caches it. Tests can receive injected beans. A context is rebuilt when its configuration changes or a test dirties it.",
+    "reference": "Spring Framework docs — TestContext framework",
+    "id": "q194"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "How do you replace one bean with a Mockito mock in a Spring test context?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Declare @MockitoBean on the test field. The older annotation for the same job is @MockBean"
+      },
+      {
+        "id": "b",
+        "text": "Call new Mock() inside a static initializer of the production class"
+      },
+      {
+        "id": "c",
+        "text": "Mockito cannot be registered in a Spring test context"
+      },
+      {
+        "id": "d",
+        "text": "Delete the class from the production jar before the test"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "The test annotation adds a mock bean that takes the place of the real one in that test context. @MockBean did this and is deprecated in favor of @MockitoBean in current Spring Boot 3 tests.",
+    "reference": "Spring Boot docs — @MockitoBean",
+    "id": "q195"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "How does Spring support internationalization?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A MessageSource resolves codes from locale-specific bundles such as messages_fr.properties"
+      },
+      {
+        "id": "b",
+        "text": "Each language must be a separate Java string literal inside every controller"
+      },
+      {
+        "id": "c",
+        "text": "Spring cannot load resource bundles"
+      },
+      {
+        "id": "d",
+        "text": "The locale is fixed at build time and the request cannot influence it"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "MessageSource.getMessage looks up a code for a Locale. A LocaleResolver such as AcceptHeaderLocaleResolver chooses the locale from the request. Basename messages loads messages.properties and messages_fr.properties.",
+    "reference": "Spring Framework docs — MessageSource",
+    "id": "q196"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "truefalse",
+    "category": "Spring",
+    "question": "In @Value, ${server.port} is a property placeholder and #{2 + 2} is a Spring expression.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "${...} resolves configuration properties. #{...} is the Spring Expression Language and can call beans and evaluate expressions. They are not the same syntax.",
+    "reference": "Spring Framework docs — Spring Expression Language",
+    "id": "q197"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "How do you run a method on a schedule in Spring?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Add @EnableScheduling and annotate a bean method with @Scheduled"
+      },
+      {
+        "id": "b",
+        "text": "Annotate a method of an object that was created only with new"
+      },
+      {
+        "id": "c",
+        "text": "Treat fixedDelay and fixedRate as identical"
+      },
+      {
+        "id": "d",
+        "text": "Scheduling starts only when a Quartz database is present"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "@EnableScheduling turns the feature on. @Scheduled accepts cron, fixedRate, or fixedDelay. fixedDelay waits from the end of the previous run; fixedRate is measured from the start. The method must be on a Spring bean. Quartz is optional.",
+    "reference": "Spring Framework docs — Task execution and scheduling",
+    "id": "q198"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "When do you choose @Bean instead of @Component?",
+    "options": [
+      {
+        "id": "a",
+        "text": "@Bean registers the object a method returns, which is how you supply a library type you cannot annotate"
+      },
+      {
+        "id": "b",
+        "text": "The two annotations mean the same thing on a method"
+      },
+      {
+        "id": "c",
+        "text": "A @Bean method is illegal inside a @Configuration class"
+      },
+      {
+        "id": "d",
+        "text": "@Component is not allowed on classes"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "@Component marks your class for scanning. @Bean is a factory method. Inside a @Configuration class, calls between @Bean methods return the container singleton rather than running the method again.",
+    "reference": "Spring Framework docs — @Bean and @Component",
+    "id": "q199"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Spring",
+    "question": "What is true of @Autowired and @Inject on a Spring bean that has one constructor?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Spring uses that constructor even when neither annotation is present. @Autowired is Spring-specific; @Inject is the Jakarta annotation"
+      },
+      {
+        "id": "b",
+        "text": "The context fails to start unless @Autowired is on that only constructor"
+      },
+      {
+        "id": "c",
+        "text": "@Inject disables constructor injection"
+      },
+      {
+        "id": "d",
+        "text": "Only @Inject is recognized, and @Autowired does nothing"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Since Spring 4.3 a single constructor is used automatically. @Autowired can set required to false. @Inject has no required attribute and needs the Jakarta Inject API. Both inject the same way when they are present.",
+    "reference": "Spring Framework docs — @Autowired",
+    "id": "q200"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "multiple",
+    "category": "Spring",
+    "question": "Which practices fit a typical Spring application?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Constructor injection for required collaborators"
+      },
+      {
+        "id": "b",
+        "text": "Transaction boundaries on the service layer"
+      },
+      {
+        "id": "c",
+        "text": "Field injection as the required default"
+      },
+      {
+        "id": "d",
+        "text": "Passwords committed in source code"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b"
+    ],
+    "explanation": "Constructor injection makes dependencies explicit and final. Transactions belong on the service use case, not on every controller or repository call. Field injection hides dependencies, and secrets do not belong in source.",
+    "reference": "Spring Framework docs — Constructor injection",
+    "id": "q201"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "How should a web application handle exceptions that controllers can raise?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Map them in one place with @ControllerAdvice and @ExceptionHandler, and return a clear HTTP status"
+      },
+      {
+        "id": "b",
+        "text": "Catch Exception in every controller method and return null"
+      },
+      {
+        "id": "c",
+        "text": "Use the raw stack trace as the public API"
+      },
+      {
+        "id": "d",
+        "text": "@ExceptionHandler methods work only when they are private"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "@ControllerAdvice applies @ExceptionHandler methods across controllers. Spring 6 can build a ProblemDetail body for that response. Returning null skips a real status and hides the failure.",
+    "reference": "Spring Framework docs — Controller advice",
+    "id": "q202"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "How should Spring Security store and check a password?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Store a one-way hash from a PasswordEncoder such as BCrypt, and compare with matches"
+      },
+      {
+        "id": "b",
+        "text": "Store the password with reversible encryption and decrypt it to compare"
+      },
+      {
+        "id": "c",
+        "text": "Use NoOpPasswordEncoder in production"
+      },
+      {
+        "id": "d",
+        "text": "Put the raw password in an unsigned token payload"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "PasswordEncoder.encode produces the stored hash. matches compares a presented password with that hash. BCrypt is a common choice. DelegatingPasswordEncoder can select an algorithm from an id prefix. NoOpPasswordEncoder stores plaintext and is not for production.",
+    "reference": "Spring Security docs — PasswordEncoder",
+    "id": "q203"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "Which change actually helps a Spring web application that is slow because of the database?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Paginate queries, avoid N+1 selects, and use a pool such as HikariCP"
+      },
+      {
+        "id": "b",
+        "text": "Create a new DataSource on every repository call"
+      },
+      {
+        "id": "c",
+        "text": "Eagerly load every association on every request"
+      },
+      {
+        "id": "d",
+        "text": "Turn off the connection pool"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Most of that latency is query shape and connection management. Pagination and fetch plans cut the data transferred. A pool reuses connections. Spring Boot uses HikariCP by default when a JDBC starter is present.",
+    "reference": "Spring Boot docs — DataSource and HikariCP",
+    "id": "q204"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "When is Aspect-Oriented Programming a good fit in Spring?",
+    "options": [
+      {
+        "id": "a",
+        "text": "For a cross-cutting policy such as transactions, security, or metrics"
+      },
+      {
+        "id": "b",
+        "text": "For every business if statement the caller needs to read"
+      },
+      {
+        "id": "c",
+        "text": "Never for transactions"
+      },
+      {
+        "id": "d",
+        "text": "As a replacement for constructors"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "AOP pays off when the same policy wraps many methods. Business decisions belong in the method body where a reader can see them. Spring already uses AOP for @Transactional.",
+    "reference": "Spring Framework docs — AOP with Spring",
+    "id": "q205"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "What is Spring Integration for?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Message-driven flows that connect application code and external systems through channels and endpoints"
+      },
+      {
+        "id": "b",
+        "text": "Styling HTML"
+      },
+      {
+        "id": "c",
+        "text": "The same job as a finite Spring Batch job, under another name"
+      },
+      {
+        "id": "d",
+        "text": "A Git client"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Spring Integration implements enterprise integration patterns. Messages move through channels. Endpoints connect those channels to code or to adapters such as HTTP, files, or a broker.",
+    "reference": "Spring Integration docs — Overview",
+    "id": "q206"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "What are the main pieces of a Spring Batch job?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A job of steps that read, process, and write items, with a job repository that records runs so they can restart"
+      },
+      {
+        "id": "b",
+        "text": "A browser session store"
+      },
+      {
+        "id": "c",
+        "text": "An HTTP toolkit with no persistence of job state"
+      },
+      {
+        "id": "d",
+        "text": "A replacement for message channels that cannot commit"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "A Job contains Steps. A chunk-oriented step uses an ItemReader, an ItemProcessor, and an ItemWriter. The JobRepository stores the execution so a failed job can restart instead of repeating committed chunks.",
+    "reference": "Spring Batch docs — Domain and chunk processing",
+    "id": "q207"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "How do Spring Integration and Spring Batch differ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Integration connects ongoing message flows; Batch runs finite jobs over large sets of items and can restart them"
+      },
+      {
+        "id": "b",
+        "text": "They are two names for the same library"
+      },
+      {
+        "id": "c",
+        "text": "Batch is only for WebSocket chat, and Integration cannot use a channel"
+      },
+      {
+        "id": "d",
+        "text": "Integration is a cron expression, and Batch is a CSS file"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Use Integration when systems exchange messages over time. Use Batch when a bounded data set must be processed reliably, in chunks, with restart metadata.",
+    "reference": "Spring Integration docs and Spring Batch docs — purpose",
+    "id": "q208"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "What is an endpoint in Spring Integration?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The component that connects a message channel to application code or to an external adapter"
+      },
+      {
+        "id": "b",
+        "text": "Only a REST path, because Integration has no channels"
+      },
+      {
+        "id": "c",
+        "text": "A JPA @Id"
+      },
+      {
+        "id": "d",
+        "text": "The actuator management port"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Channels carry messages. An endpoint, such as a service activator or a channel adapter, consumes or produces those messages and connects the flow to code or to another system.",
+    "reference": "Spring Integration docs — Message endpoints",
+    "id": "q209"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "truefalse",
+    "category": "Spring",
+    "question": "In a chunk-oriented Spring Batch step, one transaction covers the chunk that is written, which can contain more than one item.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "The step reads and processes items until the chunk size is reached, writes that chunk, and commits. The chunk size is the commit interval. It is not a separate transaction per item unless the chunk size is 1.",
+    "reference": "Spring Batch docs — Chunk-oriented processing",
+    "id": "q210"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "What is Spring Cloud Data Flow for?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Composing and launching data pipelines made of Spring Boot applications, as streams or tasks"
+      },
+      {
+        "id": "b",
+        "text": "Replacing the garbage collector"
+      },
+      {
+        "id": "c",
+        "text": "Replacing Spring MVC inside a single controller"
+      },
+      {
+        "id": "d",
+        "text": "An annotation placed on a JPA repository"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Data Flow orchestrates Boot apps. A stream is a long-running pipeline. A task is a finite process. It is a server you deploy, not a language feature inside one class.",
+    "reference": "Spring Cloud Data Flow docs — Introduction",
+    "id": "q211"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Spring",
+    "question": "How do you add a custom processor to a Spring Cloud Data Flow stream?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Deploy a Boot application that supplies the processing function, then place that app between a source and a sink in the stream definition"
+      },
+      {
+        "id": "b",
+        "text": "Add a stored procedure and no application"
+      },
+      {
+        "id": "c",
+        "text": "Register an HTML filter"
+      },
+      {
+        "id": "d",
+        "text": "Mount an empty Docker volume and no code"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Stream apps are Boot applications. In the functional model a Function bean transforms the payload. Data Flow launches the registered apps and binds them through a broker.",
+    "reference": "Spring Cloud Data Flow docs — Stream applications",
+    "id": "q212"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "How does a Spring Cloud Data Flow stream move data between applications?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The stream definition wires apps such as source, processor, and sink, and a binder moves messages between them"
+      },
+      {
+        "id": "b",
+        "text": "A single java.util.stream.Stream call inside one method, with no deployed apps"
+      },
+      {
+        "id": "c",
+        "text": "A database view"
+      },
+      {
+        "id": "d",
+        "text": "One request-scoped bean"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Each stage is a separate process. Spring Cloud Stream binders, commonly Kafka or RabbitMQ, carry the messages from one app to the next.",
+    "reference": "Spring Cloud Data Flow docs — Streams",
+    "id": "q213"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "multiple",
+    "category": "Spring",
+    "question": "Which templates does Spring provide for talking to a message broker?",
+    "options": [
+      {
+        "id": "a",
+        "text": "JmsTemplate"
+      },
+      {
+        "id": "b",
+        "text": "RabbitTemplate"
+      },
+      {
+        "id": "c",
+        "text": "KafkaTemplate"
+      },
+      {
+        "id": "d",
+        "text": "EntityManager, as the broker client API"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "JmsTemplate sends JMS messages, RabbitTemplate sends AMQP, and KafkaTemplate sends Kafka records. EntityManager is JPA, not a broker client. Listener annotations consume on the other side.",
+    "reference": "Spring Framework docs — JMS, AMQP, and Spring for Apache Kafka",
+    "id": "q214"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "What does Spring add on top of the Java Message Service?",
+    "options": [
+      {
+        "id": "a",
+        "text": "JmsTemplate for sending and @JmsListener for consuming, using a ConnectionFactory"
+      },
+      {
+        "id": "b",
+        "text": "A JSON schema language"
+      },
+      {
+        "id": "c",
+        "text": "The JDBC API under a new name"
+      },
+      {
+        "id": "d",
+        "text": "A web scope named jms"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "JMS is the API for queues and topics. Spring supplies the template and the listener container so application code does not manage connections and sessions by hand. A queue is point-to-point; a topic is publish-subscribe.",
+    "reference": "Spring Framework docs — JMS",
+    "id": "q215"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "truefalse",
+    "category": "Spring",
+    "question": "@KafkaListener marks a bean method that consumes records from the declared Kafka topics.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "The annotation registers a listener on those topics. The method receives the payload or the consumer record. Sending is a different API, KafkaTemplate. Spring Boot enables the Kafka listener infrastructure when the Kafka starter is present.",
+    "reference": "Spring for Apache Kafka docs — @KafkaListener",
+    "id": "q216"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "How do you send and receive AMQP messages with Spring?",
+    "options": [
+      {
+        "id": "a",
+        "text": "RabbitTemplate sends, and @RabbitListener consumes from a queue bound to an exchange"
+      },
+      {
+        "id": "b",
+        "text": "AMQP is the cache annotation"
+      },
+      {
+        "id": "c",
+        "text": "RabbitTemplate executes SQL"
+      },
+      {
+        "id": "d",
+        "text": "@RabbitListener handles browser form posts"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "AMQP in Spring projects usually means RabbitMQ. The template converts and sends a message to an exchange. A listener method receives from a queue. Bindings decide which messages reach that queue.",
+    "reference": "Spring AMQP docs — RabbitTemplate and @RabbitListener",
+    "id": "q217"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "What does Spring Kafka provide?",
+    "options": [
+      {
+        "id": "a",
+        "text": "KafkaTemplate and listener containers, pulled in by Boot with spring-boot-starter-kafka"
+      },
+      {
+        "id": "b",
+        "text": "A Kafka broker written as XML"
+      },
+      {
+        "id": "c",
+        "text": "A client that can talk only to RabbitMQ"
+      },
+      {
+        "id": "d",
+        "text": "An in-memory list that replaces the Kafka cluster"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Spring for Apache Kafka is a client library. It does not replace the broker. The Boot starter auto-configures the producer factory, consumer factory, and KafkaTemplate from spring.kafka properties.",
+    "reference": "Spring Boot docs — Apache Kafka",
+    "id": "q218"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Spring",
+    "question": "How can Spring Kafka group several sends into one transaction?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Enable a transactional producer with a transaction-id prefix so those sends commit or abort together"
+      },
+      {
+        "id": "b",
+        "text": "KafkaTemplate cannot participate in a transaction"
+      },
+      {
+        "id": "c",
+        "text": "A JPA @Transactional annotation is enough, with no transactional producer settings"
+      },
+      {
+        "id": "d",
+        "text": "acks=0 turns on Kafka transactions"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "spring.kafka.producer.transaction-id-prefix makes the producer transactional. KafkaTemplate can then run the sends in one Kafka transaction. acks controls acknowledgment, not transactions. A JPA transaction does not by itself commit Kafka sends.",
+    "reference": "Spring for Apache Kafka docs — Transactions",
+    "id": "q219"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "What is KafkaTemplate used for?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Sending records. send returns a future for the producer result"
+      },
+      {
+        "id": "b",
+        "text": "Declaring a listener method"
+      },
+      {
+        "id": "c",
+        "text": "Implementing a JPA repository"
+      },
+      {
+        "id": "d",
+        "text": "Storing consumer offsets in a controller field by default"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "KafkaTemplate is the high-level producer API. In current Spring Kafka, send returns a CompletableFuture. Consumption belongs on @KafkaListener, and offsets are committed by the listener container.",
+    "reference": "Spring for Apache Kafka docs — KafkaTemplate",
+    "id": "q220"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "How do you turn on method-result caching in Spring?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Add @EnableCaching, provide a CacheManager, and mark methods with the cache annotations"
+      },
+      {
+        "id": "b",
+        "text": "A static HashMap in a controller is the Spring cache abstraction"
+      },
+      {
+        "id": "c",
+        "text": "Caching requires AOP to be disabled"
+      },
+      {
+        "id": "d",
+        "text": "@Cacheable is applied to private methods called through this"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "@EnableCaching installs the cache advice. A CacheManager picks the store, such as a concurrent map, Caffeine, or Redis. The advice is a proxy, so private methods and self-calls are not cached.",
+    "reference": "Spring Framework docs — Cache abstraction",
+    "id": "q221"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "What does the Spring cache abstraction give you?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cache and CacheManager interfaces so the same annotations can target different providers"
+      },
+      {
+        "id": "b",
+        "text": "Business methods that must call one vendor API directly"
+      },
+      {
+        "id": "c",
+        "text": "HTTP-header caching only, with no method cache"
+      },
+      {
+        "id": "d",
+        "text": "A replacement for the database"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Application code uses annotations and the Spring cache API. The provider sits behind CacheManager. Swapping a concurrent map for Redis does not require rewriting the service method.",
+    "reference": "Spring Framework docs — Cache abstraction",
+    "id": "q222"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "multiple",
+    "category": "Spring",
+    "question": "Which annotations belong to the Spring cache abstraction?",
+    "options": [
+      {
+        "id": "a",
+        "text": "@Cacheable, which returns a stored value and skips the method on a hit"
+      },
+      {
+        "id": "b",
+        "text": "@CachePut, which always runs the method and updates the cache"
+      },
+      {
+        "id": "c",
+        "text": "@CacheEvict, which removes entries"
+      },
+      {
+        "id": "d",
+        "text": "@RequestMapping, which caches a controller by default"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "@Cacheable is the read-through cache. @CachePut does not skip the method. @CacheEvict deletes one key or, with allEntries, the cache. @RequestMapping is an MVC mapping and does not cache the method result.",
+    "reference": "Spring Framework docs — Declarative annotation-based caching",
+    "id": "q223"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "How does Spring support a GraphQL API?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Spring for GraphQL maps a schema to handler methods, and spring-boot-starter-graphql sets that up"
+      },
+      {
+        "id": "b",
+        "text": "By returning a String from @GetMapping with no schema"
+      },
+      {
+        "id": "c",
+        "text": "Spring has no GraphQL support"
+      },
+      {
+        "id": "d",
+        "text": "By subclassing DispatcherServlet and parsing SQL"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "You write a schema, often under src/main/resources/graphql, and map fields with annotations such as @QueryMapping. The Boot starter exposes the HTTP endpoint and wires the GraphQL engine.",
+    "reference": "Spring for GraphQL docs — Getting started",
+    "id": "q224"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "multiple",
+    "category": "Spring",
+    "question": "Which are real advantages of GraphQL compared with a typical REST design?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The client can ask for the fields it needs"
+      },
+      {
+        "id": "b",
+        "text": "Many query shapes can share one HTTP endpoint"
+      },
+      {
+        "id": "c",
+        "text": "Authorization is unnecessary"
+      },
+      {
+        "id": "d",
+        "text": "A schema is optional and responses need no defined types"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b"
+    ],
+    "explanation": "The client names the fields, which avoids over-fetching, and the endpoint stays stable while queries differ. GraphQL still needs a schema and still needs authorization. HTTP caching is harder than with cacheable REST GET routes, and nested fields need care to avoid N+1 queries.",
+    "reference": "Spring for GraphQL docs — Overview",
+    "id": "q225"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "multiple",
+    "category": "Spring Boot",
+    "question": "Which of these does Spring Boot provide?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Auto-configuration based on the classpath"
+      },
+      {
+        "id": "b",
+        "text": "Starters that bring a curated set of dependencies"
+      },
+      {
+        "id": "c",
+        "text": "An embedded web server for web applications"
+      },
+      {
+        "id": "d",
+        "text": "A bytecode format that replaces the JVM"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "Boot is an opinionated layer on Spring. It configures beans you would otherwise write by hand, packs common dependencies as starters, and can run Tomcat inside the process. It still runs on a normal JVM.",
+    "reference": "Spring Boot docs — Introducing Spring Boot",
+    "id": "q226"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring Boot",
+    "question": "What starts a Spring Boot application?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A class annotated with @SpringBootApplication whose main method calls SpringApplication.run"
+      },
+      {
+        "id": "b",
+        "text": "Only an XML file named boot.xml, with no main method"
+      },
+      {
+        "id": "c",
+        "text": "Extending WebSecurityConfigurerAdapter"
+      },
+      {
+        "id": "d",
+        "text": "A persistence.xml file and no application class"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "@SpringBootApplication combines @Configuration, @EnableAutoConfiguration, and @ComponentScan. SpringApplication.run builds the environment, refreshes the context, and, for a web app, starts the embedded server.",
+    "reference": "Spring Boot docs — Application class",
+    "id": "q227"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring Boot",
+    "question": "How does Spring Boot auto-configuration choose beans?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Auto-configuration classes apply when their conditions match, such as a class being present and a user bean of that type being absent"
+      },
+      {
+        "id": "b",
+        "text": "It generates a Java source file for every database table"
+      },
+      {
+        "id": "c",
+        "text": "It refuses to start if the application declares any @Bean"
+      },
+      {
+        "id": "d",
+        "text": "It runs only when spring.autoconfigure.exclude is set to *"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Boot loads auto-configuration classes listed in its imports file. Conditions such as @ConditionalOnClass and @ConditionalOnMissingBean decide what to register. A bean you declare yourself typically backs off the matching auto-configuration.",
+    "reference": "Spring Boot docs — Auto-configuration",
+    "id": "q228"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring Boot",
+    "question": "What is a Spring Boot starter?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A dependency descriptor that pulls the libraries needed for one feature"
+      },
+      {
+        "id": "b",
+        "text": "The main class of the application"
+      },
+      {
+        "id": "c",
+        "text": "A running thread pool inside the JVM"
+      },
+      {
+        "id": "d",
+        "text": "An actuator endpoint"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Adding spring-boot-starter-web, for example, brings Spring MVC, Jackson, and an embedded Tomcat at versions the Boot BOM manages. The starter itself is mostly a build descriptor, not your application code.",
+    "reference": "Spring Boot docs — Starters",
+    "id": "q229"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring Boot",
+    "question": "How does Spring Boot help with data access?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A data starter plus connection properties can auto-configure a DataSource and, with the JPA starter, an EntityManager"
+      },
+      {
+        "id": "b",
+        "text": "Boot cannot use JDBC"
+      },
+      {
+        "id": "c",
+        "text": "You must write a DataSource implementation to use the in-memory H2 starter"
+      },
+      {
+        "id": "d",
+        "text": "spring.datasource.url is ignored"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "spring-boot-starter-jdbc configures a pooled DataSource from spring.datasource properties and creates a JdbcTemplate. The JPA starter also configures the EntityManager factory. H2 on the classpath can be used as an embedded database when you choose that setup.",
+    "reference": "Spring Boot docs — Data access",
+    "id": "q230"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "truefalse",
+    "category": "Spring Boot",
+    "question": "spring-boot-starter-web embeds a servlet container and starts it from the application main method, so a separate Tomcat installation is not required.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "The starter embeds Tomcat by default. SpringApplication starts that server. You can switch the container or package a WAR for an external server, but the default web app is an executable jar.",
+    "reference": "Spring Boot docs — Embedded web servers",
+    "id": "q231"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring Boot",
+    "question": "What does SpringApplication.run do?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Prepares the environment, creates and refreshes the application context, and calls runners"
+      },
+      {
+        "id": "b",
+        "text": "Asserts a JUnit expectation"
+      },
+      {
+        "id": "c",
+        "text": "Prints a banner and then exits before creating a context"
+      },
+      {
+        "id": "d",
+        "text": "Compiles the project with javac"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "SpringApplication is the Boot bootstrap. It deduces the application type, loads application properties, refreshes the context, starts an embedded server when the app is a web app, and then runs ApplicationRunner and CommandLineRunner beans.",
+    "reference": "Spring Boot docs — SpringApplication",
+    "id": "q232"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "multiple",
+    "category": "Spring Boot",
+    "question": "Which files can hold Spring Boot configuration properties on the classpath?",
+    "options": [
+      {
+        "id": "a",
+        "text": "application.properties"
+      },
+      {
+        "id": "b",
+        "text": "application.yml"
+      },
+      {
+        "id": "c",
+        "text": "pom.xml as the only source of server.port"
+      },
+      {
+        "id": "d",
+        "text": "web.xml, which Boot requires for every property"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b"
+    ],
+    "explanation": "Boot loads application.properties and application.yml from the classpath and from external config locations. pom.xml manages dependencies, and Boot does not require web.xml. Profile files such as application-prod.properties are added when that profile is active.",
+    "reference": "Spring Boot docs — Externalized configuration",
+    "id": "q233"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring Boot",
+    "question": "What does @SpringBootTest load?",
+    "options": [
+      {
+        "id": "a",
+        "text": "A full Spring Boot application context for an integration test"
+      },
+      {
+        "id": "b",
+        "text": "No context, and it only constructs one class with new"
+      },
+      {
+        "id": "c",
+        "text": "Assertions, so the test does not need a test method"
+      },
+      {
+        "id": "d",
+        "text": "The production process on the public port, and it cannot use a mock web environment"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "@SpringBootTest starts the Boot context. webEnvironment can be MOCK, RANDOM_PORT, DEFINED_PORT, or NONE. It is heavier than a slice such as @WebMvcTest, which loads only the web layer.",
+    "reference": "Spring Boot docs — @SpringBootTest",
+    "id": "q234"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring Boot",
+    "question": "What is Spring Boot Actuator for?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Operational endpoints such as health and metrics for a running application"
+      },
+      {
+        "id": "b",
+        "text": "A UI theme"
+      },
+      {
+        "id": "c",
+        "text": "The embedded database engine"
+      },
+      {
+        "id": "d",
+        "text": "A replacement for Spring Security"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Actuator exposes operational information over HTTP or JMX. Metrics go through Micrometer. It does not secure the application by itself; Spring Security does that.",
+    "reference": "Spring Boot docs — Actuator",
+    "id": "q235"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring Boot",
+    "question": "How do you record a custom application metric that Actuator can expose?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Register it on a MeterRegistry, for example by incrementing a counter, then read it from the metrics endpoint"
+      },
+      {
+        "id": "b",
+        "text": "Print to System.out, which Actuator scrapes as a metric"
+      },
+      {
+        "id": "c",
+        "text": "Add a JSP page named metrics.jsp"
+      },
+      {
+        "id": "d",
+        "text": "Subclass DispatcherServlet and store the count in a field"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Micrometer is the metrics facade Boot uses. Inject MeterRegistry and update a counter, timer, or gauge. The actuator metrics endpoint then lists that meter. Logging a line does not create a meter.",
+    "reference": "Spring Boot docs — Metrics",
+    "id": "q236"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "multiple",
+    "category": "Spring Boot",
+    "question": "Which Actuator endpoints can leak secrets or process memory and should not be exposed on the public internet?",
+    "options": [
+      {
+        "id": "a",
+        "text": "env"
+      },
+      {
+        "id": "b",
+        "text": "heapdump"
+      },
+      {
+        "id": "c",
+        "text": "A health probe used by the orchestrator"
+      },
+      {
+        "id": "d",
+        "text": "An info endpoint limited to the application name"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b"
+    ],
+    "explanation": "env can show configuration, including credentials, and heapdump captures memory. Expose only what you need, protect actuator routes with Spring Security, and leave health available for probes. A minimal info body is not in the same risk class as a heap dump.",
+    "reference": "Spring Boot docs — Securing actuator endpoints",
+    "id": "q237"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring Boot",
+    "question": "Which points matter when a Spring Boot service runs in a container?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Externalize configuration, let the JVM honor the container memory limit, and use health probes for liveness and readiness"
+      },
+      {
+        "id": "b",
+        "text": "Bake passwords into the image and ignore the container memory limit"
+      },
+      {
+        "id": "c",
+        "text": "A container cannot run an executable Boot jar"
+      },
+      {
+        "id": "d",
+        "text": "Actuator health cannot be used as a probe"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Pass configuration with the environment, for example SPRING_PROFILES_ACTIVE, instead of baking secrets into the image. Current JDKs observe container memory limits. Actuator liveness and readiness probes tell the orchestrator when to restart or send traffic.",
+    "reference": "Spring Boot docs — Containers and probes",
+    "id": "q238"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "truefalse",
+    "category": "Spring Boot",
+    "question": "When the prod profile is active, a key in application-prod.properties overrides the same key in application.properties.",
+    "options": [
+      {
+        "id": "a",
+        "text": "True"
+      },
+      {
+        "id": "b",
+        "text": "False"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Profile-specific files are more specific than the base file. Activate the profile with spring.profiles.active or SPRING_PROFILES_ACTIVE. @Profile beans are registered only when their profile is active. External config can still override both files.",
+    "reference": "Spring Boot docs — Profiles",
+    "id": "q239"
   }
 ]
