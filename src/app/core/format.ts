@@ -19,10 +19,10 @@ export function elapsedSeconds(startedAt: string, finishedAt: string | null, now
   return Math.max(0, Math.round((end - start) / 1000));
 }
 
-export function formatWhen(iso: string): string {
+export function formatWhen(iso: string, locale = 'fr'): string {
   const date = new Date(iso);
   if (Number.isNaN(date.getTime())) return iso;
-  return new Intl.DateTimeFormat(undefined, {
+  return new Intl.DateTimeFormat(locale, {
     month: 'short',
     day: 'numeric',
     hour: 'numeric',

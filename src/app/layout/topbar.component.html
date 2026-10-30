@@ -5,7 +5,7 @@
       class="btn btn-ghost hidden size-11 shrink-0 p-0 md:inline-flex"
       [attr.aria-expanded]="shell.desktopNavOpen()"
       aria-controls="primary-nav"
-      [attr.aria-label]="shell.desktopNavOpen() ? 'Hide navigation' : 'Show navigation'"
+      [attr.aria-label]="language.text(shell.desktopNavOpen() ? 'nav.hide' : 'nav.show')"
       (click)="shell.toggleDesktopNav()"
     >
       <svg viewBox="0 0 24 24" class="h-5 w-5" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -23,7 +23,7 @@
   </div>
   <div class="flex items-center gap-2">
     @if (progress.activeExam()) {
-      <a class="btn btn-primary" routerLink="/exam/session">Resume {{ timeLeft() }}</a>
+      <a class="btn btn-primary" routerLink="/exam/session">{{ language.text('nav.resume', { time: timeLeft() ?? '' }) }}</a>
     }
     <button
       type="button"
@@ -31,7 +31,16 @@
       [attr.aria-pressed]="theme.theme() === 'dark'"
       (click)="theme.toggle()"
     >
-      {{ theme.theme() === 'dark' ? 'Light mode' : 'Dark mode' }}
+      {{ language.text(theme.theme() === 'dark' ? 'theme.light' : 'theme.dark') }}
     </button>
+    <select
+      class="btn btn-ghost"
+      [attr.aria-label]="language.text('language.label')"
+      [value]="language.lang()"
+      (change)="onLanguage($event)"
+    >
+      <option value="fr">Français</option>
+      <option value="en">English</option>
+    </select>
   </div>
 </header>

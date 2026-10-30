@@ -154,7 +154,7 @@ export class ProgressService {
 
   private persist(state: ProgressState): void {
     const saved = this.storage.set(STORAGE_KEY, state);
-    this.persistError.set(saved ? null : 'Progress could not be saved in this browser.');
+    this.persistError.set(saved ? null : 'errors.persist');
   }
 
   private read(): ProgressState {

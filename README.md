@@ -43,14 +43,15 @@ src/app/
   shared/      answer option, question card, timer, chart, filters, empty and loading states
   layout/      sidebar, mobile nav, top bar
   features/    dashboard, practice, exam, review, browser
-public/assets/questions.json
+public/assets/i18n/          UI copy (fr.json, en.json)
+public/assets/i18n/questions/ question banks (fr.json, en.json)
 ```
 
 State lives in signal-based services and two stores (`PracticeStore`, `ExamStore`). Scoring, filtering, and the timer clock are pure or injectable so they can be unit-tested without the UI. The pass mark is a pure function: unanswered questions count as incorrect, and duplicate multi-select choices are ignored.
 
 ## Add a question
 
-Edit `public/assets/questions.json`. Each item looks like this:
+Edit `public/assets/i18n/questions/en.json` and the matching item in `public/assets/i18n/questions/fr.json`. Keep the same `id`, `category`, `difficulty`, `type`, option ids, and `correctOptionIds` in both files. Each item looks like this:
 
 ```json
 {
@@ -76,7 +77,7 @@ Rules the app enforces when it loads the file:
 - Every correct id exists on an option, and ids are unique.
 - `cert` currently uses `Java`. `OCP` is allowed by the model for a later bank.
 
-`scripts/question-bank.mjs` is the authoring source for the current bank. Spring and Spring Boot items live in `scripts/spring-fundamentals-questions.mjs`, `scripts/spring-platform-questions.mjs`, and `scripts/spring-boot-questions.mjs`, and `scripts/spring-bank.mjs` combines them. Run `node scripts/question-bank.mjs` to regenerate the JSON after editing those files. If you prefer, edit the JSON directly and leave the scripts alone.
+`scripts/question-bank.mjs` is the authoring source for the English bank. Spring and Spring Boot items live in `scripts/spring-fundamentals-questions.mjs`, `scripts/spring-platform-questions.mjs`, and `scripts/spring-boot-questions.mjs`, and `scripts/spring-bank.mjs` combines them. Run `node scripts/question-bank.mjs` to regenerate `public/assets/i18n/questions/en.json`. The French bank is `public/assets/i18n/questions/fr.json`. UI copy is in `public/assets/i18n/en.json` and `public/assets/i18n/fr.json`.
 
 ## Design decisions and what to build next
 

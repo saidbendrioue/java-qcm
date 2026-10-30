@@ -6,6 +6,7 @@ import { SideNavComponent } from './layout/side-nav.component';
 import { TopbarComponent } from './layout/topbar.component';
 import { ExamStore } from './core/stores/exam.store';
 import { ProgressService } from './core/services/progress.service';
+import { LanguageService } from './core/i18n/language.service';
 import { QuestionService } from './core/services/question.service';
 import { ThemeService } from './core/services/theme.service';
 import { ToastContainerComponent } from './shared/toast-container.component';
@@ -19,6 +20,7 @@ import { ToastContainerComponent } from './shared/toast-container.component';
 })
 export class App {
   protected readonly questions = inject(QuestionService);
+  protected readonly language = inject(LanguageService);
   protected readonly persistError = inject(ProgressService).persistError;
   protected readonly shell = inject(ShellService);
   private readonly theme = inject(ThemeService);
@@ -26,8 +28,8 @@ export class App {
   private readonly examStore = inject(ExamStore);
 
   constructor() {
+    this.language.init();
     this.theme.init();
-    void this.questions.load();
     if (this.progress.activeExam()) this.examStore.resume();
   }
 

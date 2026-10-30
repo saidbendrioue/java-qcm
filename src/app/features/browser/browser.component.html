@@ -8,24 +8,24 @@
       [value]="filters()"
       (filtersChange)="onFilters($event)"
     />
-    <p class="mt-4 text-sm text-muted">{{ visible().length }} Java questions</p>
+    <p class="mt-4 text-sm text-muted">{{ language.text('bank.count', { count: visible().length }) }}</p>
   </div>
   @if (visible().length === 0) {
-    <app-empty-state class="mt-4 block" title="No questions found" message="Try a different category, difficulty, or search." />
+    <app-empty-state class="mt-4 block" [title]="language.text('bank.emptyTitle')" [message]="language.text('bank.emptyMessage')" />
   } @else {
     <ul class="mt-4 grid gap-3">
       @for (question of visible(); track question.id) {
         <li>
           <details class="panel p-4">
             <summary class="cursor-pointer">
-              <span class="text-sm font-semibold uppercase tracking-[0.12em] text-muted">{{ question.category }} · {{ question.difficulty }} · {{ typeLabel(question.type) }}</span>
+              <span class="text-sm font-semibold uppercase tracking-[0.12em] text-muted">{{ language.categoryLabel(question.category) }} · {{ language.difficultyLabel(question.difficulty) }} · {{ language.typeLabel(question.type) }}</span>
               <span class="mt-1 block font-serif text-xl">{{ question.question }}</span>
             </summary>
             <ul class="mt-4 grid gap-2">
               @for (option of question.options; track option.id) {
                 <li [class.text-good]="question.correctOptionIds.includes(option.id)">
                   @if (question.type === 'multiple' && question.correctOptionIds.includes(option.id)) {
-                    <span class="font-semibold">Correct · </span>
+                    <span class="font-semibold">{{ language.text('bank.correct') }}</span>
                   }
                   {{ option.text }}
                 </li>

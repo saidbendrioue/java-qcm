@@ -1,42 +1,42 @@
 <form class="grid gap-4 md:grid-cols-2" [formGroup]="form">
   @if (showSearch()) {
     <label class="field md:col-span-2">
-      <span>Search</span>
-      <input type="search" formControlName="search" placeholder="Search the Java bank" />
+      <span>{{ language.text('filters.search') }}</span>
+      <input type="search" formControlName="search" [attr.placeholder]="language.text('filters.searchPlaceholder')" />
     </label>
   }
   <label class="field">
-    <span>Categories</span>
+    <span>{{ language.text('filters.categories') }}</span>
     <select multiple formControlName="categories" size="6" aria-describedby="category-hint">
       @for (category of categories(); track category) {
-        <option [value]="category">{{ category }}</option>
+        <option [value]="category">{{ language.categoryLabel(category) }}</option>
       }
     </select>
-    <span id="category-hint" class="text-xs text-muted">Leave unselected to include every category.</span>
+    <span id="category-hint" class="text-xs text-muted">{{ language.text('filters.categoryHint') }}</span>
   </label>
   <div class="grid content-start gap-4">
     <label class="field">
-      <span>Difficulty</span>
+      <span>{{ language.text('filters.difficulty') }}</span>
       <select formControlName="difficulty">
-        <option value="all">All difficulties</option>
+        <option value="all">{{ language.text('difficulty.all') }}</option>
         @for (difficulty of difficulties; track difficulty) {
-          <option [value]="difficulty">{{ difficulty }}</option>
+          <option [value]="difficulty">{{ language.difficultyLabel(difficulty) }}</option>
         }
       </select>
     </label>
     <label class="field">
-      <span>Certification</span>
-      <select disabled aria-label="Certification">
+      <span>{{ language.text('filters.certification') }}</span>
+      <select disabled [attr.aria-label]="language.text('filters.certification')">
         <option>Java</option>
       </select>
     </label>
     @if (showType()) {
       <label class="field">
-        <span>Question type</span>
+        <span>{{ language.text('filters.questionType') }}</span>
         <select formControlName="type">
-          <option value="all">All types</option>
+          <option value="all">{{ language.text('type.all') }}</option>
           @for (type of types; track type) {
-            <option [value]="type">{{ typeLabel(type) }}</option>
+            <option [value]="type">{{ language.typeLabel(type) }}</option>
           }
         </select>
       </label>

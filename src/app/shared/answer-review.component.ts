@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output, signal } from '@angular/core';
 
+import { LanguageService } from '../core/i18n/language.service';
 import type { Question } from '../core/models/question.model';
 import { optionLetter } from '../core/scoring/scoring';
 import { EmptyStateComponent } from './empty-state.component';
@@ -22,6 +23,7 @@ export interface AnswerReviewRow {
   templateUrl: './answer-review.component.html',
 })
 export class AnswerReviewComponent {
+  protected readonly language = inject(LanguageService);
   readonly rows = input.required<readonly AnswerReviewRow[]>();
   readonly activeChange = output<boolean>();
 
@@ -62,9 +64,9 @@ export class AnswerReviewComponent {
   }
 
   protected prompt(row: AnswerReviewRow): string {
-    if (row.question?.type === 'multiple') return 'Select all that apply.';
-    if (row.question?.type === 'truefalse') return 'True or false?';
-    return 'Select one answer.';
+    if (row.question?.type === 'multiple') return this.language.text('answer.multiplePrompt');
+    if (row.question?.type === 'truefalse') return this.language.text('answer.trueFalsePrompt');
+    return this.language.text('answer.singlePrompt');
   }
 
   protected letter(index: number): string {
@@ -88,9 +90,9 @@ export class AnswerReviewComponent {
   }
 
   protected markLabel(mark: OptionMark): string {
-    if (mark === 'yours-wrong') return 'Your answer · wrong';
-    if (mark === 'yours-correct') return 'Your answer · correct';
-    if (mark === 'correct') return 'Correct answer';
+    if (mark === 'yours-wrong') return this.language.text('answer.yoursWrong');
+    if (mark === 'yours-correct') return this.language.text('answer.yoursCorrect');
+    if (mark === 'correct') return this.language.text('answer.correctAnswer');
     return '';
   }
 }

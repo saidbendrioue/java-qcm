@@ -3,51 +3,51 @@
 } @else {
   <section class="grid gap-4 md:grid-cols-4">
     <article class="panel p-4">
-      <p class="text-sm text-muted">Accuracy</p>
+      <p class="text-sm text-muted">{{ language.text('dashboard.accuracy') }}</p>
       <p class="font-serif text-4xl">{{ formatPercent(summary().accuracy) }}</p>
-      <p class="text-sm text-muted">{{ summary().correct }} of {{ summary().answered }} latest answers</p>
+      <p class="text-sm text-muted">{{ language.text('dashboard.latestAnswers', { correct: summary().correct, answered: summary().answered }) }}</p>
     </article>
     <article class="panel p-4">
-      <p class="text-sm text-muted">Streak</p>
+      <p class="text-sm text-muted">{{ language.text('dashboard.streak') }}</p>
       <p class="font-serif text-4xl">{{ summary().streak.current }}</p>
-      <p class="text-sm text-muted">Best {{ summary().streak.best }} days</p>
+      <p class="text-sm text-muted">{{ language.text('dashboard.bestDays', { count: summary().streak.best }) }}</p>
     </article>
     <article class="panel p-4">
-      <p class="text-sm text-muted">Exams passed</p>
+      <p class="text-sm text-muted">{{ language.text('dashboard.examsPassed') }}</p>
       <p class="font-serif text-4xl">{{ summary().examsPassed }}/{{ summary().examsTaken }}</p>
-      <p class="text-sm text-muted">Pass mark 85%</p>
+      <p class="text-sm text-muted">{{ language.text('dashboard.passMark') }}</p>
     </article>
     <article class="panel p-4">
-      <p class="text-sm text-muted">Due for review</p>
+      <p class="text-sm text-muted">{{ language.text('dashboard.due') }}</p>
       <p class="font-serif text-4xl">{{ summary().due }}</p>
-      <a class="text-sm font-semibold text-accent" routerLink="/review" [queryParams]="{ tab: 'due' }">Open the queue</a>
+      <a class="text-sm font-semibold text-accent" routerLink="/review" [queryParams]="{ tab: 'due' }">{{ language.text('dashboard.openQueue') }}</a>
     </article>
   </section>
 
   <section class="mt-6 grid gap-6 lg:grid-cols-[1.4fr_0.8fr]">
     <article class="panel p-5">
-      <h2 class="font-serif text-2xl">Accuracy by category</h2>
+      <h2 class="font-serif text-2xl">{{ language.text('dashboard.accuracyByCategory') }}</h2>
       @if (chartLabels().length === 0) {
-        <p class="mt-4 text-muted">Answer a few practice questions and this chart will fill in.</p>
+        <p class="mt-4 text-muted">{{ language.text('dashboard.chartEmpty') }}</p>
       } @else {
         <app-category-chart class="mt-4 block" [labels]="chartLabels()" [values]="chartValues()" [themeName]="theme.theme()" />
       }
     </article>
     <article class="panel p-5">
-      <h2 class="font-serif text-2xl">Keep going</h2>
+      <h2 class="font-serif text-2xl">{{ language.text('dashboard.keepGoing') }}</h2>
       <ul class="mt-4 grid gap-3 text-sm">
-        <li class="flex justify-between gap-3"><span>Bookmarks</span><strong>{{ summary().bookmarks }}</strong></li>
-        <li class="flex justify-between gap-3"><span>Latest misses</span><strong>{{ summary().mistakes }}</strong></li>
+        <li class="flex justify-between gap-3"><span>{{ language.text('dashboard.bookmarks') }}</span><strong>{{ summary().bookmarks }}</strong></li>
+        <li class="flex justify-between gap-3"><span>{{ language.text('dashboard.latestMisses') }}</span><strong>{{ summary().mistakes }}</strong></li>
       </ul>
       <div class="mt-5 flex flex-wrap gap-2">
-        <a class="btn btn-primary" routerLink="/practice">Practice</a>
-        <a class="btn btn-ghost" routerLink="/exam">Mock exam</a>
-        <a class="btn btn-ghost" routerLink="/review">Review</a>
+        <a class="btn btn-primary" routerLink="/practice">{{ language.text('dashboard.practice') }}</a>
+        <a class="btn btn-ghost" routerLink="/exam">{{ language.text('dashboard.mockExam') }}</a>
+        <a class="btn btn-ghost" routerLink="/review">{{ language.text('dashboard.review') }}</a>
       </div>
       <div class="mt-5 flex flex-wrap gap-2">
-        <button type="button" class="btn btn-ghost" (click)="exportFile()">Export progress</button>
+        <button type="button" class="btn btn-ghost" (click)="exportFile()">{{ language.text('dashboard.export') }}</button>
         <label class="btn btn-ghost">
-          Import
+          {{ language.text('dashboard.import') }}
           <input class="sr-only" type="file" accept="application/json" (change)="importFile($event)" />
         </label>
       </div>
@@ -55,25 +55,25 @@
   </section>
 
   <section class="mt-6">
-    <h2 class="font-serif text-2xl">Exam history</h2>
+    <h2 class="font-serif text-2xl">{{ language.text('dashboard.examHistory') }}</h2>
     @if (summary().recentExams.length === 0) {
-      <app-empty-state class="mt-4 block" title="No exams yet" message="A full simulation is 80 questions, 60 minutes, and 85% to pass.">
-        <a class="btn btn-primary" routerLink="/exam">Start a mock exam</a>
+      <app-empty-state class="mt-4 block" [title]="language.text('dashboard.noExamsTitle')" [message]="language.text('dashboard.noExamsMessage')">
+        <a class="btn btn-primary" routerLink="/exam">{{ language.text('dashboard.startMock') }}</a>
       </app-empty-state>
     } @else {
       <ul class="mt-4 grid gap-3">
         @for (exam of summary().recentExams; track exam.id) {
           <li class="panel flex flex-wrap items-center justify-between gap-3 px-4 py-3">
             <div>
-              <p class="font-semibold">{{ formatWhen(exam.startedAt) }}</p>
-              <p class="text-sm text-muted">{{ exam.questionIds.length }} questions · {{ exam.status }}</p>
+              <p class="font-semibold">{{ when(exam.startedAt) }}</p>
+              <p class="text-sm text-muted">{{ language.text('dashboard.examMeta', { count: exam.questionIds.length, status: language.statusLabel(exam.status) }) }}</p>
             </div>
             @if (exam.scorePercent !== null) {
               <a class="font-serif text-2xl" [class.text-good]="exam.passed" [class.text-bad]="exam.passed === false" [routerLink]="['/exam/results', exam.id]">
                 {{ formatPercent(exam.scorePercent) }}
               </a>
             } @else if (exam.status === 'in-progress') {
-              <a class="btn btn-primary" routerLink="/exam/session">Resume</a>
+              <a class="btn btn-primary" routerLink="/exam/session">{{ language.text('dashboard.resume') }}</a>
             }
           </li>
         }

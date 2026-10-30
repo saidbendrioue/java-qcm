@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
 import { filter, map } from 'rxjs';
 
 import { APP_NAME } from '../core/constants';
+import { LanguageService, type AppLang } from '../core/i18n/language.service';
 import { formatDuration } from '../core/format';
 import { ProgressService } from '../core/services/progress.service';
 import { ThemeService } from '../core/services/theme.service';
@@ -22,6 +23,7 @@ export class TopbarComponent {
   private readonly title = inject(Title);
   private readonly timer = inject(TimerService);
   protected readonly theme = inject(ThemeService);
+  protected readonly language = inject(LanguageService);
   protected readonly progress = inject(ProgressService);
   protected readonly shell = inject(ShellService);
   private readonly navigation = toSignal(
@@ -32,7 +34,11 @@ export class TopbarComponent {
     { initialValue: this.currentTitle() },
   );
 
-  protected readonly pageTitle = computed(() => this.navigation());
+  protected readonly pageTitle = computed(() => {
+    this.language.lang();
+    this.navigation();
+    return this.currentTitle();
+  });
   protected readonly timeLeft = computed(() => {
     const exam = this.progress.activeExam();
     if (!exam) return null;
@@ -45,13 +51,18 @@ export class TopbarComponent {
     effect(() => this.title.setTitle(`${this.pageTitle()} · ${APP_NAME}`));
   }
 
+  protected onLanguage(event: Event): void {
+    const value = (event.target as HTMLSelectElement).value;
+    if (value === 'fr' || value === 'en') this.language.use(value as AppLang);
+  }
+
   private currentTitle(): string {
     let current = this.router.routerState.root;
     let label = APP_NAME;
     while (current.firstChild) {
       current = current.firstChild;
       const value = current.snapshot.data['title'];
-      if (typeof value === 'string') label = value;
+      if (typeof value === 'string') label = this.language.text(`titles.${value}`);
     }
     return label;
   }

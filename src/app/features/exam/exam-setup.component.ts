@@ -4,6 +4,7 @@ import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 
 import { EXAM_MINUTES, EXAM_QUESTION_COUNT } from '../../core/constants';
+import { LanguageService } from '../../core/i18n/language.service';
 import type { Difficulty } from '../../core/models/question.model';
 import { DIFFICULTIES } from '../../core/models/question.model';
 import { DEFAULT_EXAM_CONFIG, ExamStore, type ExamConfig } from '../../core/stores/exam.store';
@@ -21,6 +22,7 @@ export class ExamSetupComponent {
   private readonly formBuilder = inject(NonNullableFormBuilder);
   private readonly router = inject(Router);
   private readonly toast = inject(ToastService);
+  protected readonly language = inject(LanguageService);
   protected readonly examStore = inject(ExamStore);
   protected readonly progress = inject(ProgressService);
   protected readonly bank = inject(QuestionService);
@@ -46,7 +48,7 @@ export class ExamSetupComponent {
 
   protected discard(): void {
     this.examStore.abandon();
-    this.toast.show('Exam discarded.', 'info');
+    this.toast.show(this.language.text('toast.discarded'), 'info');
   }
 
   protected start(): void {
@@ -55,7 +57,7 @@ export class ExamSetupComponent {
     const value = this.form.getRawValue();
     const available = this.available();
     if (available === 0) {
-      this.toast.show('No questions match this exam setup.', 'info');
+      this.toast.show(this.language.text('toast.noMatch'), 'info');
       return;
     }
     const count = this.examStore.start({
@@ -65,7 +67,7 @@ export class ExamSetupComponent {
       categories: value.categories,
     });
     if (count === 0) return;
-    if (count < value.count) this.toast.show(`This setup has ${count} questions, so the exam uses ${count}.`, 'info');
+    if (count < value.count) this.toast.show(this.language.text('toast.shortExam', { count }), 'info');
     void this.router.navigate(['/exam/session']);
   }
 

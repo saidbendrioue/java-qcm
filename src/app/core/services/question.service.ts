@@ -1,17 +1,27 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, computed, inject, signal } from '@angular/core';
+import { Injectable, computed, effect, inject, signal, untracked } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
+import { LanguageService, type AppLang } from '../i18n/language.service';
 import type { Certification } from '../models/question.model';
 import { parseQuestions, type Question } from '../models/question.model';
 
 @Injectable({ providedIn: 'root' })
 export class QuestionService {
   private readonly http = inject(HttpClient);
+  private readonly language = inject(LanguageService);
   private readonly questionsState = signal<Question[]>([]);
   private readonly statusState = signal<'loading' | 'ready' | 'error'>('loading');
   private readonly errorState = signal<string | null>(null);
   private pending: Promise<void> | null = null;
+  private loadedLang: AppLang | null = null;
+
+  constructor() {
+    effect(() => {
+      const lang = this.language.lang();
+      untracked(() => void this.load(lang));
+    });
+  }
 
   readonly questions = this.questionsState.asReadonly();
   readonly status = this.statusState.asReadonly();
@@ -25,24 +35,33 @@ export class QuestionService {
     return [...found];
   });
 
-  load(): Promise<void> {
-    if (this.statusState() === 'ready') return Promise.resolve();
-    if (this.pending) return this.pending;
+  load(lang = this.language.lang()): Promise<void> {
+    if (this.statusState() === 'ready' && this.loadedLang === lang) return Promise.resolve();
+    if (this.pending && this.loadedLang === lang) return this.pending;
+    this.loadedLang = lang;
     this.statusState.set('loading');
     this.errorState.set(null);
-    this.pending = firstValueFrom(this.http.get<unknown>('assets/questions.json'))
+    this.pending = this.fetchBank(lang)
       .then((payload) => {
+        if (this.loadedLang !== lang) return;
         const questions = parseQuestions(payload);
         if (!questions || questions.length === 0) throw new Error('invalid question bank');
         this.questionsState.set(questions);
         this.statusState.set('ready');
       })
       .catch(() => {
-        this.errorState.set('The question bank could not be loaded.');
+        if (this.loadedLang !== lang) return;
+        this.errorState.set('errors.load');
         this.statusState.set('error');
         this.pending = null;
       });
     return this.pending;
+  }
+
+  private fetchBank(lang: AppLang): Promise<unknown> {
+    const request = (code: AppLang) => firstValueFrom(this.http.get<unknown>(`assets/i18n/questions/${code}.json`));
+    if (lang === 'en') return request('en');
+    return request(lang).catch(() => request('en'));
   }
 
   byId(id: string): Question | undefined {

@@ -1,55 +1,55 @@
 @if (progress.activeExam()) {
   <section class="panel p-6">
-    <h2 class="font-serif text-3xl">An exam is already running</h2>
-    <p class="mt-2 text-muted">Your answers and the deadline are saved in this browser. Resume, or discard it and start over.</p>
+    <h2 class="font-serif text-3xl">{{ language.text('exam.runningTitle') }}</h2>
+    <p class="mt-2 text-muted">{{ language.text('exam.runningBody') }}</p>
     <div class="mt-5 flex flex-wrap gap-2">
-      <a class="btn btn-primary" routerLink="/exam/session">Resume exam</a>
-      <button type="button" class="btn btn-danger" (click)="discard()">Discard exam</button>
+      <a class="btn btn-primary" routerLink="/exam/session">{{ language.text('exam.resume') }}</a>
+      <button type="button" class="btn btn-danger" (click)="discard()">{{ language.text('exam.discard') }}</button>
     </div>
   </section>
 } @else {
   <form class="panel grid gap-5 p-5 md:p-7" [formGroup]="form" (ngSubmit)="start()">
     <div>
-      <h2 class="font-serif text-3xl">Java QCM simulation</h2>
+      <h2 class="font-serif text-3xl">{{ language.text('exam.title') }}</h2>
       <p class="mt-2 max-w-2xl text-muted">
-        A full simulation is 80 questions in 60 minutes, with 85% required to pass. Some questions have more than one correct answer: select each of them. This mock hides explanations until you submit.
+        {{ language.text('exam.intro') }}
       </p>
     </div>
     <div class="flex flex-wrap gap-2">
-      <button type="button" class="btn btn-ghost" (click)="applyPreset(80, 60)">80 / 60 min</button>
-      <button type="button" class="btn btn-ghost" (click)="applyPreset(20, 20)">20-question drill</button>
+      <button type="button" class="btn btn-ghost" (click)="applyPreset(80, 60)">{{ language.text('exam.fullPreset') }}</button>
+      <button type="button" class="btn btn-ghost" (click)="applyPreset(20, 20)">{{ language.text('exam.drillPreset') }}</button>
     </div>
     <div class="grid gap-4 md:grid-cols-2">
       <label class="field">
-        <span>Questions</span>
+        <span>{{ language.text('exam.questions') }}</span>
         <input type="number" formControlName="count" min="1" max="200" inputmode="numeric" />
       </label>
       <label class="field">
-        <span>Minutes</span>
+        <span>{{ language.text('exam.minutes') }}</span>
         <input type="number" formControlName="minutes" min="1" max="180" inputmode="numeric" />
       </label>
       <label class="field">
-        <span>Difficulty</span>
+        <span>{{ language.text('filters.difficulty') }}</span>
         <select formControlName="difficulty">
-          <option value="all">All difficulties</option>
+          <option value="all">{{ language.text('difficulty.all') }}</option>
           @for (difficulty of difficulties; track difficulty) {
-            <option [value]="difficulty">{{ difficulty }}</option>
+            <option [value]="difficulty">{{ language.difficultyLabel(difficulty) }}</option>
           }
         </select>
       </label>
       <label class="field">
-        <span>Categories</span>
+        <span>{{ language.text('filters.categories') }}</span>
         <select multiple formControlName="categories" size="6" aria-describedby="exam-category-hint">
           @for (category of bank.categories(); track category) {
-            <option [value]="category">{{ category }}</option>
+            <option [value]="category">{{ language.categoryLabel(category) }}</option>
           }
         </select>
-        <span id="exam-category-hint" class="text-xs text-muted">Leave unselected to use the whole Java bank. {{ available() }} questions match.</span>
+        <span id="exam-category-hint" class="text-xs text-muted">{{ language.text('filters.examCategoryHint', { count: available() }) }}</span>
       </label>
     </div>
     @if (submitted() && form.invalid) {
-      <p class="text-sm text-bad" role="alert">Enter a question count from 1 to 200 and a time limit from 1 to 180 minutes.</p>
+      <p class="text-sm text-bad" role="alert">{{ language.text('exam.invalid') }}</p>
     }
-    <button type="submit" class="btn btn-primary w-fit" [disabled]="available() === 0">Start exam</button>
+    <button type="submit" class="btn btn-primary w-fit" [disabled]="available() === 0">{{ language.text('exam.start') }}</button>
   </form>
 }

@@ -2234,7 +2234,7 @@ if (!addedQuestions.some((question) => question.category === 'Spring Boot')) {
   throw new Error('Missing Spring Boot category');
 }
 
-const output = resolve(dirname(fileURLToPath(import.meta.url)), '../public/assets/questions.json');
+const output = resolve(dirname(fileURLToPath(import.meta.url)), '../public/assets/i18n/questions/en.json');
 await mkdir(dirname(output), { recursive: true });
 await writeFile(output, `${JSON.stringify(questions, null, 2)}\n`);
 console.log(`Wrote ${questions.length} questions to ${output}`);

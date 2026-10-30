@@ -1,10 +1,10 @@
 @if (active(); as row) {
   <article class="panel p-5 md:p-7">
     <div class="flex flex-wrap items-center justify-between gap-3">
-      <button type="button" class="btn btn-ghost" (click)="close()">← Back to results</button>
-      <p class="text-sm text-muted">Question {{ row.number }} of {{ rows().length }}</p>
+      <button type="button" class="btn btn-ghost" (click)="close()">{{ language.text('answer.back') }}</button>
+      <p class="text-sm text-muted">{{ language.text('answer.progress', { current: row.number, total: rows().length }) }}</p>
     </div>
-    <h2 class="mt-6 font-serif text-2xl leading-snug md:text-3xl">{{ row.question?.question ?? 'Missing question' }}</h2>
+    <h2 class="mt-6 font-serif text-2xl leading-snug md:text-3xl">{{ row.question?.question ?? language.text('answer.missing') }}</h2>
     <p class="mt-4">
       <span
         class="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold"
@@ -13,7 +13,7 @@
         [class.bg-bad-bg]="!row.correct"
         [class.text-bad]="!row.correct"
       >
-        {{ row.correct ? '✓ Correct' : '✗ Wrong' }}
+        {{ language.text(row.correct ? 'answer.correct' : 'answer.wrong') }}
       </span>
     </p>
     <p class="mt-4 text-sm text-muted">{{ prompt(row) }}</p>
@@ -35,26 +35,26 @@
       <p class="mt-3 text-sm text-muted">{{ row.question.reference }}</p>
     }
     <div class="mt-6 flex flex-wrap items-center justify-between gap-2">
-      <button type="button" class="btn btn-ghost" (click)="close()">← Back to results</button>
+      <button type="button" class="btn btn-ghost" (click)="close()">{{ language.text('answer.back') }}</button>
       <div class="flex gap-2">
-        <button type="button" class="btn btn-ghost" [disabled]="activeIndex() <= 0" (click)="step(-1)">Previous</button>
-        <button type="button" class="btn btn-primary" [disabled]="activeIndex() >= rows().length - 1" (click)="step(1)">Next</button>
+        <button type="button" class="btn btn-ghost" [disabled]="activeIndex() <= 0" (click)="step(-1)">{{ language.text('answer.previous') }}</button>
+        <button type="button" class="btn btn-primary" [disabled]="activeIndex() >= rows().length - 1" (click)="step(1)">{{ language.text('answer.next') }}</button>
       </div>
     </div>
   </article>
 } @else {
-  <div class="flex flex-wrap gap-2" role="tablist" aria-label="Answer review">
+  <div class="flex flex-wrap gap-2" role="tablist" [attr.aria-label]="language.text('answer.review')">
     <button type="button" class="btn" [class.btn-primary]="filter() === 'wrong'" [class.btn-ghost]="filter() !== 'wrong'" role="tab" [attr.aria-selected]="filter() === 'wrong'" (click)="select('wrong')">
-      Wrong ({{ wrongCount() }})
+      {{ language.text('answer.wrongTab', { count: wrongCount() }) }}
     </button>
     <button type="button" class="btn" [class.btn-primary]="filter() === 'correct'" [class.btn-ghost]="filter() !== 'correct'" role="tab" [attr.aria-selected]="filter() === 'correct'" (click)="select('correct')">
-      Correct ({{ correctCount() }})
+      {{ language.text('answer.correctTab', { count: correctCount() }) }}
     </button>
     <button type="button" class="btn" [class.btn-primary]="filter() === 'all'" [class.btn-ghost]="filter() !== 'all'" role="tab" [attr.aria-selected]="filter() === 'all'" (click)="select('all')">
-      All ({{ rows().length }})
+      {{ language.text('answer.allTab', { count: rows().length }) }}
     </button>
   </div>
-  <p class="mt-3 text-sm text-muted">Select a question to see your answer and the correct one.</p>
+  <p class="mt-3 text-sm text-muted">{{ language.text('answer.pick') }}</p>
   <ol class="mt-4 grid gap-3">
     @for (row of visible(); track row.questionId) {
       <li>
@@ -68,17 +68,17 @@
           <span class="mt-0.5 w-4 shrink-0 font-semibold" [class.text-bad]="!row.correct" [class.text-good]="row.correct" aria-hidden="true">
             {{ row.correct ? '✓' : '✗' }}
           </span>
-          <span class="min-w-0 flex-1 font-semibold">{{ row.number }}. {{ row.question?.question ?? 'Missing question' }}</span>
+          <span class="min-w-0 flex-1 font-semibold">{{ row.number }}. {{ row.question?.question ?? language.text('answer.missing') }}</span>
           <span class="shrink-0 text-sm font-semibold" [class.text-bad]="!row.correct" [class.text-good]="row.correct">
-            {{ row.correct ? 'Correct' : 'Wrong' }}
+            {{ language.text(row.correct ? 'answer.correctWord' : 'answer.wrongWord') }}
           </span>
         </button>
       </li>
     } @empty {
       <li>
         <app-empty-state
-          [title]="filter() === 'wrong' ? 'No wrong answers' : 'No correct answers'"
-          [message]="filter() === 'wrong' ? 'Every question in this set was correct.' : 'None of the questions in this set were correct.'"
+          [title]="language.text(filter() === 'wrong' ? 'answer.noWrongTitle' : 'answer.noCorrectTitle')"
+          [message]="language.text(filter() === 'wrong' ? 'answer.noWrongMessage' : 'answer.noCorrectMessage')"
         />
       </li>
     }

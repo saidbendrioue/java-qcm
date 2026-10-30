@@ -6,11 +6,11 @@ import {
   DIFFICULTIES,
   EMPTY_FILTER,
   QUESTION_TYPES,
-  questionTypeLabel,
   type Difficulty,
   type QuestionFilter,
   type QuestionType,
 } from '../core/models/question.model';
+import { LanguageService } from '../core/i18n/language.service';
 
 @Component({
   selector: 'app-question-filters',
@@ -26,9 +26,9 @@ export class QuestionFiltersComponent {
   readonly filtersChange = output<QuestionFilter>();
 
   private readonly formBuilder = inject(NonNullableFormBuilder);
+  protected readonly language = inject(LanguageService);
   protected readonly difficulties = DIFFICULTIES;
   protected readonly types = QUESTION_TYPES;
-  protected readonly typeLabel = questionTypeLabel;
   protected readonly form = this.formBuilder.group({
     search: '',
     categories: this.formBuilder.control<string[]>([]),

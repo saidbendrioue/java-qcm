@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
+import { LanguageService } from '../../core/i18n/language.service';
 import { formatWhen } from '../../core/format';
 import { formatPercent } from '../../core/scoring/scoring';
 import { ExamStore } from '../../core/stores/exam.store';
@@ -22,14 +23,19 @@ import { LoadingBlockComponent } from '../../shared/loading-block.component';
 export class DashboardComponent {
   private readonly bank = inject(QuestionService);
   private readonly toast = inject(ToastService);
+  protected readonly language = inject(LanguageService);
   private readonly examStore = inject(ExamStore);
   protected readonly progress = inject(ProgressService);
   protected readonly theme = inject(ThemeService);
   protected readonly formatPercent = formatPercent;
-  protected readonly formatWhen = formatWhen;
+  protected when(iso: string): string {
+    return formatWhen(iso, this.language.lang());
+  }
   protected readonly loading = computed(() => this.bank.status() === 'loading');
   protected readonly summary = computed(() => summarize(this.bank.questions(), this.progress.state()));
-  protected readonly chartLabels = computed(() => this.summary().categories.map((item) => item.category));
+  protected readonly chartLabels = computed(() =>
+    this.summary().categories.map((item) => this.language.categoryLabel(item.category)),
+  );
   protected readonly chartValues = computed(() => this.summary().categories.map((item) => item.percent));
 
   protected exportFile(): void {
@@ -40,7 +46,7 @@ export class DashboardComponent {
     anchor.download = `java-qcm-${new Date().toISOString().slice(0, 10)}.json`;
     anchor.click();
     URL.revokeObjectURL(url);
-    this.toast.show('Progress exported.', 'success');
+    this.toast.show(this.language.text('toast.exported'), 'success');
   }
 
   protected importFile(event: Event): void {
@@ -51,7 +57,10 @@ export class DashboardComponent {
       const ok = this.progress.importJson(text);
       this.examStore.resync();
       this.theme.apply(this.progress.theme());
-      this.toast.show(ok ? 'Progress imported.' : 'That file is not a valid progress export.', ok ? 'success' : 'error');
+      this.toast.show(
+        ok ? this.language.text('toast.imported') : this.language.text('toast.importInvalid'),
+        ok ? 'success' : 'error',
+      );
       input.value = '';
     });
   }

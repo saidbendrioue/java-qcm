@@ -3,6 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 
+import { LanguageService } from '../../core/i18n/language.service';
 import { filterQuestions } from '../../core/filtering/filter-questions';
 import { EMPTY_FILTER, type Question, type QuestionFilter } from '../../core/models/question.model';
 import { isAnswerCorrect } from '../../core/scoring/scoring';
@@ -36,6 +37,7 @@ export class PracticeComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly toast = inject(ToastService);
+  protected readonly language = inject(LanguageService);
   private readonly bank = inject(QuestionService);
   protected readonly progress = inject(ProgressService);
   protected readonly store = inject(PracticeStore);
@@ -80,14 +82,14 @@ export class PracticeComponent {
 
   protected startPractice(): void {
     const started = this.store.start(this.matching(), 'practice');
-    if (!started) this.toast.show('No questions match these filters.', 'info');
+    if (!started) this.toast.show(this.language.text('toast.noFilters'), 'info');
   }
 
   protected submit(): void {
     if (this.store.submit() !== 'need-answer') return;
     const multiple = this.store.current()?.type === 'multiple';
     this.toast.show(
-      multiple ? 'Select at least one answer before continuing.' : 'Select an answer before continuing.',
+      multiple ? this.language.text('toast.needMultiple') : this.language.text('toast.needSingle'),
       'info',
     );
   }
@@ -95,7 +97,7 @@ export class PracticeComponent {
   protected bookmark(): void {
     if (!this.store.current()) return;
     const added = this.store.toggleBookmark();
-    this.toast.show(added ? 'Question bookmarked.' : 'Bookmark removed.', 'info');
+    this.toast.show(added ? this.language.text('toast.bookmarked') : this.language.text('toast.unbookmarked'), 'info');
   }
 
   protected end(): void {
@@ -116,7 +118,7 @@ export class PracticeComponent {
     const questions = this.idsFor(set)
       .map((id) => this.bank.byId(id))
       .filter((question): question is Question => question !== undefined);
-    if (!this.store.start(questions, 'review')) this.toast.show('That review list is empty.', 'info');
+    if (!this.store.start(questions, 'review')) this.toast.show(this.language.text('toast.emptyReview'), 'info');
   }
 
   private idsFor(set: string): readonly string[] {

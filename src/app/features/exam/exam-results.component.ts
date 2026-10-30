@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject, input, signal } f
 import { RouterLink } from '@angular/router';
 
 import { elapsedSeconds, formatDuration, formatWhen } from '../../core/format';
+import { LanguageService } from '../../core/i18n/language.service';
 import { formatPercent, isAnswerCorrect } from '../../core/scoring/scoring';
 import { ProgressService } from '../../core/services/progress.service';
 import { QuestionService } from '../../core/services/question.service';
@@ -18,10 +19,13 @@ export class ExamResultsComponent {
   readonly id = input('');
   private readonly bank = inject(QuestionService);
   protected readonly progress = inject(ProgressService);
+  protected readonly language = inject(LanguageService);
   protected readonly reviewing = signal(false);
   protected readonly formatPercent = formatPercent;
   protected readonly formatDuration = formatDuration;
-  protected readonly formatWhen = formatWhen;
+  protected when(iso: string): string {
+    return formatWhen(iso, this.language.lang());
+  }
   protected readonly exam = computed(() => this.progress.state().exams.find((item) => item.id === this.id()) ?? null);
   protected readonly rows = computed((): AnswerReviewRow[] => {
     const exam = this.exam();

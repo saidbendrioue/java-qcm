@@ -1,15 +1,15 @@
 @if (exam(); as result) {
   @if (!reviewing()) {
     <section class="panel p-6 md:p-8">
-      <p class="text-sm font-semibold uppercase tracking-[0.14em] text-muted">{{ formatWhen(result.startedAt) }} · {{ elapsed() }}</p>
+      <p class="text-sm font-semibold uppercase tracking-[0.14em] text-muted">{{ when(result.startedAt) }} · {{ elapsed() }}</p>
       <h2 class="mt-2 font-serif text-5xl" [class.text-good]="result.passed" [class.text-bad]="result.passed === false">
         {{ result.scorePercent === null ? '—' : formatPercent(result.scorePercent) }}
       </h2>
-      <p class="mt-2 text-lg">{{ result.passed ? 'Passing score.' : 'Below the 85% pass mark.' }}</p>
-      <p class="mt-1 text-muted">{{ result.correctCount }} of {{ result.questionIds.length }} correct · {{ result.status }}</p>
+      <p class="mt-2 text-lg">{{ language.text(result.passed ? 'exam.passing' : 'exam.below') }}</p>
+      <p class="mt-1 text-muted">{{ language.text('exam.scoreLine', { correct: result.correctCount, total: result.questionIds.length, status: language.statusLabel(result.status) }) }}</p>
       <div class="mt-5 flex flex-wrap gap-2">
-        <a class="btn btn-primary" routerLink="/exam">New exam</a>
-        <a class="btn btn-ghost" routerLink="/review" [queryParams]="{ tab: 'mistakes' }">Review misses</a>
+        <a class="btn btn-primary" routerLink="/exam">{{ language.text('exam.newExam') }}</a>
+        <a class="btn btn-ghost" routerLink="/review" [queryParams]="{ tab: 'mistakes' }">{{ language.text('exam.reviewMisses') }}</a>
       </div>
     </section>
   }
@@ -17,7 +17,7 @@
     <app-answer-review [rows]="rows()" (activeChange)="reviewing.set($event)" />
   </div>
 } @else {
-  <app-empty-state title="Exam not found" message="That result is not in the progress saved in this browser.">
-    <a class="btn btn-primary" routerLink="/exam">Back to exams</a>
+  <app-empty-state [title]="language.text('exam.notFoundTitle')" [message]="language.text('exam.notFoundMessage')">
+    <a class="btn btn-primary" routerLink="/exam">{{ language.text('exam.back') }}</a>
   </app-empty-state>
 }

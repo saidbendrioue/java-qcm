@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 
 import { filterQuestions } from '../../core/filtering/filter-questions';
-import { EMPTY_FILTER, questionTypeLabel, type QuestionFilter } from '../../core/models/question.model';
+import { LanguageService } from '../../core/i18n/language.service';
+import { EMPTY_FILTER, type QuestionFilter } from '../../core/models/question.model';
 import { QuestionService } from '../../core/services/question.service';
 import { EmptyStateComponent } from '../../shared/empty-state.component';
 import { LoadingBlockComponent } from '../../shared/loading-block.component';
@@ -15,7 +16,7 @@ import { QuestionFiltersComponent } from '../../shared/question-filters.componen
 })
 export class BrowserComponent {
   protected readonly bank = inject(QuestionService);
-  protected readonly typeLabel = questionTypeLabel;
+  protected readonly language = inject(LanguageService);
   protected readonly filters = signal<QuestionFilter>(EMPTY_FILTER);
   protected readonly visible = computed(() => filterQuestions(this.bank.questions(), this.filters()));
 

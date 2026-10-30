@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 
+import { LanguageService } from '../../core/i18n/language.service';
 import type { Question } from '../../core/models/question.model';
 import { ProgressService } from '../../core/services/progress.service';
 import { QuestionService } from '../../core/services/question.service';
@@ -19,6 +20,7 @@ type ReviewTab = 'mistakes' | 'bookmarks' | 'due';
 export class ReviewComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly bank = inject(QuestionService);
+  protected readonly language = inject(LanguageService);
   protected readonly progress = inject(ProgressService);
   protected readonly tabs: readonly ReviewTab[] = ['mistakes', 'bookmarks', 'due'];
   protected readonly tab = signal<ReviewTab>('mistakes');
@@ -39,9 +41,9 @@ export class ReviewComponent {
   }
 
   protected label(tab: ReviewTab): string {
-    if (tab === 'bookmarks') return 'Bookmarks';
-    if (tab === 'due') return 'Due';
-    return 'Mistakes';
+    if (tab === 'bookmarks') return this.language.text('review.bookmarks');
+    if (tab === 'due') return this.language.text('review.due');
+    return this.language.text('review.mistakes');
   }
 
   private ids(): readonly string[] {

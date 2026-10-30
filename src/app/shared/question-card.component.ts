@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 
+import { LanguageService } from '../core/i18n/language.service';
 import type { Question } from '../core/models/question.model';
 import { isAnswerCorrect } from '../core/scoring/scoring';
 import { AnswerOptionComponent, type OptionState } from './answer-option.component';
@@ -11,6 +12,7 @@ import { AnswerOptionComponent, type OptionState } from './answer-option.compone
   templateUrl: './question-card.component.html',
 })
 export class QuestionCardComponent {
+  protected readonly language = inject(LanguageService);
   readonly question = input.required<Question>();
   readonly selectedIds = input<readonly string[]>([]);
   readonly revealed = input(false);
@@ -19,9 +21,9 @@ export class QuestionCardComponent {
 
   protected readonly prompt = computed(() => {
     const question = this.question();
-    if (question.type === 'multiple') return 'Select every correct answer. A partial selection is scored incorrect.';
-    if (question.type === 'truefalse') return 'True or false.';
-    return 'Select one answer.';
+    if (question.type === 'multiple') return this.language.text('card.multiplePrompt');
+    if (question.type === 'truefalse') return this.language.text('card.trueFalsePrompt');
+    return this.language.text('card.singlePrompt');
   });
 
   protected checked(optionId: string): boolean {

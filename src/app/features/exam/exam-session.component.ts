@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 
 import { ExamStore } from '../../core/stores/exam.store';
+import { LanguageService } from '../../core/i18n/language.service';
 import { ProgressService } from '../../core/services/progress.service';
 import { QuestionService } from '../../core/services/question.service';
 import { ToastService } from '../../core/services/toast.service';
@@ -28,6 +29,7 @@ export class ExamSessionComponent {
   protected readonly examStore = inject(ExamStore);
   protected readonly progress = inject(ProgressService);
   protected readonly bank = inject(QuestionService);
+  protected readonly language = inject(LanguageService);
   private readonly toast = inject(ToastService);
   protected readonly confirming = signal(false);
 
@@ -45,7 +47,7 @@ export class ExamSessionComponent {
   protected flag(): void {
     if (!this.examStore.currentQuestion()) return;
     const added = this.examStore.toggleBookmark();
-    this.toast.show(added ? 'Question bookmarked.' : 'Bookmark removed.', 'info');
+    this.toast.show(added ? this.language.text('toast.bookmarked') : this.language.text('toast.unbookmarked'), 'info');
   }
 
   protected bookmarked(): boolean {
