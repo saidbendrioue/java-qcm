@@ -53,7 +53,8 @@
     "Concurrency": "Concurrency",
     "JVM": "JVM",
     "Spring": "Spring",
-    "Spring Boot": "Spring Boot"
+    "Spring Boot": "Spring Boot",
+    "Hibernate": "Hibernate"
   },
   "difficulty": {
     "easy": "Easy",

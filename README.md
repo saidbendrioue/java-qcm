@@ -4,7 +4,7 @@ A single-page Angular app for practicing Java with multiple-choice questions. St
 
 Live site: https://saidbendrioue.github.io/java-qcm/
 
-The mock exam used by this app is **80 questions, 60 minutes, and 85% to pass**. The bank covers types and OOP, collections, exceptions, generics, equals and hashCode, immutability, streams, concurrency basics, the JVM, Spring, and Spring Boot.
+The mock exam used by this app is **80 questions, 60 minutes, and 85% to pass**. The bank covers types and OOP, collections, exceptions, generics, equals and hashCode, immutability, streams, concurrency basics, the JVM, Spring, Spring Boot, and Hibernate.
 
 ## Run
 
@@ -77,7 +77,7 @@ Rules the app enforces when it loads the file:
 - Every correct id exists on an option, and ids are unique.
 - `cert` currently uses `Java`. `OCP` is allowed by the model for a later bank.
 
-`scripts/question-bank.mjs` is the authoring source for the English bank. Spring and Spring Boot items live in `scripts/spring-fundamentals-questions.mjs`, `scripts/spring-platform-questions.mjs`, and `scripts/spring-boot-questions.mjs`, and `scripts/spring-bank.mjs` combines them. Run `node scripts/question-bank.mjs` to regenerate `public/assets/i18n/questions/en.json`. The French bank is `public/assets/i18n/questions/fr.json`. UI copy is in `public/assets/i18n/en.json` and `public/assets/i18n/fr.json`.
+`scripts/question-bank.mjs` is the authoring source for the English bank. Spring and Spring Boot items live in `scripts/spring-fundamentals-questions.mjs`, `scripts/spring-platform-questions.mjs`, and `scripts/spring-boot-questions.mjs`, and `scripts/spring-bank.mjs` combines them. Hibernate items live in `scripts/hibernate-questions.mjs`. Run `node scripts/question-bank.mjs` to regenerate `public/assets/i18n/questions/en.json`. The French bank is `public/assets/i18n/questions/fr.json`. UI copy is in `public/assets/i18n/en.json` and `public/assets/i18n/fr.json`.
 
 ## Design decisions and what to build next
 

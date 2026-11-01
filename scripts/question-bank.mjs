@@ -1,6 +1,7 @@
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { hibernateQuestions } from './hibernate-questions.mjs';
 import { springQuestions } from './spring-bank.mjs';
 
 let sequence = 0;
@@ -2163,6 +2164,7 @@ const questions = [
     reference: 'Java Virtual Machine Specification — Frames (§2.6) and Method Area (§2.5.4)',
   }),
   ...springQuestions.map((fields) => q(fields)),
+  ...hibernateQuestions.map((fields) => q(fields)),
 ];
 
 const difficulties = new Set(['easy', 'medium', 'hard']);
@@ -2199,7 +2201,8 @@ for (const question of questions) {
 }
 
 const coreQuestions = questions.slice(0, 139);
-const addedQuestions = questions.slice(139);
+const addedQuestions = questions.slice(139, 239);
+const hibernateAdded = questions.slice(239);
 const coreTypeCount = { single: 0, multiple: 0, truefalse: 0 };
 const coreDifficultyCount = { easy: 0, medium: 0, hard: 0 };
 for (const question of coreQuestions) {
@@ -2209,7 +2212,10 @@ for (const question of coreQuestions) {
 if (springQuestions.length !== 100) {
   throw new Error(`Expected 100 Spring questions, found ${springQuestions.length}`);
 }
-if (questions.length !== 239) throw new Error(`Expected 239 questions, found ${questions.length}`);
+if (hibernateQuestions.length !== 50) {
+  throw new Error(`Expected 50 Hibernate questions, found ${hibernateQuestions.length}`);
+}
+if (questions.length !== 289) throw new Error(`Expected 289 questions, found ${questions.length}`);
 if (coreTypeCount.single !== 105 || coreTypeCount.multiple !== 15 || coreTypeCount.truefalse !== 19) {
   throw new Error(`Unexpected core type mix ${JSON.stringify(coreTypeCount)}`);
 }
@@ -2232,6 +2238,9 @@ if (!addedQuestions.some((question) => question.category === 'Spring')) {
 }
 if (!addedQuestions.some((question) => question.category === 'Spring Boot')) {
   throw new Error('Missing Spring Boot category');
+}
+if (hibernateAdded.length !== 50 || hibernateAdded.some((question) => question.category !== 'Hibernate')) {
+  throw new Error('Hibernate bank is missing or mixed with another category');
 }
 
 const output = resolve(dirname(fileURLToPath(import.meta.url)), '../public/assets/i18n/questions/en.json');

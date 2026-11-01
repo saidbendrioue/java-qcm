@@ -7738,5 +7738,1608 @@
     "explanation": "Les fichiers propres à un profil sont plus spécifiques que le fichier de base. On active le profil avec spring.profiles.active ou SPRING_PROFILES_ACTIVE. Les beans @Profile ne sont enregistrés que lorsque leur profil est actif. Une configuration externe peut encore remplacer les deux fichiers.",
     "reference": "Spring Boot docs — Profiles",
     "id": "q239"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Qu'est-ce que Hibernate ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un serveur d'applications Java EE"
+      },
+      {
+        "id": "b",
+        "text": "Un framework ORM pour Java"
+      },
+      {
+        "id": "c",
+        "text": "Un moteur de templates web"
+      },
+      {
+        "id": "d",
+        "text": "Un outil de build"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Hibernate est un framework de mapping objet-relationnel (ORM) qui fait le lien entre les objets Java et les tables d'une base relationnelle.",
+    "reference": "Hibernate ORM User Guide — Architecture",
+    "id": "q240"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Que signifie le sigle ORM ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Object Resource Manager"
+      },
+      {
+        "id": "b",
+        "text": "Online Relational Model"
+      },
+      {
+        "id": "c",
+        "text": "Object-Relational Mapping"
+      },
+      {
+        "id": "d",
+        "text": "Object Runtime Mapping"
+      }
+    ],
+    "correctOptionIds": [
+      "c"
+    ],
+    "explanation": "ORM signifie Object-Relational Mapping : la correspondance entre le modèle objet et le modèle relationnel.",
+    "reference": "Hibernate ORM User Guide — Architecture",
+    "id": "q241"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "multiple",
+    "category": "Hibernate",
+    "question": "Quels sont des avantages d'Hibernate par rapport à JDBC « pur » ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Moins de code JDBC répétitif"
+      },
+      {
+        "id": "b",
+        "text": "Mapping automatique entre objets et tables"
+      },
+      {
+        "id": "c",
+        "text": "Il dispense totalement de connaître le SQL et le modèle relationnel"
+      },
+      {
+        "id": "d",
+        "text": "Fonctionnalités intégrées (cache, lazy loading, dirty checking)"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b",
+      "d"
+    ],
+    "explanation": "Hibernate réduit le code répétitif et apporte cache, chargement paresseux et détection des modifications. Il ne dispense pas de comprendre SQL ni le modèle relationnel.",
+    "reference": "Hibernate ORM User Guide — Architecture",
+    "id": "q242"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "truefalse",
+    "category": "Hibernate",
+    "question": "Hibernate est une implémentation de la spécification JPA.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Vrai"
+      },
+      {
+        "id": "b",
+        "text": "Faux"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "JPA est la spécification et Hibernate en est l'implémentation la plus répandue. Hibernate propose aussi des API natives en plus de JPA.",
+    "reference": "Hibernate ORM User Guide — Architecture",
+    "id": "q243"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Quel fichier contient classiquement la configuration principale d'Hibernate (connexion, dialecte, mappings) ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "persistence.json"
+      },
+      {
+        "id": "b",
+        "text": "hibernate.cfg.xml"
+      },
+      {
+        "id": "c",
+        "text": "session.properties"
+      },
+      {
+        "id": "d",
+        "text": "orm.config"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "hibernate.cfg.xml est le fichier historique. On peut aussi utiliser hibernate.properties, ou persistence.xml côté JPA.",
+    "reference": "Hibernate ORM User Guide — Bootstrap",
+    "id": "q244"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Quelle annotation déclare qu'une classe est une entité persistante ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "@Table"
+      },
+      {
+        "id": "b",
+        "text": "@Persistent"
+      },
+      {
+        "id": "c",
+        "text": "@Entity"
+      },
+      {
+        "id": "d",
+        "text": "@Mapped"
+      }
+    ],
+    "correctOptionIds": [
+      "c"
+    ],
+    "explanation": "@Entity (package jakarta.persistence, anciennement javax.persistence) marque la classe comme entité gérée par Hibernate.",
+    "reference": "Hibernate ORM User Guide — Domain Model",
+    "id": "q245"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "truefalse",
+    "category": "Hibernate",
+    "question": "Une SessionFactory est thread-safe et n'est généralement créée qu'une seule fois par application.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Vrai"
+      },
+      {
+        "id": "b",
+        "text": "Faux"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "La SessionFactory est un objet lourd, immuable et thread-safe. On la crée au démarrage et on la partage.",
+    "reference": "Hibernate ORM User Guide — Bootstrap",
+    "id": "q246"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "truefalse",
+    "category": "Hibernate",
+    "question": "Une Session Hibernate est thread-safe et peut être partagée entre plusieurs threads.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Vrai"
+      },
+      {
+        "id": "b",
+        "text": "Faux"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "La Session est légère et n'est pas thread-safe. On en utilise une par unité de travail ou par thread.",
+    "reference": "Hibernate ORM User Guide — Persistence Context",
+    "id": "q247"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Quel est le rôle de la SessionFactory ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un objet léger créé à chaque requête"
+      },
+      {
+        "id": "b",
+        "text": "Une fabrique de Session, coûteuse à créer et partagée dans l'application"
+      },
+      {
+        "id": "c",
+        "text": "Elle représente une transaction"
+      },
+      {
+        "id": "d",
+        "text": "Elle représente une ligne de table"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "La SessionFactory construit les Session à partir de la configuration. Elle porte aussi le cache de second niveau.",
+    "reference": "Hibernate ORM User Guide — Bootstrap",
+    "id": "q248"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Qu'est-ce que HQL ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un langage de requête orienté objet qui manipule des entités et leurs propriétés"
+      },
+      {
+        "id": "b",
+        "text": "Un dialecte SQL réservé à la création des tables"
+      },
+      {
+        "id": "c",
+        "text": "Un format de fichier de mapping"
+      },
+      {
+        "id": "d",
+        "text": "Un protocole réseau vers la base"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "HQL ressemble à SQL mais s'écrit sur les noms de classes et de propriétés. Hibernate le traduit ensuite en SQL.",
+    "reference": "Hibernate ORM User Guide — HQL and JPQL",
+    "id": "q249"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Quelle propriété affiche les requêtes SQL générées par Hibernate ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "hibernate.print_queries"
+      },
+      {
+        "id": "b",
+        "text": "hibernate.show_sql"
+      },
+      {
+        "id": "c",
+        "text": "hibernate.log_all"
+      },
+      {
+        "id": "d",
+        "text": "hibernate.debug_sql"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "hibernate.show_sql=true affiche le SQL, et hibernate.format_sql l'indente. En production, on préfère configurer le logger org.hibernate.SQL.",
+    "reference": "Hibernate ORM User Guide — Logging",
+    "id": "q250"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "truefalse",
+    "category": "Hibernate",
+    "question": "Le lazy loading consiste à ne charger les données associées que lorsqu'on y accède pour la première fois.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Vrai"
+      },
+      {
+        "id": "b",
+        "text": "Faux"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Hibernate remplace l'association par un proxy ou une collection spéciale. La requête SQL part au premier accès.",
+    "reference": "Hibernate ORM User Guide — Fetching",
+    "id": "q251"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "À quoi sert l'API Criteria ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Construire des requêtes de façon programmatique et typée"
+      },
+      {
+        "id": "b",
+        "text": "Configurer le cache de second niveau"
+      },
+      {
+        "id": "c",
+        "text": "Gérer les transactions"
+      },
+      {
+        "id": "d",
+        "text": "Générer le schéma de la base"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "L'API Criteria évite les chaînes HQL et permet de construire dynamiquement des requêtes vérifiées à la compilation.",
+    "reference": "Hibernate ORM User Guide — Criteria",
+    "id": "q252"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Que retourne session.get() si aucune entité ne correspond à l'identifiant ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Une ObjectNotFoundException"
+      },
+      {
+        "id": "b",
+        "text": "null"
+      },
+      {
+        "id": "c",
+        "text": "Un proxy vide"
+      },
+      {
+        "id": "d",
+        "text": "Une entité avec des valeurs par défaut"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "get() exécute immédiatement la requête et retourne null si la ligne n'existe pas.",
+    "reference": "Hibernate ORM User Guide — Loading entities",
+    "id": "q253"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Que fait session.load() ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un SELECT immédiat, et retourne null si l'entité est absente"
+      },
+      {
+        "id": "b",
+        "text": "Elle retourne un proxy sans requête immédiate, et une exception est levée à l'accès si la ligne n'existe pas"
+      },
+      {
+        "id": "c",
+        "text": "Elle charge toutes les entités de la table"
+      },
+      {
+        "id": "d",
+        "text": "Elle supprime l'entité"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "load() renvoie une référence paresseuse. Dans les versions récentes, getReference() la remplace.",
+    "reference": "Hibernate ORM User Guide — Loading entities",
+    "id": "q254"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Quelle est la cause typique d'une LazyInitializationException ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "L'entité n'a pas d'@Id"
+      },
+      {
+        "id": "b",
+        "text": "Une association lazy est lue après la fermeture de la Session"
+      },
+      {
+        "id": "c",
+        "text": "Deux transactions modifient la même ligne"
+      },
+      {
+        "id": "d",
+        "text": "La requête HQL est mal formée"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Le proxy ne peut plus charger ses données une fois la Session fermée. On résout cela avec JOIN FETCH, un EntityGraph ou en gardant la session ouverte le temps nécessaire.",
+    "reference": "Hibernate ORM User Guide — Fetching",
+    "id": "q255"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Quel est le mode de chargement (fetch) par défaut d'une association @OneToMany ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "EAGER"
+      },
+      {
+        "id": "b",
+        "text": "LAZY"
+      },
+      {
+        "id": "c",
+        "text": "SUBSELECT"
+      },
+      {
+        "id": "d",
+        "text": "JOIN"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Selon JPA, @OneToMany et @ManyToMany sont LAZY par défaut, alors que @ManyToOne et @OneToOne sont EAGER.",
+    "reference": "Jakarta Persistence — FetchType",
+    "id": "q256"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "multiple",
+    "category": "Hibernate",
+    "question": "Quelles associations sont EAGER par défaut selon JPA ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "@OneToOne"
+      },
+      {
+        "id": "b",
+        "text": "@ManyToOne"
+      },
+      {
+        "id": "c",
+        "text": "@OneToMany"
+      },
+      {
+        "id": "d",
+        "text": "@ManyToMany"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b"
+    ],
+    "explanation": "Les associations « vers un » sont EAGER par défaut, et les collections sont LAZY. Il est souvent conseillé de passer les premières en LAZY.",
+    "reference": "Jakarta Persistence — FetchType",
+    "id": "q257"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "multiple",
+    "category": "Hibernate",
+    "question": "Parmi les propositions suivantes, lesquelles sont des états du cycle de vie d'une entité ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Transient"
+      },
+      {
+        "id": "b",
+        "text": "Persistent"
+      },
+      {
+        "id": "c",
+        "text": "Detached"
+      },
+      {
+        "id": "d",
+        "text": "Suspended"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "Les états sont transient, persistent (managed), detached et removed. « Suspended » n'existe pas.",
+    "reference": "Hibernate ORM User Guide — Persistence Context",
+    "id": "q258"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Quelle méthode fait passer une instance transient à l'état persistent ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "evict()"
+      },
+      {
+        "id": "b",
+        "text": "persist()"
+      },
+      {
+        "id": "c",
+        "text": "detach()"
+      },
+      {
+        "id": "d",
+        "text": "clear()"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "persist() rend l'entité gérée par le contexte de persistance. L'INSERT est émis au flush.",
+    "reference": "Hibernate ORM User Guide — Persisting entities",
+    "id": "q259"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Que fait session.evict(entity) ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Supprime la ligne en base"
+      },
+      {
+        "id": "b",
+        "text": "Retire l'entité du contexte de persistance (elle devient detached)"
+      },
+      {
+        "id": "c",
+        "text": "Recharge l'entité depuis la base"
+      },
+      {
+        "id": "d",
+        "text": "Verrouille l'entité"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "evict() (detach() en JPA) retire l'entité du cache de premier niveau, sans toucher à la base.",
+    "reference": "Hibernate ORM User Guide — Persistence Context",
+    "id": "q260"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Que fait session.flush() ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Valide la transaction et ferme la session"
+      },
+      {
+        "id": "b",
+        "text": "Synchronise le contexte de persistance avec la base (exécute le SQL en attente) sans commit"
+      },
+      {
+        "id": "c",
+        "text": "Vide le cache de second niveau"
+      },
+      {
+        "id": "d",
+        "text": "Efface les entités de la mémoire"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "flush() envoie les INSERT, UPDATE et DELETE en attente. La transaction n'est validée que par le commit.",
+    "reference": "Hibernate ORM User Guide — Flushing",
+    "id": "q261"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Quelle est la différence principale entre save() (API native) et persist() (JPA) ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Aucune différence"
+      },
+      {
+        "id": "b",
+        "text": "save() retourne l'identifiant, persist() retourne void"
+      },
+      {
+        "id": "c",
+        "text": "persist() retourne l'identifiant, save() retourne void"
+      },
+      {
+        "id": "d",
+        "text": "save() ne fonctionne que sur des entités détachées"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "save() retourne l'identifiant et peut forcer l'INSERT immédiatement selon la stratégie de génération. persist() suit le standard JPA, et save() est déprécié dans les versions récentes.",
+    "reference": "Hibernate ORM User Guide — Persisting entities",
+    "id": "q262"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Que fait merge() ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Fusionne deux tables"
+      },
+      {
+        "id": "b",
+        "text": "Copie l'état d'une instance detached dans une instance persistante et retourne cette dernière"
+      },
+      {
+        "id": "c",
+        "text": "Fusionne deux sessions"
+      },
+      {
+        "id": "d",
+        "text": "Supprime les doublons"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "merge() ne rattache pas l'objet passé en paramètre. Il retourne l'instance gérée, qu'il faut utiliser ensuite.",
+    "reference": "Hibernate ORM User Guide — Merging detached entities",
+    "id": "q263"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "truefalse",
+    "category": "Hibernate",
+    "question": "Contrairement à update(), merge() peut lever une NonUniqueObjectException lorsqu'une autre instance de même identifiant est déjà dans la session.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Vrai"
+      },
+      {
+        "id": "b",
+        "text": "Faux"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "C'est update() ou saveOrUpdate() qui lèvent cette exception, car ils rattachent l'objet tel quel. merge() copie l'état dans l'instance déjà présente.",
+    "reference": "Hibernate ORM User Guide — Merging detached entities",
+    "id": "q264"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Quelle est la portée du cache de premier niveau ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "La SessionFactory"
+      },
+      {
+        "id": "b",
+        "text": "Toute la JVM"
+      },
+      {
+        "id": "c",
+        "text": "La Session"
+      },
+      {
+        "id": "d",
+        "text": "Le cluster"
+      }
+    ],
+    "correctOptionIds": [
+      "c"
+    ],
+    "explanation": "Le cache de premier niveau est lié à la Session (ou à l'EntityManager). Il est toujours actif et ne peut pas être désactivé.",
+    "reference": "Hibernate ORM User Guide — Caching",
+    "id": "q265"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Que peut-on dire du cache de second niveau ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Il est actif par défaut et lié à une Session"
+      },
+      {
+        "id": "b",
+        "text": "Il est optionnel, partagé au niveau de la SessionFactory et nécessite un fournisseur (ex. Ehcache, Caffeine)"
+      },
+      {
+        "id": "c",
+        "text": "Il remplace le cache de premier niveau"
+      },
+      {
+        "id": "d",
+        "text": "Il ne stocke que les résultats de requêtes"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Il se configure explicitement et se choisit entité par entité. Il est partagé entre toutes les sessions.",
+    "reference": "Hibernate ORM User Guide — Caching",
+    "id": "q266"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Que stocke principalement le query cache ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Les entités complètes"
+      },
+      {
+        "id": "b",
+        "text": "Les identifiants des résultats (les entités viennent du cache de second niveau ou de la base)"
+      },
+      {
+        "id": "c",
+        "text": "Uniquement le SQL généré"
+      },
+      {
+        "id": "d",
+        "text": "Les transactions en cours"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Le query cache garde la liste des identifiants par requête et paramètres. Il est peu utile sans cache de second niveau et il est invalidé à chaque modification de la table concernée.",
+    "reference": "Hibernate ORM User Guide — Caching",
+    "id": "q267"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Quelle méthode JPA permet d'exécuter du SQL natif via l'EntityManager ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "createQuery"
+      },
+      {
+        "id": "b",
+        "text": "createNativeQuery"
+      },
+      {
+        "id": "c",
+        "text": "createCriteria"
+      },
+      {
+        "id": "d",
+        "text": "createSQLPlan"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "createNativeQuery() exécute du SQL brut. Dans l'API native, l'équivalent historique est createSQLQuery().",
+    "reference": "Hibernate ORM User Guide — Native SQL",
+    "id": "q268"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Quel est l'intérêt principal de @NamedQuery ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Elle exécute toujours du SQL natif"
+      },
+      {
+        "id": "b",
+        "text": "La requête est déclarée une fois, vérifiée au démarrage et réutilisable par son nom"
+      },
+      {
+        "id": "c",
+        "text": "Elle met automatiquement le résultat en cache"
+      },
+      {
+        "id": "d",
+        "text": "Elle interdit les paramètres"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Les requêtes nommées sont validées au démarrage, ce qui détecte les erreurs tôt, et peuvent être préparées une seule fois.",
+    "reference": "Jakarta Persistence — Named queries",
+    "id": "q269"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Qu'est-ce que le problème « N+1 selects » ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Une requête principale suivie de N requêtes supplémentaires pour charger l'association de chaque résultat"
+      },
+      {
+        "id": "b",
+        "text": "N transactions pour un seul commit"
+      },
+      {
+        "id": "c",
+        "text": "N sessions ouvertes en même temps"
+      },
+      {
+        "id": "d",
+        "text": "N index manquants"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Typiquement, on charge N parents, puis chaque parent déclenche un SELECT pour sa collection lazy.",
+    "reference": "Hibernate ORM User Guide — Fetching",
+    "id": "q270"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "multiple",
+    "category": "Hibernate",
+    "question": "Quelles techniques permettent de réduire le problème N+1 ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "JOIN FETCH dans la requête"
+      },
+      {
+        "id": "b",
+        "text": "@EntityGraph"
+      },
+      {
+        "id": "c",
+        "text": "Passer systématiquement toutes les associations en EAGER"
+      },
+      {
+        "id": "d",
+        "text": "@BatchSize (batch fetching)"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b",
+      "d"
+    ],
+    "explanation": "Le fetch join, les entity graphs et le batch fetching réduisent le nombre de requêtes. Passer tout en EAGER aggrave souvent le problème.",
+    "reference": "Hibernate ORM User Guide — Fetching",
+    "id": "q271"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Laquelle de ces stratégies n'existe pas dans InheritanceType ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "SINGLE_TABLE"
+      },
+      {
+        "id": "b",
+        "text": "JOINED"
+      },
+      {
+        "id": "c",
+        "text": "TABLE_PER_CLASS"
+      },
+      {
+        "id": "d",
+        "text": "TABLE_PER_PACKAGE"
+      }
+    ],
+    "correctOptionIds": [
+      "d"
+    ],
+    "explanation": "Les trois stratégies JPA sont SINGLE_TABLE, JOINED et TABLE_PER_CLASS.",
+    "reference": "Jakarta Persistence — Inheritance",
+    "id": "q272"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Quel est l'inconvénient principal de la stratégie SINGLE_TABLE ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Chaque lecture exige une jointure"
+      },
+      {
+        "id": "b",
+        "text": "Les colonnes propres aux sous-classes doivent être nullable"
+      },
+      {
+        "id": "c",
+        "text": "Les requêtes polymorphes sont impossibles"
+      },
+      {
+        "id": "d",
+        "text": "Elle crée une table par sous-classe"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Toute la hiérarchie partage une table avec une colonne discriminante. Les colonnes d'une sous-classe sont donc NULL pour les autres types, ce qui limite les contraintes NOT NULL.",
+    "reference": "Jakarta Persistence — Inheritance",
+    "id": "q273"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Laquelle de ces valeurs existe dans GenerationType ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "COUNTER"
+      },
+      {
+        "id": "b",
+        "text": "IDENTITY"
+      },
+      {
+        "id": "c",
+        "text": "RANDOM"
+      },
+      {
+        "id": "d",
+        "text": "INCREMENT"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "JPA propose AUTO, IDENTITY, SEQUENCE, TABLE et, depuis JPA 3.1, UUID.",
+    "reference": "Jakarta Persistence — Generated values",
+    "id": "q274"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Pourquoi GenerationType.IDENTITY pose-t-il problème pour les insertions en batch ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Il génère des identifiants en double"
+      },
+      {
+        "id": "b",
+        "text": "Hibernate doit exécuter l'INSERT immédiatement pour connaître l'identifiant, ce qui désactive le batching des insertions"
+      },
+      {
+        "id": "c",
+        "text": "Il est incompatible avec les transactions"
+      },
+      {
+        "id": "d",
+        "text": "Il force le chargement EAGER"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Avec une SEQUENCE, Hibernate peut réserver des identifiants à l'avance et regrouper les INSERT.",
+    "reference": "Hibernate ORM User Guide — Batching",
+    "id": "q275"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "truefalse",
+    "category": "Hibernate",
+    "question": "Une classe @Embeddable possède sa propre table et sa propre identité.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Vrai"
+      },
+      {
+        "id": "b",
+        "text": "Faux"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Un composant embarqué n'a pas d'identité propre. Ses colonnes sont stockées dans la table de l'entité qui le contient.",
+    "reference": "Hibernate ORM User Guide — Embeddables",
+    "id": "q276"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "À quoi sert l'attribut mappedBy dans une association bidirectionnelle ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "À nommer la table de jointure"
+      },
+      {
+        "id": "b",
+        "text": "À indiquer que l'association est gérée par l'autre côté (propriétaire), le côté courant étant inverse"
+      },
+      {
+        "id": "c",
+        "text": "À définir la stratégie de cascade"
+      },
+      {
+        "id": "d",
+        "text": "À activer le lazy loading"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Le côté propriétaire porte la clé étrangère. Le côté mappedBy n'est pas utilisé pour écrire en base.",
+    "reference": "Hibernate ORM User Guide — Associations",
+    "id": "q277"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Que fait CascadeType.REMOVE ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Supprime l'entité parente quand un enfant est supprimé"
+      },
+      {
+        "id": "b",
+        "text": "Propage la suppression du parent aux entités associées"
+      },
+      {
+        "id": "c",
+        "text": "Détache les entités associées"
+      },
+      {
+        "id": "d",
+        "text": "Empêche toute suppression"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Quand le parent est supprimé, les entités associées le sont aussi. Il faut l'utiliser avec prudence sur les associations partagées.",
+    "reference": "Jakarta Persistence — CascadeType",
+    "id": "q278"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Que fait orphanRemoval = true sur une collection @OneToMany ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Il supprime en base les enfants retirés de la collection du parent"
+      },
+      {
+        "id": "b",
+        "text": "Il supprime les parents qui n'ont plus d'enfants"
+      },
+      {
+        "id": "c",
+        "text": "Il désactive les cascades"
+      },
+      {
+        "id": "d",
+        "text": "Il nettoie le cache de second niveau"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Un enfant « orphelin », c'est-à-dire retiré de la collection, est supprimé au flush.",
+    "reference": "Jakarta Persistence — Orphan removal",
+    "id": "q279"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Que met en place l'annotation @Version ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Le versionnement du schéma"
+      },
+      {
+        "id": "b",
+        "text": "Le verrouillage optimiste via une colonne de version"
+      },
+      {
+        "id": "c",
+        "text": "Le verrouillage pessimiste"
+      },
+      {
+        "id": "d",
+        "text": "Les migrations de base"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "À chaque UPDATE, Hibernate vérifie et incrémente la version. Une version obsolète provoque une exception.",
+    "reference": "Hibernate ORM User Guide — Locking",
+    "id": "q280"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Quelle exception signale un conflit de verrouillage optimiste ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "LazyInitializationException"
+      },
+      {
+        "id": "b",
+        "text": "OptimisticLockException (StaleObjectStateException côté Hibernate natif)"
+      },
+      {
+        "id": "c",
+        "text": "NonUniqueResultException"
+      },
+      {
+        "id": "d",
+        "text": "TransientObjectException"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Elle est levée lorsque la version en base ne correspond plus à celle lue par la transaction.",
+    "reference": "Hibernate ORM User Guide — Locking",
+    "id": "q281"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Que génère généralement LockModeType.PESSIMISTIC_WRITE ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Une colonne de version"
+      },
+      {
+        "id": "b",
+        "text": "Un verrou en base, typiquement SELECT ... FOR UPDATE"
+      },
+      {
+        "id": "c",
+        "text": "Une invalidation du cache"
+      },
+      {
+        "id": "d",
+        "text": "Une entité en lecture seule"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Le verrou pessimiste est pris par la base de données, et le comportement exact dépend du SGBD et du dialecte.",
+    "reference": "Hibernate ORM User Guide — Locking",
+    "id": "q282"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Qu'est-ce que le dirty checking ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Le nettoyage du cache"
+      },
+      {
+        "id": "b",
+        "text": "La détection automatique des modifications d'entités persistantes et la génération des UPDATE au flush"
+      },
+      {
+        "id": "c",
+        "text": "La validation des données saisies"
+      },
+      {
+        "id": "d",
+        "text": "La détection des requêtes lentes"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Hibernate compare l'état courant des entités gérées à leur snapshot. Aucun appel à update() n'est nécessaire dans une transaction.",
+    "reference": "Hibernate ORM User Guide — Flushing",
+    "id": "q283"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Quelle valeur de hibernate.hbm2ddl.auto supprime puis recrée le schéma au démarrage, au risque de perdre les données ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "validate"
+      },
+      {
+        "id": "b",
+        "text": "update"
+      },
+      {
+        "id": "c",
+        "text": "create"
+      },
+      {
+        "id": "d",
+        "text": "none"
+      }
+    ],
+    "correctOptionIds": [
+      "c"
+    ],
+    "explanation": "create supprime et recrée le schéma, et create-drop le supprime aussi à l'arrêt. En production, on préfère validate ou none avec un outil de migration comme Flyway ou Liquibase.",
+    "reference": "Hibernate ORM User Guide — Schema generation",
+    "id": "q284"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "À quoi sert le dialecte Hibernate ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "À choisir la langue des messages d'erreur"
+      },
+      {
+        "id": "b",
+        "text": "À adapter le SQL généré au SGBD cible"
+      },
+      {
+        "id": "c",
+        "text": "À définir le format des logs"
+      },
+      {
+        "id": "d",
+        "text": "À sélectionner le pool de connexions"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Types, pagination et fonctions varient d'un SGBD à l'autre. Les versions récentes peuvent souvent détecter le dialecte automatiquement.",
+    "reference": "Hibernate ORM User Guide — Dialects",
+    "id": "q285"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "truefalse",
+    "category": "Hibernate",
+    "question": "Le pool de connexions intégré d'Hibernate est recommandé en production.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Vrai"
+      },
+      {
+        "id": "b",
+        "text": "Faux"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Le pool intégré est rudimentaire. En production, on utilise HikariCP, c3p0 ou le pool du serveur d'applications.",
+    "reference": "Hibernate ORM User Guide — Connection pooling",
+    "id": "q286"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "multiple",
+    "category": "Hibernate",
+    "question": "Quelles règles doit respecter une classe entité ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Avoir un constructeur sans argument (public ou protected)"
+      },
+      {
+        "id": "b",
+        "text": "Ne pas être final"
+      },
+      {
+        "id": "c",
+        "text": "Avoir un identifiant (@Id)"
+      },
+      {
+        "id": "d",
+        "text": "Implémenter obligatoirement Serializable"
+      }
+    ],
+    "correctOptionIds": [
+      "a",
+      "b",
+      "c"
+    ],
+    "explanation": "Le constructeur sans argument et l'absence de final servent à créer des proxies pour le lazy loading. Serializable n'est exigé que dans certains cas, par exemple pour des clés composites.",
+    "reference": "Hibernate ORM User Guide — Entity classes",
+    "id": "q287"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Quelle est la bonne pratique pour equals() et hashCode() sur une entité ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Se baser uniquement sur l'id auto-généré, sans gérer le cas null avant persist"
+      },
+      {
+        "id": "b",
+        "text": "Se baser sur une clé métier stable et immuable (ou sur l'id avec précaution)"
+      },
+      {
+        "id": "c",
+        "text": "Inclure toutes les collections lazy"
+      },
+      {
+        "id": "d",
+        "text": "Ne jamais les redéfinir, même pour des Set"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Un id généré est null avant l'insertion, ce qui casse les Set et les Map. Une clé métier stable, ou une implémentation soignée basée sur l'id, évite ce piège.",
+    "reference": "Hibernate ORM User Guide — Entity classes",
+    "id": "q288"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Qu'est-ce qu'une StatelessSession ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Une session sans transaction"
+      },
+      {
+        "id": "b",
+        "text": "Une session sans contexte de persistance (ni cache de premier niveau, ni dirty checking, ni cascade), adaptée aux traitements en masse"
+      },
+      {
+        "id": "c",
+        "text": "Une session en lecture seule uniquement"
+      },
+      {
+        "id": "d",
+        "text": "Une session partagée entre threads"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Elle interagit directement avec la base, avec moins de surcharge mémoire. Elle convient aux imports et exports volumineux.",
+    "reference": "Hibernate ORM User Guide — StatelessSession",
+    "id": "q289"
   }
 ]
