@@ -183,7 +183,13 @@
     "count": "{{count}} questions Java",
     "emptyTitle": "Aucune question trouvée",
     "emptyMessage": "Essayez une autre catégorie, une autre difficulté ou une autre recherche.",
-    "correct": "Bonne réponse · "
+    "answer": "Réponse",
+    "correct": "Bonne réponse",
+    "explanation": "Explication",
+    "showAnswer": "Afficher la réponse",
+    "hideAnswer": "Masquer la réponse",
+    "save": "Ajouter un signet",
+    "saved": "Retirer le signet"
   },
   "card": {
     "multiplePrompt": "Sélectionnez chaque bonne réponse. Une sélection partielle est comptée fausse.",

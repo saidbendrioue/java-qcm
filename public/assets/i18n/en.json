@@ -183,7 +183,13 @@
     "count": "{{count}} Java questions",
     "emptyTitle": "No questions found",
     "emptyMessage": "Try a different category, difficulty, or search.",
-    "correct": "Correct · "
+    "answer": "Answer",
+    "correct": "Correct answer",
+    "explanation": "Explanation",
+    "showAnswer": "Show the answer",
+    "hideAnswer": "Hide the answer",
+    "save": "Bookmark this question",
+    "saved": "Remove bookmark"
   },
   "card": {
     "multiplePrompt": "Select every correct answer. A partial selection is scored incorrect.",
