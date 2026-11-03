@@ -2,6 +2,8 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { hibernateQuestions } from './hibernate-questions.mjs';
+import { javaFaqFrench } from './java-faq-questions-fr.mjs';
+import { javaFaqQuestions } from './java-faq-questions.mjs';
 import { springQuestions } from './spring-bank.mjs';
 import { welovedevsFrench } from './welovedevs-questions-fr.mjs';
 import { welovedevsQuestions } from './welovedevs-questions.mjs';
@@ -2168,6 +2170,7 @@ const questions = [
   ...springQuestions.map((fields) => q(fields)),
   ...hibernateQuestions.map((fields) => q(fields)),
   ...welovedevsQuestions.map((fields) => q(fields)),
+  ...javaFaqQuestions.map((fields) => q(fields)),
 ];
 
 const difficulties = new Set(['easy', 'medium', 'hard']);
@@ -2223,13 +2226,25 @@ if (welovedevsQuestions.length !== 13 || welovedevsFrench.length !== welovedevsQ
     `Expected 13 WeLoveDevs questions with French copy, found ${welovedevsQuestions.length} and ${welovedevsFrench.length}`,
   );
 }
-const recentQuestions = questions.slice(-welovedevsQuestions.length);
-if (recentQuestions[0]?.id !== 'q290' || recentQuestions.at(-1)?.id !== 'q302') {
+if (javaFaqQuestions.length !== 16 || javaFaqFrench.length !== javaFaqQuestions.length) {
   throw new Error(
-    `Unexpected recent ids ${recentQuestions[0]?.id}..${recentQuestions.at(-1)?.id}`,
+    `Expected 16 Java FAQ questions with French copy, found ${javaFaqQuestions.length} and ${javaFaqFrench.length}`,
   );
 }
-if (questions.length !== 302) throw new Error(`Expected 302 questions, found ${questions.length}`);
+const faqQuestions = questions.slice(-javaFaqQuestions.length);
+const welovedevsRecent = questions.slice(
+  -(welovedevsQuestions.length + javaFaqQuestions.length),
+  -javaFaqQuestions.length,
+);
+if (welovedevsRecent[0]?.id !== 'q290' || welovedevsRecent.at(-1)?.id !== 'q302') {
+  throw new Error(
+    `Unexpected WeLoveDevs ids ${welovedevsRecent[0]?.id}..${welovedevsRecent.at(-1)?.id}`,
+  );
+}
+if (faqQuestions[0]?.id !== 'q303' || faqQuestions.at(-1)?.id !== 'q318') {
+  throw new Error(`Unexpected FAQ ids ${faqQuestions[0]?.id}..${faqQuestions.at(-1)?.id}`);
+}
+if (questions.length !== 318) throw new Error(`Expected 318 questions, found ${questions.length}`);
 if (coreTypeCount.single !== 105 || coreTypeCount.multiple !== 15 || coreTypeCount.truefalse !== 19) {
   throw new Error(`Unexpected core type mix ${JSON.stringify(coreTypeCount)}`);
 }
@@ -2264,24 +2279,30 @@ await mkdir(questionsDir, { recursive: true });
 await writeFile(output, `${JSON.stringify(questions, null, 2)}\n`);
 
 const frenchBank = JSON.parse(await readFile(frenchOutput, 'utf8'));
-for (const [index, english] of recentQuestions.entries()) {
-  const copy = welovedevsFrench[index];
-  const translated = {
-    ...english,
-    question: copy.question,
-    explanation: copy.explanation,
-    options: english.options.map((option) => ({
-      id: option.id,
-      text: copy.options[option.id],
-    })),
-  };
-  if (translated.options.some((option) => !option.text)) {
-    throw new Error(`Missing French option for ${english.id}`);
+
+function applyFrenchCopy(englishQuestions, frenchCopies, label) {
+  for (const [index, english] of englishQuestions.entries()) {
+    const copy = frenchCopies[index];
+    const translated = {
+      ...english,
+      question: copy.question,
+      explanation: copy.explanation,
+      options: english.options.map((option) => ({
+        id: option.id,
+        text: copy.options[option.id],
+      })),
+    };
+    if (translated.options.some((option) => !option.text)) {
+      throw new Error(`Missing French option for ${english.id} (${label})`);
+    }
+    const existing = frenchBank.findIndex((item) => item.id === english.id);
+    if (existing >= 0) frenchBank[existing] = translated;
+    else frenchBank.push(translated);
   }
-  const existing = frenchBank.findIndex((item) => item.id === english.id);
-  if (existing >= 0) frenchBank[existing] = translated;
-  else frenchBank.push(translated);
 }
+
+applyFrenchCopy(welovedevsRecent, welovedevsFrench, 'WeLoveDevs');
+applyFrenchCopy(faqQuestions, javaFaqFrench, 'Java FAQ');
 if (frenchBank.length !== questions.length) {
   throw new Error(`French bank has ${frenchBank.length} questions, expected ${questions.length}`);
 }

@@ -9762,5 +9762,533 @@
     "explanation": "@Override est une annotation de méthode. Elle indique au compilateur que la méthode doit redéfinir une méthode de la superclasse ou implémenter une méthode d’interface. Un mauvais nom ou une mauvaise liste de paramètres fait alors échouer la compilation, au lieu de déclarer une nouvelle méthode. Les méthodes statiques sont masquées, pas redéfinies.",
     "reference": "java.lang.Override",
     "id": "q302"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Deux classes dans le même paquet : Test déclare des champs int protected x et y sans initialisation explicite, et Main affiche t.x et t.y pour un new Test(). Qu’est-ce qui est affiché ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "0 0"
+      },
+      {
+        "id": "b",
+        "text": "null null"
+      },
+      {
+        "id": "c",
+        "text": "Le programme ne compile pas car les champs protected sont inaccessibles"
+      },
+      {
+        "id": "d",
+        "text": "Le programme lève une NullPointerException"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Un membre protected est visible des autres classes du même paquet, donc Main peut lire les champs. Les champs d’instance entiers non initialisés reçoivent la valeur par défaut 0.",
+    "reference": "Java Language Specification — Access Control (§6.6) and Initial Values of Variables (§4.12.5)",
+    "id": "q303"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Que se passe-t-il lorsqu’une boucle for utilise le littéral entier 1 comme condition, comme dans for (int i = 0; 1; i++) ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Le programme ne compile pas"
+      },
+      {
+        "id": "b",
+        "text": "Le corps de la boucle s’exécute une fois puis sort"
+      },
+      {
+        "id": "c",
+        "text": "La boucle tourne indéfiniment"
+      },
+      {
+        "id": "d",
+        "text": "La boucle ne s’exécute jamais"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Contrairement à C et C++, Java exige une expression booléenne là où un booléen est attendu. Un int comme 1 n’est pas une condition de boucle valide, donc le code ne compile pas. Écrire true à la place compilerait.",
+    "reference": "Java Language Specification — The for Statement (§14.14.1) and Boolean Expressions",
+    "id": "q304"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Une classe déclare une méthode d’instance non statique fun() et appelle fun() directement depuis public static void main. Que se passe-t-il ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Le programme ne compile pas"
+      },
+      {
+        "id": "b",
+        "text": "fun s’exécute et se termine normalement"
+      },
+      {
+        "id": "c",
+        "text": "L’appel lève une NullPointerException"
+      },
+      {
+        "id": "d",
+        "text": "L’appel lève une IllegalAccessError"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Une méthode static n’a pas d’instance réceptrice. Appeler une méthode d’instance sans référence d’objet est une erreur de compilation. Rendre fun static permettrait l’appel.",
+    "reference": "Java Language Specification — Method Invocation Expressions (§15.12)",
+    "id": "q305"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Quelle affirmation sur une variable locale static déclarée à l’intérieur d’une méthode Java est correcte ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Java n’autorise pas les variables locales static ; la déclaration ne compile pas"
+      },
+      {
+        "id": "b",
+        "text": "Elle est initialisée une fois et conserve sa valeur entre les appels, comme en C++"
+      },
+      {
+        "id": "c",
+        "text": "Elle n’est autorisée que dans les méthodes static"
+      },
+      {
+        "id": "d",
+        "text": "Elle est autorisée et partagée par chaque instance de la classe"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Contrairement à C++, Java interdit le modificateur static sur une variable locale. Un champ static doit être déclaré comme membre de classe, pas dans le corps d’une méthode.",
+    "reference": "Java Language Specification — Local Variable Declarations (§14.4)",
+    "id": "q306"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "La classe Point ne déclare qu’un constructeur Point(int x, int y). Une autre classe du même paquet exécute new Point(). Que se passe-t-il ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Le programme ne compile pas car aucun constructeur sans argument n’existe"
+      },
+      {
+        "id": "b",
+        "text": "Un Point est créé avec x et y égaux à 0"
+      },
+      {
+        "id": "c",
+        "text": "Un Point est créé avec x et y égaux à null"
+      },
+      {
+        "id": "d",
+        "text": "L’appel lève une InstantiationException"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Lorsqu’une classe déclare un constructeur, le compilateur ne fournit pas de constructeur par défaut sans argument. new Point() ne compile donc pas, même si les champs protected seraient accessibles dans le même paquet.",
+    "reference": "Java Language Specification — Default Constructor (§8.8.9)",
+    "id": "q307"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Une méthode de superclasse est protected. Une sous-classe la redéfinit et déclare la redéfinition avec un accès package-private (par défaut). Que se passe-t-il ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Le programme ne compile pas"
+      },
+      {
+        "id": "b",
+        "text": "La méthode de la sous-classe s’exécute lorsqu’elle est appelée sur une instance de sous-classe"
+      },
+      {
+        "id": "c",
+        "text": "La méthode de la superclasse s’exécute toujours"
+      },
+      {
+        "id": "d",
+        "text": "La redéfinition est ignorée à l’exécution"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Une méthode qui redéfinit ne doit pas réduire l’accessibilité. Package-private est plus restrictif que protected, donc la redéfinition est rejetée à la compilation. Élargir l’accès, par exemple en public, est autorisé.",
+    "reference": "Java Language Specification — Requirements in Overriding and Hiding (§8.4.8.3)",
+    "id": "q308"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Deux surcharges existent : gfg(String) et gfg(Object). Que affiche gfg(null) ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "String"
+      },
+      {
+        "id": "b",
+        "text": "Object"
+      },
+      {
+        "id": "c",
+        "text": "L’appel ne compile pas"
+      },
+      {
+        "id": "d",
+        "text": "L’appel lève une NullPointerException"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Pour la résolution de surcharge, le compilateur choisit la méthode applicable la plus spécifique. String est un type plus spécifique que Object, donc gfg(String) est sélectionnée pour un argument null.",
+    "reference": "Java Language Specification — Choose the Most Specific Method (§15.12.2.5)",
+    "id": "q309"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Trois surcharges existent : gfg(String), gfg(Object) et gfg(Integer). Que se passe-t-il lorsque le programme appelle gfg(null) ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "L’appel ne compile pas car String et Integer sont aussi spécifiques l’un que l’autre"
+      },
+      {
+        "id": "b",
+        "text": "gfg(String) s’exécute"
+      },
+      {
+        "id": "c",
+        "text": "gfg(Integer) s’exécute"
+      },
+      {
+        "id": "d",
+        "text": "gfg(Object) s’exécute"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "String et Integer sont tous deux plus spécifiques que Object, mais aucun n’est plus spécifique que l’autre. L’argument null rend donc l’invocation ambiguë et le code ne compile pas.",
+    "reference": "Java Language Specification — Choose the Most Specific Method (§15.12.2.5)",
+    "id": "q310"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Immutability",
+    "question": "Étant donné String s1 = \"abc\"; String s2 = s1; puis s1 += \"d\"; qu’affiche System.out.println(s1 + \" \" + s2 + \" \" + (s1 == s2)) ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "abcd abc false"
+      },
+      {
+        "id": "b",
+        "text": "abcd abcd true"
+      },
+      {
+        "id": "c",
+        "text": "abcd abc true"
+      },
+      {
+        "id": "d",
+        "text": "abc abc false"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "String est immuable. s1 += \"d\" crée une nouvelle String \"abcd\" et réaffecte s1, tandis que s2 pointe encore vers \"abc\". Les deux références diffèrent donc, et == vaut false.",
+    "reference": "Java Language Specification — String Concatenation Operator + (§15.18.1) and The class String",
+    "id": "q311"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Immutability",
+    "question": "Étant donné StringBuffer sb1 = new StringBuffer(\"abc\"); StringBuffer sb2 = sb1; puis sb1.append(\"d\"); qu’affichent sb1, sb2 et (sb1 == sb2) ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "abcd abcd true"
+      },
+      {
+        "id": "b",
+        "text": "abcd abc false"
+      },
+      {
+        "id": "c",
+        "text": "abcd abc true"
+      },
+      {
+        "id": "d",
+        "text": "abc abc true"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "StringBuffer est mutable. append modifie le tampon partagé sur place, et sb1 et sb2 désignent toujours le même objet, donc les deux affichent abcd et == vaut true.",
+    "reference": "Java SE API — java.lang.StringBuffer",
+    "id": "q312"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "First, Second et Third ont chacune un constructeur sans argument qui affiche respectivement \"a\", \"b\" et \"c\". Second étend First et Third étend Second. Qu’est-ce qui est affiché lorsque new Third() s’exécute ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "a puis b puis c"
+      },
+      {
+        "id": "b",
+        "text": "c puis b puis a"
+      },
+      {
+        "id": "c",
+        "text": "Seulement c"
+      },
+      {
+        "id": "d",
+        "text": "Seulement a"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Avant d’exécuter le corps d’un constructeur, celui-ci invoque un constructeur de superclasse. Créer Third exécute donc le constructeur de First, puis celui de Second, puis celui de Third, affichant a, b et c dans cet ordre.",
+    "reference": "Java Language Specification — Constructor Body (§8.8.7)",
+    "id": "q313"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "First a int i = 10 et un constructeur First(int j) qui affiche i puis affecte this.i = j * 10. Second étend First, appelle super(j), affiche i, puis affecte this.i = j * 20. Que produit new Second(20) suivi de l’affichage de n.i ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "10 puis 200 puis 400"
+      },
+      {
+        "id": "b",
+        "text": "10 puis 20 puis 400"
+      },
+      {
+        "id": "c",
+        "text": "0 puis 200 puis 400"
+      },
+      {
+        "id": "d",
+        "text": "10 puis 200 puis 200"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Second hérite de i. Le constructeur de First affiche d’abord la valeur d’initialiseur de champ 10, puis met i à 200. Second affiche ensuite 200 et met i à 400, valeur que l’appelant affiche en dernier.",
+    "reference": "Java Language Specification — Creation of New Class Instances (§12.5)",
+    "id": "q314"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Concurrency",
+    "question": "Une sous-classe de Thread est démarrée avec start(), puis stop() est appelé, puis start() est rappelé sur la même instance. Que se passe-t-il ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Une IllegalThreadStateException est levée à l’exécution"
+      },
+      {
+        "id": "b",
+        "text": "Le thread exécute sa méthode run une seconde fois"
+      },
+      {
+        "id": "c",
+        "text": "Le second appel à start est ignoré"
+      },
+      {
+        "id": "d",
+        "text": "Le programme ne compile pas car stop a été retiré"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Une instance de Thread ne peut être démarrée qu’une seule fois. Rappeler start, même après stop, lève IllegalThreadStateException. stop est lui-même déprécié et dangereux, mais c’est le second start qui échoue ici.",
+    "reference": "Java SE API — java.lang.Thread.start()",
+    "id": "q315"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "equals and hashCode",
+    "question": "String s1 = new String(\"tulasi\"); String s2 = new String(\"tulasi\"); Qu’affiche if (s1 == s2) lorsque les branches affichent \"Equal\" ou \"Not equal\" ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Not equal"
+      },
+      {
+        "id": "b",
+        "text": "Equal"
+      },
+      {
+        "id": "c",
+        "text": "La comparaison ne compile pas"
+      },
+      {
+        "id": "d",
+        "text": "La comparaison lève une NullPointerException"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "== compare l’identité des objets. Chaque new String(...) alloue un objet distinct, donc les références diffèrent et le programme affiche Not equal. s1.equals(s2) comparerait le contenu des caractères et afficherait Equal.",
+    "reference": "Java Language Specification — Reference Equality Operators (§15.21.3)",
+    "id": "q316"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Une superclasse déclare final public int calc(int a, int b). Une sous-classe déclare public int calc(int a, int b) avec un corps différent. Que se passe-t-il ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Le programme ne compile pas"
+      },
+      {
+        "id": "b",
+        "text": "La méthode de la sous-classe redéfinit celle de la superclasse"
+      },
+      {
+        "id": "c",
+        "text": "La méthode de la sous-classe masque celle de la superclasse"
+      },
+      {
+        "id": "d",
+        "text": "Les deux méthodes coexistent et l’appel est ambigu"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Une méthode d’instance final ne peut pas être redéfinie. Déclarer la même signature d’instance dans une sous-classe est une erreur de compilation.",
+    "reference": "Java Language Specification — final Methods (§8.4.3.3)",
+    "id": "q317"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Après Integer a = 128, b = 128; Integer c = 100, d = 100; que valent a == b et c == d ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "false puis true"
+      },
+      {
+        "id": "b",
+        "text": "true puis true"
+      },
+      {
+        "id": "c",
+        "text": "false puis false"
+      },
+      {
+        "id": "d",
+        "text": "true puis false"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Le boxing réutilise des instances Integer mises en cache pour les valeurs de -128 à 127. 100 est dans cette plage, donc c et d peuvent partager un même objet et == vaut true. 128 est hors de la plage de cache exigée, donc a == b vaut false.",
+    "reference": "Java Language Specification — Boxing Conversion (§5.1.7)",
+    "id": "q318"
   }
 ]
