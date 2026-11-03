@@ -73,7 +73,7 @@ describe('App', () => {
   it('renders the Java QCM shell', async () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
-    http.expectOne('assets/i18n/questions/fr.json').flush([
+    http.expectOne((req) => req.url.includes('assets/i18n/questions/fr.json')).flush([
       {
         id: 'q001',
         category: 'Types and OOP',

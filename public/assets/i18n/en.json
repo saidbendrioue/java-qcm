@@ -197,7 +197,9 @@
   "recent": {
     "title": "Recently added questions",
     "intro": "{{count}} Java questions that were not in the bank yet.",
-    "practice": "Practice these questions"
+    "practice": "Practice these questions",
+    "emptyTitle": "No recent questions found",
+    "emptyMessage": "The bank has not loaded these questions yet. Open the full bank or reload and try again."
   },
   "bank": {
     "count": "{{count}} Java questions",
