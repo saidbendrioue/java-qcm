@@ -11757,29 +11757,29 @@
     "difficulty": "easy",
     "type": "single",
     "category": "Types and OOP",
-    "question": "Quelle est la différence entre == et equals() en Java ?",
+    "question": "Quelle est la différence entre == et equals() pour les types référence en Java ?",
     "options": [
       {
         "id": "a",
-        "text": "Les deux comparent toujours le contenu des objets."
+        "text": "== compare le contenu champ par champ ; equals() compare toujours l’identité des objets"
       },
       {
         "id": "b",
-        "text": "== compare les références pour les objets, tandis que equals() compare leur égalité logique si elle est correctement redéfinie."
+        "text": "== compare l’identité des références ; equals() compare l’égalité logique s’il est redéfini, sinon il utilise aussi l’identité"
       },
       {
         "id": "c",
-        "text": "equals() compare les adresses mémoire."
+        "text": "== et equals() sont des alias ; le compilateur réécrit == en equals()"
       },
       {
         "id": "d",
-        "text": "== appelle automatiquement equals()."
+        "text": "equals() compare l’identité ; == compare les valeurs de hashCode()"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "== vérifie si deux références pointent vers le même objet. equals() permet de comparer le contenu ou l’identité logique selon son implémentation.",
+    "explanation": "Pour les références, == teste si les deux côtés pointent vers le même objet. Object.equals utilise l’identité par défaut ; les sous-classes peuvent le redéfinir pour une égalité de valeur.",
     "reference": "Java Language Specification — Reference Equality Operators (§15.21.3) and Object.equals",
     "id": "q363"
   },
@@ -11787,32 +11787,32 @@
     "cert": [
       "Java"
     ],
-    "difficulty": "easy",
+    "difficulty": "medium",
     "type": "single",
     "category": "Design Principles",
-    "question": "Que signifie le principe DRY ?",
+    "question": "Trois services dupliquent la même validation de format d’email. Appliquer DRY correctement signifie en général quelle approche ?",
     "options": [
       {
         "id": "a",
-        "text": "Don’t Repeat Yourself."
+        "text": "Laisser les trois copies pour que chaque équipe fasse évoluer la validation sans coordination"
       },
       {
         "id": "b",
-        "text": "Do Repeat Yourself."
+        "text": "Extraire une règle de validation partagée (fonction, validator ou politique) et la réutiliser partout où la même règle s’applique"
       },
       {
         "id": "c",
-        "text": "Don’t Reuse Yourself."
+        "text": "Fusionner les trois services en une seule classe pour rendre la duplication impossible"
       },
       {
         "id": "d",
-        "text": "Develop Reusable Yearly."
+        "text": "Générer la validation par réflexion à l’exécution pour que le code source ne répète jamais la règle"
       }
     ],
     "correctOptionIds": [
-      "a"
+      "b"
     ],
-    "explanation": "Éviter la duplication de logique ou de connaissances dans le code.",
+    "explanation": "DRY vise la connaissance dupliquée. Les règles partagées appartiennent à un seul endroit. Fusionner des services ou utiliser la réflexion pour elle-même n’est pas l’objectif de DRY.",
     "reference": "The Pragmatic Programmer — DRY",
     "id": "q364"
   },
@@ -11820,32 +11820,32 @@
     "cert": [
       "Java"
     ],
-    "difficulty": "easy",
+    "difficulty": "medium",
     "type": "single",
     "category": "Design Principles",
-    "question": "Quel principe correspond à KISS ?",
+    "question": "Une fonctionnalité peut être livrée avec une méthode de service simple, ou avec un framework de plugins, trois stratégies et un DSL « pour plus tard ». KISS favorise quel choix ?",
     "options": [
       {
         "id": "a",
-        "text": "Keep Interfaces Small and Secure."
+        "text": "Livrer d’abord le framework de plugins pour que les variantes futures ne coûtent rien"
       },
       {
         "id": "b",
-        "text": "Keep It Simple, Stupid."
+        "text": "Préférer la méthode de service simple jusqu’à ce que de vrais besoins justifient plus de structure"
       },
       {
         "id": "c",
-        "text": "Keep Implementation Strict and Safe."
+        "text": "Toujours introduire le DSL car les fichiers de configuration sont plus simples que le code"
       },
       {
         "id": "d",
-        "text": "Keep Inheritance Simple and Short."
+        "text": "Dupliquer la logique dans chaque appelant pour qu’il n’y ait pas d’abstraction partagée à mal comprendre"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Privilégier les solutions simples plutôt que les complexités inutiles.",
+    "explanation": "KISS privilégie la solution la plus simple qui fonctionne. L’extensibilité spéculative ajoute souvent un coût avant tout besoin réel.",
     "reference": "Software engineering — KISS principle",
     "id": "q365"
   },
@@ -11853,32 +11853,32 @@
     "cert": [
       "Java"
     ],
-    "difficulty": "easy",
+    "difficulty": "medium",
     "type": "single",
     "category": "Design Principles",
-    "question": "Que signifie YAGNI ?",
+    "question": "Le produit demande des formats d’export « peut-être plus tard ». YAGNI suggère quelle stratégie d’implémentation maintenant ?",
     "options": [
       {
         "id": "a",
-        "text": "You Are Going To Need It."
+        "text": "Implémenter tous les formats imaginés derrière des classes strategy inutilisées"
       },
       {
         "id": "b",
-        "text": "You Aren’t Gonna Need It."
+        "text": "Construire uniquement les formats requis aujourd’hui ; ajouter les autres quand un besoin concret arrive"
       },
       {
         "id": "c",
-        "text": "Your Application Gets New Interfaces."
+        "text": "Créer des abstract factories pour tous les formats mais laisser les corps de méthodes vides"
       },
       {
         "id": "d",
-        "text": "You Always Generate New Instances."
+        "text": "Coder CSV en dur uniquement et interdire définitivement tout point d’extension futur"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Ne pas développer une fonctionnalité tant qu’elle n’est pas réellement nécessaire.",
+    "explanation": "YAGNI signifie ne pas construire de fonctionnalités spéculatives. Garder le design assez ouvert pour étendre plus tard, sans payer des formats inutilisés maintenant.",
     "reference": "Extreme Programming — YAGNI",
     "id": "q366"
   },
@@ -11889,29 +11889,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "Types and OOP",
-    "question": "Quelle est la différence entre une classe abstraite et une interface ?",
+    "question": "Quelle affirmation contraste correctement une classe abstraite et une interface en Java moderne ?",
     "options": [
       {
         "id": "a",
-        "text": "Une interface peut posséder des constructeurs."
+        "text": "Une interface peut déclarer des constructeurs et des champs d’instance comme une classe"
       },
       {
         "id": "b",
-        "text": "Une classe abstraite ne peut contenir que des méthodes abstraites."
+        "text": "Une classe abstraite peut contenir de l’état et des constructeurs ; une classe n’étend qu’au plus une classe mais peut implémenter plusieurs interfaces"
       },
       {
         "id": "c",
-        "text": "Une classe peut étendre une seule classe abstraite, mais implémenter plusieurs interfaces."
+        "text": "Les interfaces ne peuvent pas déclarer de méthodes default ou static depuis Java 8"
       },
       {
         "id": "d",
-        "text": "Une interface ne peut jamais contenir de méthodes avec implémentation."
+        "text": "Une classe peut étendre plusieurs classes abstraites si chacune est package-private"
       }
     ],
     "correctOptionIds": [
-      "c"
+      "b"
     ],
-    "explanation": "Java autorise l’héritage simple de classes et l’implémentation multiple d’interfaces. Une classe abstraite peut contenir des attributs, constructeurs et méthodes concrètes.",
+    "explanation": "L’héritage simple de classes demeure. Les interfaces peuvent avoir des méthodes default/static/private, mais pas de champs d’instance ni de constructeurs au sens des classes.",
     "reference": "Java Language Specification — Classes (§8) and Interfaces (§9)",
     "id": "q367"
   },
@@ -11922,29 +11922,29 @@
     "difficulty": "hard",
     "type": "single",
     "category": "Types and OOP",
-    "question": "Une classe implémente deux interfaces contenant chacune une méthode default de même signature. Que se passe-t-il ?",
+    "question": "La classe C implémente les interfaces A et B qui déclarent toutes deux default void run(). Que faut-il pour que C compile ?",
     "options": [
       {
         "id": "a",
-        "text": "Java choisit automatiquement la première interface."
+        "text": "Le compilateur choisit le default de A car A est listé en premier dans implements"
       },
       {
         "id": "b",
-        "text": "Java choisit automatiquement la dernière interface."
+        "text": "C doit redéfinir run() et peut appeler A.super.run() et/ou B.super.run()"
       },
       {
         "id": "c",
-        "text": "Une erreur de compilation si la classe ne redéfinit pas la méthode."
+        "text": "Les deux defaults s’exécutent dans l’ordre de déclaration sauf si C est final"
       },
       {
         "id": "d",
-        "text": "La méthode des deux interfaces est exécutée automatiquement."
+        "text": "C compile seulement si l’un des defaults est marqué abstract"
       }
     ],
     "correctOptionIds": [
-      "c"
+      "b"
     ],
-    "explanation": "Il faut résoudre explicitement le conflit, par exemple en redéfinissant la méthode et en appelant A.super.maMethode() et/ou B.super.maMethode().",
+    "explanation": "Des defaults en conflit rendent C abstrait tant qu’elle ne fournit pas une redéfinition qui résout explicitement le conflit.",
     "reference": "Java Language Specification — Inheritance of default methods (§9.4.1)",
     "id": "q368"
   },
@@ -11955,29 +11955,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "Spring",
-    "question": "Quelle annotation permet de sélectionner explicitement un bean Spring lorsqu’il existe plusieurs implémentations ?",
+    "question": "Deux beans implémentent PaymentGateway. Vous avez besoin de CardGateway dans un constructeur et de WalletGateway dans un autre. Quelle approche est correcte ?",
     "options": [
       {
         "id": "a",
-        "text": "@Primary"
+        "text": "Marquer les deux beans @Primary pour que Spring injecte les deux implémentations dans chaque constructeur"
       },
       {
         "id": "b",
-        "text": "@Qualifier"
+        "text": "Utiliser @Qualifier (ou des annotations qualifier équivalentes) sur les points d’injection qui nécessitent un bean précis"
       },
       {
         "id": "c",
-        "text": "@Component"
+        "text": "Remplacer @Autowired par @Inject ; l’ambiguïté de type disparaît alors automatiquement"
       },
       {
         "id": "d",
-        "text": "@Autowired"
+        "text": "Annoter uniquement le champ avec @Component ; les constructeurs ne peuvent pas choisir parmi les candidats"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "@Qualifier permet de préciser le bean à injecter. @Primary désigne le bean privilégié par défaut.",
+    "explanation": "@Qualifier lève l’ambiguïté par nom de bean ou qualifier personnalisé. @Primary choisit un défaut quand aucun qualifier n’est présent, pas une sélection distincte de deux beans.",
     "reference": "Spring Framework Reference Documentation — Qualifier and Primary",
     "id": "q369"
   },
@@ -11988,29 +11988,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "Spring",
-    "question": "Que signifie IoC (Inversion of Control) ?",
+    "question": "Dans Spring, l’Inversion of Control signifie principalement lequel des points suivants ?",
     "options": [
       {
         "id": "a",
-        "text": "La classe crée elle-même toutes ses dépendances."
+        "text": "Les méthodes métier ne doivent jamais appeler d’autres classes ; seul le conteneur peut invoquer du code"
       },
       {
         "id": "b",
-        "text": "Le contrôle de création et de gestion des objets est confié au conteneur Spring."
+        "text": "La création, le câblage et le cycle de vie des objets sont délégués au conteneur plutôt qu’à des new ad hoc dans les collaborateurs"
       },
       {
         "id": "c",
-        "text": "Spring supprime les dépendances entre les classes."
+        "text": "Toutes les dépendances deviennent des champs static afin qu’il n’existe plus de graphe d’objets"
       },
       {
         "id": "d",
-        "text": "Les objets sont obligatoirement statiques."
+        "text": "Les exceptions checked sont converties en unchecked par la JVM"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Le framework prend en charge la création, la configuration et le cycle de vie des beans.",
+    "explanation": "L’IoC inverse qui construit et câble les collaborateurs. Le code applicatif appelle toujours ses collaborateurs ; il ne construit pas tout le graphe lui-même.",
     "reference": "Spring Framework Reference Documentation — The IoC Container",
     "id": "q370"
   },
@@ -12021,29 +12021,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "Spring",
-    "question": "Quels sont les principaux types d’injection de dépendances avec Spring ?",
+    "question": "Quelle affirmation sur les styles d’injection de dépendances Spring est exacte pour des services de production ?",
     "options": [
       {
         "id": "a",
-        "text": "Constructor, Setter et Field Injection."
+        "text": "L’injection par constructeur, setter et champ est supportée ; l’injection par constructeur est préférée pour les dépendances obligatoires"
       },
       {
         "id": "b",
-        "text": "Static, Dynamic et Runtime Injection."
+        "text": "Seule l’injection par champ est supportée avec Spring Boot 3"
       },
       {
         "id": "c",
-        "text": "Public, Private et Protected Injection."
+        "text": "L’injection par setter est obligatoire pour les singletons ; les constructeurs ne marchent que pour les prototypes"
       },
       {
         "id": "d",
-        "text": "Singleton, Prototype et Request Injection."
+        "text": "Les styles d’injection sont la même chose que les scopes de beans (singleton, prototype, request)"
       }
     ],
     "correctOptionIds": [
       "a"
     ],
-    "explanation": "L’injection par constructeur est généralement recommandée, notamment pour rendre les dépendances obligatoires et faciliter les tests.",
+    "explanation": "Style d’injection et scope sont orthogonaux. L’injection par constructeur rend les dépendances obligatoires immuables et testables.",
     "reference": "Spring Framework Reference Documentation — Dependency Injection",
     "id": "q371"
   },
@@ -12054,29 +12054,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "Design Principles",
-    "question": "Quelle affirmation correspond au principe SOLID ?",
+    "question": "Un ReportService charge des données, génère un PDF et envoie un email. Quelle observation SOLID est la plus juste ?",
     "options": [
       {
         "id": "a",
-        "text": "Une classe doit obligatoirement avoir une seule méthode."
+        "text": "Il viole SRP car il mélange plusieurs raisons de changer : accès aux données, rendu et livraison"
       },
       {
         "id": "b",
-        "text": "Une classe doit avoir une seule responsabilité principale."
+        "text": "Il satisfait SRP car il n’a qu’une seule méthode publique"
       },
       {
         "id": "c",
-        "text": "Toutes les classes doivent hériter d’une classe abstraite."
+        "text": "SOLID interdit les services de plus de 50 lignes, quelles les responsabilités"
       },
       {
         "id": "d",
-        "text": "Les interfaces doivent contenir toutes les implémentations."
+        "text": "Il viole LSP car il n’étend pas une classe abstraite"
       }
     ],
     "correctOptionIds": [
-      "b"
+      "a"
     ],
-    "explanation": "C’est le principe SRP (Single Responsibility Principle). SOLID regroupe cinq principes de conception orientée objet.",
+    "explanation": "SRP porte sur les raisons de changer, pas sur le nombre de méthodes. Rendu PDF et transport email changent souvent pour des causes différentes des requêtes de rapport.",
     "reference": "Robert C. Martin — SOLID principles",
     "id": "q372"
   },
@@ -12087,29 +12087,29 @@
     "difficulty": "hard",
     "type": "single",
     "category": "Hibernate",
-    "question": "Qu’est-ce que le problème N+1 avec JPA/Hibernate ?",
+    "question": "Vous chargez 50 entités Order, puis touchez order.getCustomer() en boucle et voyez 51 selects SQL. Que se passe-t-il ?",
     "options": [
       {
         "id": "a",
-        "text": "Une requête SQL exécutée une seule fois."
+        "text": "Hibernate batch-insère les clients ; les selects supplémentaires sont des rollbacks"
       },
       {
         "id": "b",
-        "text": "Une requête principale suivie de N requêtes supplémentaires pour récupérer les relations."
+        "text": "Un fetch N+1 : une requête pour les commandes, puis une requête par association customer lazy"
       },
       {
         "id": "c",
-        "text": "Une erreur de connexion à la base de données."
+        "text": "L’invalidation du second-level cache émet toujours un select par id d’entité"
       },
       {
         "id": "d",
-        "text": "Un problème de transaction distribuée."
+        "text": "JOIN FETCH a été appliqué, donc Hibernate doit re-sélectionner chaque association pour vérifier la cohérence"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Par exemple, on récupère 100 commandes avec une requête, puis Hibernate exécute 100 requêtes supplémentaires pour récupérer leurs clients. Solutions possibles : JOIN FETCH, @EntityGraph, projection DTO, batch fetching.",
+    "explanation": "N+1 classique. Atténuer avec JOIN FETCH, @EntityGraph, projections DTO ou batch fetching.",
     "reference": "Jakarta Persistence Specification / Hibernate ORM User Guide — Fetching strategies and N+1",
     "id": "q373"
   },
@@ -12120,29 +12120,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "Spring",
-    "question": "Que fait l’annotation @Transactional ?",
+    "question": "Déclarer @Transactional sur une méthode publique gérée par Spring active principalement quoi ?",
     "options": [
       {
         "id": "a",
-        "text": "Elle garantit automatiquement une transaction distribuée."
+        "text": "Une transaction XA distribuée sur chaque DataSource du classpath"
       },
       {
         "id": "b",
-        "text": "Elle permet d’exécuter une méthode dans un contexte transactionnel."
+        "text": "Une frontière transactionnelle : début autour de l’appel, puis commit ou rollback selon le résultat et les règles de rollback"
       },
       {
         "id": "c",
-        "text": "Elle accélère toutes les requêtes SQL."
+        "text": "Une réécriture automatique des requêtes qui retire tous les verrous SQL"
       },
       {
         "id": "d",
-        "text": "Elle empêche toutes les exceptions."
+        "text": "La suppression de toute exception levée par le corps de méthode"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Spring ouvre, valide ou annule une transaction selon le résultat de l’exécution et les règles de rollback. Par défaut, rollback sur RuntimeException et Error, mais pas sur toutes les exceptions checked.",
+    "explanation": "Les transactions déclaratives encapsulent la méthode via un proxy/advisor. Le rollback par défaut concerne RuntimeException et Error, pas toute exception checked, et XA n’est pas automatique.",
     "reference": "Spring Framework Reference Documentation — Declarative transaction management",
     "id": "q374"
   },
@@ -12153,29 +12153,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "Spring Boot",
-    "question": "Quel est le rôle principal de Spring Data JPA ?",
+    "question": "Que fournit principalement Spring Data JPA ?",
     "options": [
       {
         "id": "a",
-        "text": "Remplacer Hibernate obligatoirement."
+        "text": "Un remplacement obligatoire d’Hibernate qui interdit EntityManager"
       },
       {
         "id": "b",
-        "text": "Simplifier l’accès aux données avec des repositories et des abstractions."
+        "text": "Des abstractions de repositories et la dérivation de requêtes (et des requêtes custom) au-dessus d’un provider JPA"
       },
       {
         "id": "c",
-        "text": "Remplacer le serveur SQL."
+        "text": "Un moteur SQL embarqué livré dans spring-data-jpa.jar"
       },
       {
         "id": "d",
-        "text": "Gérer uniquement les transactions."
+        "text": "Uniquement la démarcation transactionnelle ; les repositories doivent rester du JDBC écrit à la main"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Spring Data JPA permet de créer des repositories avec des méthodes telles que findByEmail() ou findAll() sans écrire systématiquement les requêtes.",
+    "explanation": "Spring Data JPA s’appuie sur JPA (souvent Hibernate). Il réduit le boilerplate avec des méthodes comme findByEmail, tout en permettant @Query et EntityManager.",
     "reference": "Spring Data JPA Reference Documentation",
     "id": "q375"
   },
@@ -12186,29 +12186,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "Modern Java",
-    "question": "Quelle affirmation concernant les classes sealed introduites en Java 17 est correcte ?",
+    "question": "Quelle affirmation sur les types sealed (Java 17+) est correcte ?",
     "options": [
       {
         "id": "a",
-        "text": "Elles interdisent toute forme d’héritage."
+        "text": "sealed interdit entièrement l’héritage ; aucun sous-type ne peut exister"
       },
       {
         "id": "b",
-        "text": "Elles permettent de contrôler les classes autorisées à les étendre ou les interfaces autorisées à les implémenter."
+        "text": "Un type sealed liste les sous-types autorisés ; chacun doit être final, sealed ou non-sealed"
       },
       {
         "id": "c",
-        "text": "Elles remplacent les interfaces."
+        "text": "Seules les interfaces peuvent être sealed ; les classes non"
       },
       {
         "id": "d",
-        "text": "Elles sont obligatoirement abstraites."
+        "text": "Les sous-types autorisés peuvent vivre dans n’importe quel module sans être nommés dans permits"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Une classe sealed liste les sous-types autorisés. Ces sous-classes doivent respecter les règles final, sealed ou non-sealed.",
+    "explanation": "Le sealing restreint la hiérarchie à un ensemble explicite de sous-types avec une extensibilité contrôlée.",
     "reference": "Java Language Specification — Sealed Classes (§8.1.1.2)",
     "id": "q376"
   },
@@ -12219,29 +12219,29 @@
     "difficulty": "hard",
     "type": "single",
     "category": "Modern Java",
-    "question": "Pourquoi utiliser une sealed interface plutôt qu’un enum pour représenter des statuts ?",
+    "question": "Quand une sealed interface est-elle un meilleur modèle qu’un enum pour des « résultats de paiement » ?",
     "options": [
       {
         "id": "a",
-        "text": "Parce qu’une interface sealed consomme moins de mémoire."
+        "text": "Quand chaque résultat est un simple label sans payload distinct"
       },
       {
         "id": "b",
-        "text": "Parce qu’elle permet de représenter des variantes ayant chacune des données et comportements différents."
+        "text": "Quand les variantes ont besoin de champs et comportements différents (par ex. CardSuccess(authCode) vs Failed(reason))"
       },
       {
         "id": "c",
-        "text": "Parce qu’un enum ne peut pas avoir de méthodes."
+        "text": "Quand vous avez besoin d’héritage multiple de parents concrets"
       },
       {
         "id": "d",
-        "text": "Parce qu’une interface sealed permet l’héritage multiple des classes."
+        "text": "Quand les enums ont l’interdiction de déclarer des méthodes"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Un enum convient très bien pour des valeurs simples. Une sealed interface est intéressante lorsque chaque statut représente un type métier différent avec ses propres données.",
+    "explanation": "Les enums excellent pour des labels fixes. Les hiérarchies sealed modélisent des variantes algébriques avec un état différent. Les enums peuvent avoir des méthodes ; ce n’est pas le critère décisif.",
     "reference": "Java Language Specification — Sealed Interfaces and Enums",
     "id": "q377"
   },
@@ -12252,29 +12252,29 @@
     "difficulty": "hard",
     "type": "single",
     "category": "Spring",
-    "question": "Quel est le comportement de @Transactional dans le cas suivant ?\n\n@Transactional\npublic void process() {\n    try {\n        operation();\n    } catch (RuntimeException e) {\n        log.error(\"Erreur\", e);\n    }\n}",
+    "question": "Une méthode de service est annotée @Transactional et contient :\n\ntry {\n    operation();\n} catch (RuntimeException e) {\n    log.error(\"Erreur\", e);\n}\n\nSi operation() lève une RuntimeException qui est capturée, que se passe-t-il typiquement pour la transaction ?",
     "options": [
       {
         "id": "a",
-        "text": "La transaction est obligatoirement annulée."
+        "text": "Spring marque toujours rollback-only dès qu’une RuntimeException est construite"
       },
       {
         "id": "b",
-        "text": "La transaction peut être validée malgré l’erreur capturée."
+        "text": "La transaction peut être validée car l’exception ne sort jamais de la frontière du proxy"
       },
       {
         "id": "c",
-        "text": "Spring annule toujours la transaction lorsqu’une exception est levée, même capturée."
+        "text": "Le conteneur doit faire un rollback ; capturer des exceptions dans @Transactional est une erreur de compilation"
       },
       {
         "id": "d",
-        "text": "Le code ne compile pas."
+        "text": "Hibernate ignore les transactions Spring et commit toujours après chaque instruction"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Si l’exception est interceptée et ne marque pas la transaction comme rollback-only, Spring peut valider la transaction.",
+    "explanation": "Les règles de rollback par défaut réagissent aux exceptions qui se propagent hors de la méthode transactionnelle. Avaler l’exception sans setRollbackOnly() conduit souvent à un commit d’un travail partiel.",
     "reference": "Spring Framework Reference Documentation — @Transactional rollback rules",
     "id": "q378"
   },
@@ -12285,29 +12285,29 @@
     "difficulty": "easy",
     "type": "single",
     "category": "HTTP and REST",
-    "question": "Quel code HTTP correspond normalement à la création réussie d’une ressource ?",
+    "question": "Un POST crée avec succès un User et renvoie sa représentation. Quel statut est le défaut le plus approprié ?",
     "options": [
       {
         "id": "a",
-        "text": "200 OK"
+        "text": "200 OK — la création ne doit jamais utiliser un autre statut"
       },
       {
         "id": "b",
-        "text": "201 Created"
+        "text": "201 Created — éventuellement avec un header Location vers la nouvelle ressource"
       },
       {
         "id": "c",
-        "text": "204 No Content"
+        "text": "204 No Content — les corps sont interdits après POST"
       },
       {
         "id": "d",
-        "text": "301 Moved Permanently"
+        "text": "202 Accepted — tout POST réussi est asynchrone par définition"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "201 Created est particulièrement adapté à une création réussie via POST.",
+    "explanation": "201 Created est le statut standard de création de ressource. 200 est parfois vu en pratique mais moins précis ; 202 signifie accepté pour un traitement ultérieur.",
     "reference": "RFC 9110 — HTTP Semantics",
     "id": "q379"
   },
@@ -12318,29 +12318,29 @@
     "difficulty": "easy",
     "type": "single",
     "category": "HTTP and REST",
-    "question": "Que signifie le code HTTP 404 ?",
+    "question": "Un client appelle GET /orders/42 et la commande n’existe pas. Quel statut l’API devrait-elle renvoyer ?",
     "options": [
       {
         "id": "a",
-        "text": "Une erreur serveur."
+        "text": "400 Bad Request, car tout id manquant est une syntaxe de requête invalide"
       },
       {
         "id": "b",
-        "text": "Une ressource introuvable."
+        "text": "404 Not Found, car la ressource cible est absente"
       },
       {
         "id": "c",
-        "text": "Un conflit de données."
+        "text": "409 Conflict, car une donnée manquante signifie toujours un conflit d’état"
       },
       {
         "id": "d",
-        "text": "Une authentification refusée."
+        "text": "401 Unauthorized, car un id inconnu implique une authentification échouée"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "404 Not Found signifie que la ressource demandée n’existe pas ou n’est pas disponible à cette URI.",
+    "explanation": "404 signifie que le serveur ne trouve pas de représentation courante pour la ressource cible.",
     "reference": "RFC 9110 — 404 Not Found",
     "id": "q380"
   },
@@ -12351,29 +12351,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "HTTP and REST",
-    "question": "Dans quel cas utilise-t-on généralement le code HTTP 409 ?",
+    "question": "POST /users échoue car l’email existe déjà et l’unicité est une règle métier. Quel statut convient le mieux ?",
     "options": [
       {
         "id": "a",
-        "text": "Lorsque l’utilisateur n’est pas authentifié."
+        "text": "401 Unauthorized"
       },
       {
         "id": "b",
-        "text": "Lorsque la ressource demandée n’existe pas."
+        "text": "404 Not Found"
       },
       {
         "id": "c",
-        "text": "Lorsqu’une requête entre en conflit avec l’état actuel de la ressource."
+        "text": "409 Conflict (ou parfois 422), signalant un conflit avec l’état courant / la validation"
       },
       {
         "id": "d",
-        "text": "Lorsqu’une requête est exécutée avec succès."
+        "text": "204 No Content"
       }
     ],
     "correctOptionIds": [
       "c"
     ],
-    "explanation": "Exemple : tentative de création d’un utilisateur avec un email déjà utilisé, lorsque cette situation constitue un conflit métier.",
+    "explanation": "Les clés uniques en doublon sont un conflit avec l’état existant. Certaines équipes utilisent 422 pour la validation sémantique ; 409 est le code de conflit classique.",
     "reference": "RFC 9110 — 409 Conflict",
     "id": "q381"
   },
@@ -12384,29 +12384,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "HTTP and REST",
-    "question": "Quel code HTTP correspond à une requête réussie sans contenu dans la réponse ?",
+    "question": "Quelle affirmation sur 204 No Content est correcte dans les API REST ?",
     "options": [
       {
         "id": "a",
-        "text": "201"
+        "text": "204 signifie que la ressource a été créée et doit inclure un corps"
       },
       {
         "id": "b",
-        "text": "204"
+        "text": "204 signifie un succès avec un corps intentionnellement vide, souvent après DELETE ou une mise à jour sans contenu à renvoyer"
       },
       {
         "id": "c",
-        "text": "409"
+        "text": "204 est interchangeable avec 404 pour les ressources manquantes"
       },
       {
         "id": "d",
-        "text": "500"
+        "text": "204 est réservé aux défis d’authentification échoués"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "204 signifie que la requête a réussi sans corps de réponse. GET retourne généralement 200 avec un contenu ou 404 si la ressource est introuvable.",
+    "explanation": "204 est un succès sans payload. Préférer 200 quand on renvoie un corps ; préférer 404 quand la ressource manque.",
     "reference": "RFC 9110 — 204 No Content",
     "id": "q382"
   },
@@ -12417,29 +12417,29 @@
     "difficulty": "easy",
     "type": "single",
     "category": "JavaScript and TypeScript",
-    "question": "Quelle est la différence entre == et === en JavaScript ?",
+    "question": "En JavaScript, en quoi == et === diffèrent-ils ?",
     "options": [
       {
         "id": "a",
-        "text": "Aucune différence."
+        "text": "Ils sont identiques ; les moteurs traitent === comme un alias plus rapide de =="
       },
       {
         "id": "b",
-        "text": "== compare avec conversion de type éventuelle, tandis que === compare sans conversion implicite."
+        "text": "== peut convertir les types ; === exige le même type et la même valeur (avec les caveats habituels NaN/Object)"
       },
       {
         "id": "c",
-        "text": "=== compare uniquement les références."
+        "text": "=== compare uniquement l’identité des objets ; == ne le fait jamais"
       },
       {
         "id": "d",
-        "text": "== est plus strict que ===."
+        "text": "== est plus strict car il compare aussi les prototypes"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "5 == \"5\" vaut true, tandis que 5 === \"5\" vaut false.",
+    "explanation": "5 == \"5\" est true après coercition ; 5 === \"5\" est false.",
     "reference": "MDN Web Docs — Equality comparisons",
     "id": "q383"
   },
@@ -12454,25 +12454,25 @@
     "options": [
       {
         "id": "a",
-        "text": "var possède une portée de bloc."
+        "text": "var a une portée de bloc ; let et const ont une portée de fonction"
       },
       {
         "id": "b",
-        "text": "let et const possèdent une portée de bloc."
+        "text": "let et const ont une portée de bloc ; var a une portée de fonction (ou globale) et peut être redéclaré dans la même portée"
       },
       {
         "id": "c",
-        "text": "const empêche toute modification des propriétés d’un objet."
+        "text": "const fige profondément les propriétés d’objet, comme Object.freeze sur chaque valeur imbriquée"
       },
       {
         "id": "d",
-        "text": "var ne peut pas être redéclaré."
+        "text": "les liaisons let peuvent être redéclarées dans le même bloc ; const non"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "var est limité à la fonction ou à la portée globale. let et const sont limités au bloc. const interdit la réaffectation, pas la mutation d’un objet.",
+    "explanation": "const empêche la réaffectation de la liaison, pas l’immutabilité profonde. let/const ne peuvent pas être redéclarés dans le même bloc.",
     "reference": "MDN Web Docs — let, const, and var",
     "id": "q384"
   },
@@ -12483,29 +12483,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "JavaScript and TypeScript",
-    "question": "Quel est le rôle de l’Event Loop en JavaScript ?",
+    "question": "Que fait principalement l’event loop JavaScript ?",
     "options": [
       {
         "id": "a",
-        "text": "Exécuter toutes les opérations simultanément sur plusieurs threads JavaScript."
+        "text": "Créer un thread OS par Promise pour que les callbacks s’exécutent toujours en parallèle"
       },
       {
         "id": "b",
-        "text": "Gérer l’exécution des callbacks et des tâches asynchrones."
+        "text": "Ordonnancer le travail entre la call stack, la file de microtasks et la file de macrotasks selon le modèle de concurrence du runtime JS"
       },
       {
         "id": "c",
-        "text": "Remplacer les Promises."
+        "text": "Remplacer les Promises par des callbacks en réécrivant le source à l’analyse"
       },
       {
         "id": "d",
-        "text": "Bloquer le thread principal pendant les requêtes HTTP."
+        "text": "Bloquer le thread principal jusqu’à l’arrivée de chaque réponse HTTP"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "L’Event Loop coordonne la Call Stack, les microtasks (Promises) et les macrotasks (timers, événements, etc.).",
+    "explanation": "Les runtimes JS sont largement mono-threadés pour l’exécution JS. L’event loop draine microtasks et macrotasks quand la pile est vide.",
     "reference": "MDN Web Docs — Event loop and concurrency model",
     "id": "q385"
   },
@@ -12516,29 +12516,29 @@
     "difficulty": "hard",
     "type": "single",
     "category": "JavaScript and TypeScript",
-    "question": "Quelle est la différence entre any, unknown et never en TypeScript ?",
+    "question": "Comment choisir entre any, unknown et never en TypeScript ?",
     "options": [
       {
         "id": "a",
-        "text": "Ils ont exactement le même comportement."
+        "text": "Préférer any pour toutes les données externes ; unknown et never sont des alias dépréciés"
       },
       {
         "id": "b",
-        "text": "any désactive les vérifications, unknown impose une vérification avant utilisation, never représente une valeur qui ne peut jamais exister."
+        "text": "any désactive les vérifications ; unknown force un affinage avant usage ; never signifie qu’aucune valeur n’est possible"
       },
       {
         "id": "c",
-        "text": "unknown est identique à never."
+        "text": "unknown est assignable à tous les types sans contrôle ; never est le top type"
       },
       {
         "id": "d",
-        "text": "never accepte tous les types."
+        "text": "never est le type par défaut des résultats de JSON.parse"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "any : liberté maximale, sécurité minimale. unknown : type inconnu, nécessite un contrôle. never : absence de valeur possible, notamment pour les fonctions qui ne retournent jamais.",
+    "explanation": "unknown est le pendant typé de any. never apparaît dans les contrôles exhaustifs et les fonctions qui ne retournent pas.",
     "reference": "TypeScript Handbook — any, unknown, and never",
     "id": "q386"
   },
@@ -12549,29 +12549,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "SQL",
-    "question": "Quelle est la différence entre INNER JOIN et LEFT JOIN ?",
+    "question": "En quoi INNER JOIN et LEFT JOIN diffèrent-ils ?",
     "options": [
       {
         "id": "a",
-        "text": "Ils produisent toujours les mêmes résultats."
+        "text": "Ils sont identiques si des index existent sur les deux clés de jointure"
       },
       {
         "id": "b",
-        "text": "INNER JOIN retourne les correspondances, LEFT JOIN conserve toutes les lignes de la table gauche."
+        "text": "INNER JOIN ne garde que les paires correspondantes ; LEFT JOIN conserve toutes les lignes de gauche et complète les colonnes de droite avec NULL si non jointes"
       },
       {
         "id": "c",
-        "text": "LEFT JOIN retourne uniquement les lignes sans correspondance."
+        "text": "LEFT JOIN ne renvoie que les lignes de gauche non jointes (anti-join)"
       },
       {
         "id": "d",
-        "text": "INNER JOIN conserve toutes les lignes de la table gauche."
+        "text": "INNER JOIN conserve toujours toutes les lignes de gauche, y compris les non-correspondances"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Avec LEFT JOIN, les colonnes de la table droite valent NULL lorsqu’aucune correspondance n’existe.",
+    "explanation": "Un anti-join nécessite LEFT JOIN … WHERE right.key IS NULL. Un LEFT JOIN simple inclut les lignes jointes et non jointes.",
     "reference": "SQL standard — JOIN and GROUP BY",
     "id": "q387"
   },
@@ -12582,29 +12582,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "SQL",
-    "question": "Quelle est la différence entre WHERE et HAVING ?",
+    "question": "Quand utiliser WHERE versus HAVING ?",
     "options": [
       {
         "id": "a",
-        "text": "WHERE filtre après GROUP BY, HAVING avant."
+        "text": "WHERE filtre les groupes après agrégation ; HAVING filtre les lignes avant GROUP BY"
       },
       {
         "id": "b",
-        "text": "WHERE filtre les lignes avant l’agrégation, HAVING filtre les groupes après l’agrégation."
+        "text": "WHERE filtre les lignes avant agrégation ; HAVING filtre les groupes après agrégation (par ex. sur COUNT(*))"
       },
       {
         "id": "c",
-        "text": "Les deux sont identiques."
+        "text": "Ce sont des synonymes ; les optimiseurs réécrivent toujours l’un en l’autre"
       },
       {
         "id": "d",
-        "text": "HAVING fonctionne uniquement avec ORDER BY."
+        "text": "HAVING n’est valide qu’avec ORDER BY et LIMIT"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Exemple : WHERE active = true filtre les lignes d’abord ; HAVING COUNT(*) > 5 filtre les groupes après GROUP BY.",
+    "explanation": "Les agrégats dans HAVING portent sur des groupes. Filtrer des lignes individuelles appartient à WHERE avant GROUP BY.",
     "reference": "SQL standard — JOIN and GROUP BY",
     "id": "q388"
   },
@@ -12615,29 +12615,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "Git",
-    "question": "Quelle est la différence entre Git Merge et Git Rebase ?",
+    "question": "En quoi merge et rebase diffèrent-ils pour intégrer une branche feature ?",
     "options": [
       {
         "id": "a",
-        "text": "Merge supprime les commits, Rebase les conserve."
+        "text": "Merge supprime les commits feature ; rebase les conserve uniquement comme blobs"
       },
       {
         "id": "b",
-        "text": "Merge intègre une branche en préservant généralement l’historique des branches ; Rebase rejoue les commits sur une nouvelle base."
+        "text": "Merge crée en général un commit de merge préservant la topologie ; rebase rejoue les commits sur une nouvelle base pour un historique linéaire"
       },
       {
         "id": "c",
-        "text": "Les deux sont strictement identiques."
+        "text": "Ils produisent des graphes de commits et des SHA-1 identiques"
       },
       {
         "id": "d",
-        "text": "Rebase fusionne obligatoirement deux branches sans conflit."
+        "text": "Rebase ne peut pas entrer en conflit ; merge le peut toujours"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Merge conserve la topologie de l’historique, tandis que Rebase permet souvent d’obtenir un historique linéaire. Attention : éviter de rebaser des commits déjà partagés sans coordination.",
+    "explanation": "Les deux peuvent entrer en conflit. Rebase réécrit les commits (nouveaux SHA), donc rebaser un historique publié demande de la coordination.",
     "reference": "Git Documentation — git-merge and git-rebase",
     "id": "q389"
   },
@@ -12648,29 +12648,29 @@
     "difficulty": "hard",
     "type": "single",
     "category": "Git",
-    "question": "Comment fusionner les 6 derniers commits en un seul commit ?",
+    "question": "Vous voulez un seul commit à la place des six derniers commits locaux sur une branche privée. Quelle commande est l’approche habituelle ?",
     "options": [
       {
         "id": "a",
-        "text": "git merge HEAD~6"
+        "text": "git merge --squash HEAD~6 en restant sur le même tip de branche"
       },
       {
         "id": "b",
-        "text": "git rebase -i HEAD~6"
+        "text": "git rebase -i HEAD~6, puis squash/fix des cinq commits plus récents dans le plus ancien"
       },
       {
         "id": "c",
-        "text": "git reset --hard HEAD~6"
+        "text": "git reset --hard HEAD~6, qui préserve automatiquement les changements du working tree"
       },
       {
         "id": "d",
-        "text": "git pull --squash"
+        "text": "git pull --rebase=false --squash origin/main sans toucher l’historique local"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "git rebase -i HEAD~6 ouvre l’éditeur : conserver pick pour le premier commit et remplacer les cinq suivants par squash ou s pour regrouper les six commits en un seul.",
+    "explanation": "Le rebase interactif est l’outil standard pour squasher des commits locaux récents. reset --hard jette commits et working tree.",
     "reference": "Git Documentation — Interactive rebase",
     "id": "q390"
   },
@@ -12681,29 +12681,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "Streams",
-    "question": "Quelle est la différence entre map() et flatMap() ?",
+    "question": "Quelle est la différence pratique entre map et flatMap sur un Stream ?",
     "options": [
       {
         "id": "a",
-        "text": "map() filtre les éléments, flatMap() les trie."
+        "text": "map aplatit les streams imbriqués ; flatMap ne transforme qu’en 1:1"
       },
       {
         "id": "b",
-        "text": "map() transforme chaque élément, flatMap() transforme et aplatit les résultats."
+        "text": "map applique une fonction 1:1 ; flatMap mappe vers des streams/collections et les concatène en un seul stream"
       },
       {
         "id": "c",
-        "text": "Ils sont identiques."
+        "text": "Ils ne diffèrent que pour les streams parallèles ; en séquentiel ils sont identiques"
       },
       {
         "id": "d",
-        "text": "flatMap() fonctionne uniquement avec les listes d’entiers."
+        "text": "flatMap est une opération terminale ; map est intermédiaire"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Par exemple, List.of(List.of(\"Ali\",\"Sara\"), List.of(\"Amine\",\"Yassine\")).stream().flatMap(List::stream) produit une seule liste contenant les quatre noms.",
+    "explanation": "flatMap permet d’aplatir Stream<Stream<T>> ou Stream<List<T>> en Stream<T>. map et flatMap sont tous deux intermédiaires.",
     "reference": "java.util.stream.Stream — map and flatMap",
     "id": "q391"
   },
@@ -12714,29 +12714,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "Collections",
-    "question": "Comment une HashMap retrouve-t-elle une valeur à partir d’une clé ?",
+    "question": "Comment HashMap localise-t-elle une entrée pour une clé ?",
     "options": [
       {
         "id": "a",
-        "text": "Elle parcourt toujours toutes les entrées."
+        "text": "Elle fait une recherche dichotomique sur un tableau trié de clés via compareTo uniquement"
       },
       {
         "id": "b",
-        "text": "Elle utilise le hashCode() pour déterminer un bucket, puis equals() pour identifier la clé correspondante."
+        "text": "Elle répartit le hashCode de la clé dans un index de bucket, puis trouve l’entrée avec equals (arbres pour les longues chaînes de collisions)"
       },
       {
         "id": "c",
-        "text": "Elle utilise uniquement equals()."
+        "text": "Elle utilise exclusivement System.identityHashCode et n’appelle jamais equals"
       },
       {
         "id": "d",
-        "text": "Elle utilise uniquement la position de l’objet en mémoire."
+        "text": "Elle stocke les entrées dans l’ordre d’insertion et scanne depuis le début à chaque fois"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "HashMap utilise le hash de la clé pour localiser un bucket, puis compare les clés en cas de collision.",
+    "explanation": "Le hashing sélectionne un bucket ; equals résout les collisions. Depuis Java 8, les longs bins peuvent devenir des arbres.",
     "reference": "java.util.HashMap",
     "id": "q392"
   },
@@ -12747,29 +12747,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "Streams",
-    "question": "Quelle est la différence entre une opération intermédiaire et une opération terminale dans un Stream Java ?",
+    "question": "Quelle affirmation sur les opérations intermédiaires vs terminales d’un Stream est correcte ?",
     "options": [
       {
         "id": "a",
-        "text": "Une opération intermédiaire déclenche immédiatement le traitement."
+        "text": "Les ops intermédiaires sont eager ; les ops terminales renvoient un autre Stream"
       },
       {
         "id": "b",
-        "text": "Une opération terminale retourne toujours un Stream."
+        "text": "filter et sorted sont intermédiaires et lazy ; collect et count sont terminales et déclenchent l’exécution"
       },
       {
         "id": "c",
-        "text": "Une opération intermédiaire retourne généralement un Stream et une opération terminale déclenche l’exécution du pipeline."
+        "text": "forEach est intermédiaire afin de pouvoir continuer le pipeline ensuite"
       },
       {
         "id": "d",
-        "text": "Il n’y a aucune différence."
+        "text": "Un stream peut être réutilisé après qu’une opération terminale s’est terminée avec succès"
       }
     ],
     "correctOptionIds": [
-      "c"
+      "b"
     ],
-    "explanation": "Intermédiaires : filter(), map(), sorted(). Terminales : collect(), toList(), count(), forEach().",
+    "explanation": "Les pipelines sont lazy jusqu’à une opération terminale. Ensuite le stream est consommé et non réutilisable.",
     "reference": "java.util.stream package summary",
     "id": "q393"
   },
@@ -12780,29 +12780,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "Modern Java",
-    "question": "Quel est l’avantage principal d’un record en Java 17 ?",
+    "question": "Que apportent principalement les records Java ?",
     "options": [
       {
         "id": "a",
-        "text": "Il permet de créer des classes abstraites."
+        "text": "Des JavaBeans mutables avec des setters générés pour chaque composant"
       },
       {
         "id": "b",
-        "text": "Il simplifie la création de classes principalement destinées à transporter des données."
+        "text": "Des porteurs de données concis, nominalement immuables, avec constructeur canonique, accesseurs, equals, hashCode et toString"
       },
       {
         "id": "c",
-        "text": "Il permet l’héritage multiple."
+        "text": "L’héritage multiple d’état depuis plusieurs records parents"
       },
       {
         "id": "d",
-        "text": "Il remplace toutes les classes Lombok."
+        "text": "Un remplacement qui rend toute annotation Lombok illégale"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "public record User(Long id, String name) {} : Java génère automatiquement le constructeur canonique, les accesseurs, equals(), hashCode() et toString().",
+    "explanation": "Les records sont superficiellement immuables par conception. Lombok reste utile pour d’autres patterns.",
     "reference": "Java Language Specification — Record Classes (§8.10)",
     "id": "q394"
   },
@@ -12813,29 +12813,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "Modern Java",
-    "question": "Quelle est la différence entre Record et Lombok ?",
+    "question": "En quoi les records diffèrent-ils des classes générées par Lombok ?",
     "options": [
       {
         "id": "a",
-        "text": "Lombok est une fonctionnalité native du langage Java."
+        "text": "Lombok fait partie de la spécification Java SE ; les records sont une bibliothèque tierce"
       },
       {
         "id": "b",
-        "text": "Record est une fonctionnalité du langage Java, tandis que Lombok utilise notamment des annotations et du traitement de compilation pour générer du code."
+        "text": "Les records sont une fonctionnalité du langage aux sémantiques fixes ; Lombok est de la génération à la compilation qui peut cibler de nombreuses formes de classes"
       },
       {
         "id": "c",
-        "text": "Record permet l’héritage de plusieurs classes."
+        "text": "Les records permettent d’étendre n’importe quelle classe concrète ; Lombok interdit l’héritage"
       },
       {
         "id": "d",
-        "text": "Lombok remplace obligatoirement les records."
+        "text": "Lombok @Value et les records produisent un bytecode et des contraintes identiques"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Record est particulièrement adapté aux objets de données immuables superficiellement. Lombok peut générer du code pour différentes catégories de classes.",
+    "explanation": "Les records contraignent le modèle (classe final, état dans les composants). Lombok est un outillage plus large et optionnel.",
     "reference": "Java Language Specification — Record Classes; Project Lombok documentation",
     "id": "q395"
   },
@@ -12846,29 +12846,29 @@
     "difficulty": "hard",
     "type": "single",
     "category": "Concurrency",
-    "question": "Quel est l’objectif principal des Virtual Threads introduits en Java 21 ?",
+    "question": "Quel problème les virtual threads (Java 21) adressent-ils principalement ?",
     "options": [
       {
         "id": "a",
-        "text": "Augmenter automatiquement la fréquence du processeur."
+        "text": "Rendre le calcul CPU automatiquement plusieurs fois plus rapide"
       },
       {
         "id": "b",
-        "text": "Faciliter la gestion d’un grand nombre de tâches concurrentes, notamment bloquantes, avec un coût réduit par rapport aux threads classiques."
+        "text": "Supporter un très grand nombre de tâches concurrentes bloquantes avec un coût de thread bien inférieur aux platform threads"
       },
       {
         "id": "c",
-        "text": "Remplacer les threads par des processus système."
+        "text": "Remplacer le scheduler OS par un processus user-mode pur par requête"
       },
       {
         "id": "d",
-        "text": "Accélérer automatiquement les calculs CPU intensifs."
+        "text": "Éliminer le besoin de verrous, car les virtual threads ne peuvent pas entrer en course"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Les Virtual Threads permettent de gérer efficacement un grand nombre de tâches concurrentes, notamment des opérations I/O bloquantes. Ils ne rendent pas automatiquement les traitements CPU plus rapides.",
+    "explanation": "Les virtual threads excellent pour la concurrence I/O bloquante. Le travail CPU-bound a toujours besoin de cœurs ; l’état mutable partagé nécessite toujours de la synchronisation.",
     "reference": "JEP 444 — Virtual Threads",
     "id": "q396"
   },
@@ -12879,29 +12879,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "Kafka",
-    "question": "Quel est le rôle principal d’Apache Kafka ?",
+    "question": "À quoi Apache Kafka est-il principalement conçu ?",
     "options": [
       {
         "id": "a",
-        "text": "Remplacer une base de données relationnelle."
+        "text": "Servir de système d’enregistrement qui remplace les bases relationnelles OLTP"
       },
       {
         "id": "b",
-        "text": "Fournir une plateforme distribuée de streaming d’événements."
+        "text": "Un journal publish/subscribe durable et distribué pour le streaming d’événements à haut débit"
       },
       {
         "id": "c",
-        "text": "Gérer les dépendances Maven."
+        "text": "Compiler et résoudre les arbres de dépendances Maven"
       },
       {
         "id": "d",
-        "text": "Remplacer Spring Security."
+        "text": "Servir de passerelle API HTTP et de terminaison TLS"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Kafka permet de publier, stocker et consommer des événements de manière distribuée.",
+    "explanation": "Kafka est une plateforme de streaming d’événements : produire, conserver et consommer des records. Elle complète les bases plutôt que de remplacer tous les cas OLTP.",
     "reference": "Apache Kafka Documentation — Introduction",
     "id": "q397"
   },
@@ -12912,29 +12912,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "Kafka",
-    "question": "Dans Kafka, à quoi sert un Consumer Group ?",
+    "question": "Que fournit un consumer group Kafka ?",
     "options": [
       {
         "id": "a",
-        "text": "À supprimer automatiquement les messages consommés."
+        "text": "La suppression automatique de chaque record dès qu’un consommateur le lit"
       },
       {
         "id": "b",
-        "text": "À répartir la consommation des partitions entre plusieurs consommateurs d’un même groupe."
+        "text": "Des consommateurs concurrents qui se partagent les partitions d’un topic afin qu’une partition soit traitée par au plus un membre du groupe à la fois"
       },
       {
         "id": "c",
-        "text": "À fusionner plusieurs topics."
+        "text": "Un moyen de fusionner des topics sans rapport en une seule partition physique"
       },
       {
         "id": "d",
-        "text": "À empêcher plusieurs applications de lire un topic."
+        "text": "Une exclusion mutuelle pour qu’une seule application de l’entreprise puisse s’abonner à un topic"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Dans un même groupe, une partition est attribuée à un seul consommateur à la fois. Plusieurs groupes peuvent lire indépendamment le même topic.",
+    "explanation": "Scaler dans un groupe partitionne le travail. Des groupes indépendants maintiennent des offsets séparés et peuvent tous lire le même topic.",
     "reference": "Apache Kafka Documentation — Consumers and consumer groups",
     "id": "q398"
   },
@@ -12945,29 +12945,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "Architecture",
-    "question": "Quel est le principal objectif de l’architecture hexagonale ?",
+    "question": "Quel est l’objectif principal de l’architecture hexagonale ?",
     "options": [
       {
         "id": "a",
-        "text": "Supprimer les bases de données."
+        "text": "Éliminer la persistance ; les objets domaine ne doivent vivre qu’en mémoire"
       },
       {
         "id": "b",
-        "text": "Isoler le domaine métier des infrastructures et des technologies externes."
+        "text": "Garder la logique domaine indépendante des frameworks, de l’UI et de l’infrastructure via ports et adaptateurs"
       },
       {
         "id": "c",
-        "text": "Remplacer les microservices."
+        "text": "Imposer les microservices ; un monolithe modulaire ne peut pas être hexagonal"
       },
       {
         "id": "d",
-        "text": "Mettre toute la logique métier dans les contrôleurs REST."
+        "text": "Placer toutes les règles dans les contrôleurs pour que les adaptateurs restent vides"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Elle repose sur le domaine au centre, des ports et des adaptateurs autour.",
+    "explanation": "L’hexagone isole le domaine. Les adaptateurs implémentent les ports HTTP, DB, messaging, etc., sans posséder les règles métier.",
     "reference": "Alistair Cockburn — Hexagonal Architecture",
     "id": "q399"
   },
@@ -12978,29 +12978,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "Architecture",
-    "question": "Dans une architecture hexagonale, comment tester le domaine métier ?",
+    "question": "Comment la logique domaine devrait-elle être testée dans une organisation hexagonale ?",
     "options": [
       {
         "id": "a",
-        "text": "Obligatoirement avec une base de données réelle."
+        "text": "Uniquement via la vraie base de données et le broker de messages"
       },
       {
         "id": "b",
-        "text": "Avec des tests unitaires indépendants des infrastructures, en testant directement les objets et règles métier."
+        "text": "Avec des tests unitaires rapides sur les types/services domaine, en utilisant des fakes ou adaptateurs in-memory aux ports"
       },
       {
         "id": "c",
-        "text": "Uniquement avec des tests Selenium."
+        "text": "Uniquement avec des outils E2E navigateur comme Selenium"
       },
       {
         "id": "d",
-        "text": "En démarrant obligatoirement toute l’application Spring Boot."
+        "text": "Uniquement en démarrant toute l’application Spring Boot pour chaque assertion"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Le domaine doit être testable indépendamment de Spring, JPA, Kafka ou des API externes.",
+    "explanation": "L’indépendance vis-à-vis de l’infrastructure est le but : les tests domaine ne devraient pas exiger Spring, JPA ou Kafka.",
     "reference": "Alistair Cockburn — Hexagonal Architecture",
     "id": "q400"
   },
@@ -13011,29 +13011,29 @@
     "difficulty": "medium",
     "type": "single",
     "category": "Security",
-    "question": "Comment détecter une faille de sécurité dans une dépendance Java ?",
+    "question": "Comment les équipes découvrent-elles typiquement des vulnérabilités connues dans les dépendances Maven/Gradle ?",
     "options": [
       {
         "id": "a",
-        "text": "Uniquement en analysant les logs applicatifs."
+        "text": "En cherchant la chaîne CVE dans les logs applicatifs"
       },
       {
         "id": "b",
-        "text": "En utilisant des outils SCA comme OWASP Dependency-Check, Snyk ou GitLab Dependency Scanning."
+        "text": "Avec des outils SCA (OWASP Dependency-Check, Snyk, scanning GitHub/GitLab) plus des mises à niveau rapides"
       },
       {
         "id": "c",
-        "text": "En supprimant toutes les dépendances Maven."
+        "text": "En supprimant le bloc dependencyManagement pour laisser flotter les versions"
       },
       {
         "id": "d",
-        "text": "En utilisant uniquement JUnit."
+        "text": "En n’écrivant que des tests JUnit ; un test qui échoue implique une CVE"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Ces outils analysent les dépendances et leurs versions afin d’identifier les vulnérabilités connues (CVE). Il faut également maintenir les dépendances et analyser les alertes.",
+    "explanation": "L’analyse de composition logicielle croise les coordonnées/versions de dépendances avec des bases CVE.",
     "reference": "OWASP Dependency-Check / Software Composition Analysis",
     "id": "q401"
   },
@@ -13044,30 +13044,987 @@
     "difficulty": "medium",
     "type": "single",
     "category": "Testing",
-    "question": "Quelle est la bonne représentation de la pyramide des tests ?",
+    "question": "Quelle forme correspond à la pyramide de tests classique ?",
     "options": [
       {
         "id": "a",
-        "text": "Beaucoup de tests E2E, peu de tests unitaires."
+        "text": "Surtout des tests E2E, avec peu de tests unitaires car les unités mentent"
       },
       {
         "id": "b",
-        "text": "Beaucoup de tests unitaires, moins de tests d’intégration et encore moins de tests E2E."
+        "text": "Beaucoup de tests unitaires rapides, moins de tests d’intégration, et relativement peu de tests E2E"
       },
       {
         "id": "c",
-        "text": "Uniquement des tests d’intégration."
+        "text": "Uniquement des tests d’intégration ; unitaires et E2E sont obsolètes"
       },
       {
         "id": "d",
-        "text": "Tous les types de tests doivent être en quantité égale."
+        "text": "Des quantités égales d’unitaires, d’intégration et d’E2E pour l’équilibre"
       }
     ],
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Tests unitaires : rapides, nombreux, isolés. Tests d’intégration : interactions entre composants. Tests E2E : parcours complets, plus coûteux et généralement moins nombreux.",
+    "explanation": "Les tests unitaires donnent un feedback rapide. Intégration et E2E capturent des échecs plus larges mais coûtent plus, donc restent moins nombreux.",
     "reference": "Mike Cohn — Test Pyramid",
     "id": "q402"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Spring Boot",
+    "question": "Spring Boot met spring.jpa.open-in-view à true par défaut. Quel inconvénient fréquent à laisser OSIV activé ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Cela désactive le second-level cache pour toute la JVM"
+      },
+      {
+        "id": "b",
+        "text": "Le contexte de persistance reste ouvert pendant toute la requête web, ce qui peut masquer LazyInitializationException, favoriser le N+1 pendant le rendu et retenir plus longtemps les connexions DB"
+      },
+      {
+        "id": "c",
+        "text": "Cela force chaque méthode de repository à s’exécuter sans transaction"
+      },
+      {
+        "id": "d",
+        "text": "Cela remplace Hibernate par JDBC pour toutes les requêtes"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "OSIV lie un EntityManager au thread de requête jusqu’au rendu de la vue. Préférer des stratégies de fetch/DTO explicites et souvent open-in-view=false pour les API.",
+    "reference": "Spring Boot Reference Documentation — spring.jpa.open-in-view",
+    "id": "q403"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Spring",
+    "question": "Une méthode @Transactional lève une Exception checked (sans rollbackFor). Quel est le résultat par défaut ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Spring fait toujours un rollback sur toute sous-classe d’Exception"
+      },
+      {
+        "id": "b",
+        "text": "Par défaut Spring commit pour les exceptions checked sauf si rollbackFor les inclut"
+      },
+      {
+        "id": "c",
+        "text": "Les exceptions checked ne peuvent pas sortir d’une méthode @Transactional ; elles deviennent des Errors"
+      },
+      {
+        "id": "d",
+        "text": "Le transaction manager convertit automatiquement l’exception en marqueur de commit"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Les règles de rollback par défaut ciblent RuntimeException et Error. Déclarer rollbackFor = Exception.class quand les échecs checked doivent annuler le travail.",
+    "reference": "Spring Framework Reference Documentation — Rolling back",
+    "id": "q404"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Spring Boot",
+    "question": "Depuis Spring Boot 2.6, les références circulaires sont interdites par défaut. Quelle est la correction préférée ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Mettre spring.main.allow-circular-references=true de façon permanente comme solution de design"
+      },
+      {
+        "id": "b",
+        "text": "Casser le cycle : extraire un troisième bean, utiliser des events, ou repenser la direction de dépendance ; traiter @Lazy seulement comme pont temporaire"
+      },
+      {
+        "id": "c",
+        "text": "Remplacer l’injection par constructeur par l’injection par champ pour rendre les cycles impossibles"
+      },
+      {
+        "id": "d",
+        "text": "Annoter les deux beans @Prototype pour que chaque création casse le cycle"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "allow-circular-references restaure des early references risquées et ne corrige pas les cycles constructeur. Redesigner le graphe.",
+    "reference": "Spring Boot Reference Documentation — Circular references",
+    "id": "q405"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Spring",
+    "question": "Pourquoi des méthodes @Bean sur une classe @Configuration peuvent-elles s’appeler entre elles et garder une sémantique singleton renforcée, contrairement aux classes @Component ordinaires ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "@Component interdit entièrement les méthodes @Bean"
+      },
+      {
+        "id": "b",
+        "text": "Les classes @Configuration « full » sont renforcées par CGLIB donc les appels @Bean entre elles passent par le conteneur ; le mode lite @Component/@Bean n’intercepte pas ces appels de la même façon"
+      },
+      {
+        "id": "c",
+        "text": "@Configuration crée toujours des beans prototype quand les méthodes s’appellent"
+      },
+      {
+        "id": "d",
+        "text": "Il n’y a aucune différence ; les deux modes proxifient les self-calls @Bean de façon identique"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "C’est la distinction full vs lite @Bean. Appeler des méthodes @Bean sur la même instance @Component peut créer des instances dupliquées non gérées.",
+    "reference": "Spring Framework Reference Documentation — @Bean lite mode vs @Configuration",
+    "id": "q406"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Une entité a @Version long version. Deux transactions lisent version=3 et flushent toutes deux une update. Que se passe-t-il typiquement ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Les deux commits réussissent ; le dernier writer gagne silencieusement sans erreur"
+      },
+      {
+        "id": "b",
+        "text": "Le second commit échoue avec un échec de verrouillage optimiste (par ex. OptimisticLockException)"
+      },
+      {
+        "id": "c",
+        "text": "Hibernate fusionne automatiquement champ par champ via un diff à trois voies"
+      },
+      {
+        "id": "d",
+        "text": "@Version n’affecte que le DDL ; il est ignoré à l’exécution"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Le verrouillage optimiste compare la colonne version sur UPDATE. Une discordance signifie qu’une autre transaction a commité en premier.",
+    "reference": "Jakarta Persistence Specification / Hibernate ORM User Guide — Optimistic locking / @Version",
+    "id": "q407"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Dans un contexte de persistance ouvert, vous modifiez un champ d’une entité managed et committez sans appeler save. Que se passe-t-il en général ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Rien ; JPA exige un merge/save explicite pour chaque changement"
+      },
+      {
+        "id": "b",
+        "text": "Le dirty checking détecte le changement et flush une UPDATE avant le commit"
+      },
+      {
+        "id": "c",
+        "text": "Le changement n’est écrit que si l’entité est annotée @Dirty"
+      },
+      {
+        "id": "d",
+        "text": "Hibernate planifie un DELETE car les champs non gérés sont considérés comme retirés"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Les entités managed sont suivies. Au flush/commit, l’état dirty est synchronisé sans save explicite dans les flux Spring Data typiques.",
+    "reference": "Jakarta Persistence Specification / Hibernate ORM User Guide — Flush and dirty checking",
+    "id": "q408"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Pourquoi implémenter equals/hashCode uniquement sur un @Id généré est-il souvent problématique pour des entités dans des Set avant persist ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Parce que HashSet interdit les éléments null et les ids sont toujours null"
+      },
+      {
+        "id": "b",
+        "text": "Parce que l’id est null puis assigné, ce qui change hashCode et casse les contrats Set/Map pour la même instance"
+      },
+      {
+        "id": "c",
+        "text": "Parce que JPA exige que equals utilise uniquement =="
+      },
+      {
+        "id": "d",
+        "text": "Parce que les bases rejettent les entités dont equals utilise des clés métier"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Une identité mutable casse les invariants des collections. Préférer une clé métier stable ou des stratégies d’id soigneuses.",
+    "reference": "Jakarta Persistence Specification / Hibernate ORM User Guide — Equals and hashCode",
+    "id": "q409"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Streams",
+    "question": "En quoi Stream.toList() diffère-t-il de collect(Collectors.toList()) ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ils sont spécifiés pour renvoyer toujours exactement le même type d’ArrayList mutable"
+      },
+      {
+        "id": "b",
+        "text": "Stream.toList() renvoie une List non modifiable ; Collectors.toList() ne garantit pas l’unmodifiabilité"
+      },
+      {
+        "id": "c",
+        "text": "Collectors.toList() est terminale ; Stream.toList() est intermédiaire"
+      },
+      {
+        "id": "d",
+        "text": "Stream.toList() n’existe que pour les streams parallèles"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Depuis Java 16, toList() produit une liste non modifiable. Utiliser Collectors.toCollection(ArrayList::new) pour une liste mutable.",
+    "reference": "java.util.stream.Stream.toList / Collectors.toList",
+    "id": "q410"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Quel est l’usage principal recommandé d’Optional ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Comme champs sur chaque entité JPA pour éliminer null au niveau base"
+      },
+      {
+        "id": "b",
+        "text": "Comme type de retour pour des méthodes qui peuvent intentionnellement n’avoir aucune valeur"
+      },
+      {
+        "id": "c",
+        "text": "Comme type de chaque paramètre de méthode pour forcer les appelants à wrapper les arguments"
+      },
+      {
+        "id": "d",
+        "text": "Comme remplacement des exceptions dans tous les cas d’échec"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Optional communique des valeurs de retour absentes. L’utiliser pour champs/paramètres ou comme canal d’erreur général est largement déconseillé.",
+    "reference": "Java API — java.util.Optional",
+    "id": "q411"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring Boot",
+    "question": "Vous devez tester uniquement des contrôleurs MVC avec MockMvc, sans charger tout le contexte applicatif. Quelle slice convient le mieux ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "@SpringBootTest(webEnvironment = DEFINED_PORT) exclusivement"
+      },
+      {
+        "id": "b",
+        "text": "@WebMvcTest pour le(s) contrôleur(s) sous test"
+      },
+      {
+        "id": "c",
+        "text": "@DataJpaTest, qui démarre aussi DispatcherServlet"
+      },
+      {
+        "id": "d",
+        "text": "@JsonTest, qui démarre Tomcat et les filtres de sécurité"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "@WebMvcTest charge une slice MVC. @SpringBootTest est plus large ; @DataJpaTest se concentre sur JPA ; @JsonTest sur le mapping JSON.",
+    "reference": "Spring Boot Reference Documentation — @WebMvcTest",
+    "id": "q412"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "Quelle est une différence clé entre un Servlet Filter et un Spring MVC HandlerInterceptor ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Les filtres ne s’exécutent qu’après le contrôleur ; les interceptors seulement avant le rendu de vue"
+      },
+      {
+        "id": "b",
+        "text": "Les filtres encapsulent le pipeline request/response servlet ; les interceptors s’accrochent à l’exécution du handler Spring MVC avec accès aux métadonnées HandlerMethod"
+      },
+      {
+        "id": "c",
+        "text": "Les interceptors ne voient pas les headers HTTP ; les filtres ne voient pas le corps de requête"
+      },
+      {
+        "id": "d",
+        "text": "Ce sont des API identiques avec deux noms pour des raisons historiques"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Les filtres sont des préoccupations du conteneur servlet. Les interceptors sont spécifiques à Spring MVC autour du handling des contrôleurs.",
+    "reference": "Spring Framework Reference Documentation — Filters vs interceptors",
+    "id": "q413"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "HTTP and REST",
+    "question": "Quelle affirmation sur PUT vs PATCH est la plus exacte ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "PUT doit toujours créer ; PATCH doit toujours supprimer"
+      },
+      {
+        "id": "b",
+        "text": "PUT remplace typiquement la représentation de la ressource cible ; PATCH applique une modification partielle"
+      },
+      {
+        "id": "c",
+        "text": "PATCH est non idempotent par définition ; PUT n’est jamais idempotent"
+      },
+      {
+        "id": "d",
+        "text": "REST interdit PATCH ; seuls SOAP utilise des mises à jour partielles"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "PUT est en général un remplacement complet idempotent. PATCH est partiel ; l’idempotence dépend de la sémantique du patch.",
+    "reference": "RFC 9110 / RFC 5789 — PUT and PATCH",
+    "id": "q414"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Kafka",
+    "question": "Avec une consommation at-least-once par défaut, un consommateur plante après traitement mais avant commit des offsets. Que peut-il se passer au redémarrage ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ces records sont garantis à ne plus jamais être vus"
+      },
+      {
+        "id": "b",
+        "text": "Certains records peuvent être traités à nouveau, donc les handlers doivent être idempotents ou dédupliquer"
+      },
+      {
+        "id": "c",
+        "text": "Kafka supprime le topic pour préserver exactly-once sans configuration"
+      },
+      {
+        "id": "d",
+        "text": "Les offsets ne reculent que si le producteur a utilisé acks=0"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "At-least-once implique une possible redélivrance. Exactly-once exige une configuration transactionnelle/idempotente supplémentaire.",
+    "reference": "Apache Kafka Documentation — Delivery semantics",
+    "id": "q415"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring Boot",
+    "question": "Comment activer le profil Spring prod pour une app Boot ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Uniquement en renommant application.properties en prod.properties"
+      },
+      {
+        "id": "b",
+        "text": "Via spring.profiles.active (propriété, env ou CLI), qui charge la config spécifique comme application-prod.yml"
+      },
+      {
+        "id": "c",
+        "text": "En plaçant @Profile(\"prod\") sur main() sans aucun réglage externe"
+      },
+      {
+        "id": "d",
+        "text": "Les profils sont des classifiers Maven et ne peuvent pas changer à l’exécution"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "spring.profiles.active sélectionne les profils actifs. @Profile conditionne des beans ; il ne choisit pas à lui seul l’environnement.",
+    "reference": "Spring Boot Reference Documentation — Profiles",
+    "id": "q416"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "Pourquoi publier un Spring ApplicationEvent plutôt qu’appeler directement un autre service ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Les events remplacent les frontières transactionnelles et désactivent les rollbacks"
+      },
+      {
+        "id": "b",
+        "text": "Pour découpler les modules : les publishers dépendent d’un type d’événement, pas de services subscribers concrets"
+      },
+      {
+        "id": "c",
+        "text": "Les events sont le seul moyen d’appeler des méthodes @Transactional"
+      },
+      {
+        "id": "d",
+        "text": "Les listeners s’exécutent toujours dans un nouveau processus JVM par défaut"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Les events domaine/application réduisent le couplage direct. La phase transactionnelle et les listeners async sont configurables.",
+    "reference": "Spring Framework Reference Documentation — Application events",
+    "id": "q417"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "SQL",
+    "question": "Une requête filtre WHERE status = 'ACTIVE' et status n’a que deux valeurs à ~50/50. Pourquoi un index sur status seul peut-il peu aider ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Les index ne fonctionnent jamais avec des prédicats d’égalité"
+      },
+      {
+        "id": "b",
+        "text": "Faible sélectivité : l’optimiseur peut préférer un scan séquentiel quand chaque valeur matche une grande fraction des lignes"
+      },
+      {
+        "id": "c",
+        "text": "Les colonnes string ne peuvent pas être indexées dans les bases SQL"
+      },
+      {
+        "id": "d",
+        "text": "Les index accélèrent seulement les écritures ; ils n’affectent jamais les lectures"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "La sélectivité compte. Des index composites alignés sur filtre+tri/cover sont souvent plus utiles qu’une seule colonne peu discriminante.",
+    "reference": "Database indexing — selectivity",
+    "id": "q418"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Modern Java",
+    "question": "Après if (obj instanceof String s) { … }, que fournit le pattern matching for instanceof ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Une conversion automatique de obj en String sans contrôle de type à l’exécution"
+      },
+      {
+        "id": "b",
+        "text": "Une variable de liaison s déjà affinée en String dans la branche true"
+      },
+      {
+        "id": "c",
+        "text": "Une erreur de compilation sauf si s est déclarée plus tôt dans la méthode"
+      },
+      {
+        "id": "d",
+        "text": "Une comparaison equals() implicite contre chaque String du constant pool"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Le pattern matching combine le test instanceof avec une liaison scopée, ce qui évite un cast séparé.",
+    "reference": "Java Language Specification — Pattern matching for instanceof",
+    "id": "q419"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Collections",
+    "question": "Pendant une itération for-each sur un ArrayList, un autre thread (ou le même via list.remove) modifie structurellement la liste. Quel résultat est fréquent ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "L’iterator saute silencieusement jusqu’à la fin sans erreur"
+      },
+      {
+        "id": "b",
+        "text": "Une ConcurrentModificationException de l’iterator fail-fast (détection best-effort)"
+      },
+      {
+        "id": "c",
+        "text": "La JVM fige la liste définitivement"
+      },
+      {
+        "id": "d",
+        "text": "ArrayList bascule automatiquement vers CopyOnWriteArrayList"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Les iterators fail-fast détectent une modification structurelle concurrente et lèvent CME.",
+    "reference": "java.util.ArrayList — Fail-fast iterators",
+    "id": "q420"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Git",
+    "question": "Pourquoi rebaser des commits déjà poussés sur une branche partagée est-il risqué ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Rebase supprime la configuration du dépôt distant"
+      },
+      {
+        "id": "b",
+        "text": "Cela réécrit les SHA des commits, donc les historiques des collègues divergent et un force-push peut écraser le travail d’autrui sans coordination"
+      },
+      {
+        "id": "c",
+        "text": "Git refuse de rebaser tout commit qui touche plus d’un fichier"
+      },
+      {
+        "id": "d",
+        "text": "Les commits rebasés perdent définitivement l’identité de l’auteur"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Réécrire l’historique change les identifiants. Préférer rebase sur branches privées ; coordonner avant un force-push partagé.",
+    "reference": "Git Documentation — Recovering from upstream rebase",
+    "id": "q421"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "HTTP and REST",
+    "question": "Qu’est-ce qu’une requête preflight CORS ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un POST avec Content-Type application/json qui saute toujours OPTIONS"
+      },
+      {
+        "id": "b",
+        "text": "Une requête OPTIONS envoyée par le navigateur pour savoir si un appel cross-origin avec méthode/headers donnés est autorisé"
+      },
+      {
+        "id": "c",
+        "text": "Un handshake d’upgrade WebSocket imposé par REST"
+      },
+      {
+        "id": "d",
+        "text": "Un health check serveur-à-serveur sans rapport avec les navigateurs"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Les navigateurs font un preflight pour les requêtes cross-origin « non simples ». Les serveurs répondent avec des headers Access-Control-*.",
+    "reference": "MDN Web Docs — CORS preflight",
+    "id": "q422"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring Boot",
+    "question": "Des objets imbriqués dans un @RequestBody ont besoin de Bean Validation. Que faut-il pour la validation en cascade ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Seulement @Valid sur le paramètre contrôleur ; les champs imbriqués sont toujours validés"
+      },
+      {
+        "id": "b",
+        "text": "Annoter la propriété imbriquée avec @Valid (et des contraintes sur les champs imbriqués) pour que la validation cascade"
+      },
+      {
+        "id": "c",
+        "text": "Utiliser @Validated uniquement sur les interfaces repository"
+      },
+      {
+        "id": "d",
+        "text": "Bean Validation ignore les objets Java imbriqués par spécification"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "La cascade exige @Valid sur l’association. Les contraintes du type imbriqué seules ne sont pas visitées sans cela.",
+    "reference": "Jakarta Bean Validation — Object graphs / @Valid",
+    "id": "q423"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Concurrency",
+    "question": "Un virtual thread exécute du code qui entre dans un bloc synchronized puis bloque sur de l’I/O à l’intérieur. Quelle préoccupation apparaît ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Les virtual threads interdisent synchronized entièrement à la compilation"
+      },
+      {
+        "id": "b",
+        "text": "Le virtual thread peut pinner son carrier platform thread, limitant la scalabilité sous pinning intense"
+      },
+      {
+        "id": "c",
+        "text": "Le pinning fait terminer l’I/O instantanément sur un autre cœur"
+      },
+      {
+        "id": "d",
+        "text": "synchronized est promu automatiquement en ReentrantLock sur les virtual threads"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Le pinning réduit le bénéfice des virtual threads. Préférer les locks java.util.concurrent quand on tient un verrou pendant des appels bloquants.",
+    "reference": "JEP 444 — Virtual Threads (pinning)",
+    "id": "q424"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Spring",
+    "question": "La méthode @Transactional de Service A appelle this.helper() où helper est @Transactional(propagation = REQUIRES_NEW) sur la même classe. Que se passe-t-il avec le setup proxy par défaut ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Une nouvelle transaction démarre toujours car l’annotation est présente sur helper"
+      },
+      {
+        "id": "b",
+        "text": "La self-invocation contourne le proxy, donc REQUIRES_NEW ne s’applique pas sauf appel via un autre bean/proxy Spring"
+      },
+      {
+        "id": "c",
+        "text": "Spring suspend la transaction externe seulement si helper est private"
+      },
+      {
+        "id": "d",
+        "text": "REQUIRES_NEW est illégal sur les méthodes ; il ne peut annoter que des classes"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "L’AOP Spring basée sur proxy n’intercepte pas this.helper(). Déplacer helper vers un autre bean ou injecter un self-proxy.",
+    "reference": "Spring Framework Reference Documentation — Understanding the Spring Framework’s declarative transaction implementation",
+    "id": "q425"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Collections",
+    "question": "Quelle différence entre HashMap et ConcurrentHashMap est correcte ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Les deux autorisent les clés null ; seule ConcurrentHashMap autorise les valeurs null"
+      },
+      {
+        "id": "b",
+        "text": "HashMap n’est pas thread-safe et autorise une clé null ; ConcurrentHashMap est concurrente et interdit clés/valeurs null"
+      },
+      {
+        "id": "c",
+        "text": "ConcurrentHashMap verrouille toute la map pour chaque get, comme Hashtable"
+      },
+      {
+        "id": "d",
+        "text": "HashMap est sûre pour des writers concurrents sans sync externe"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "ConcurrentHashMap utilise une concurrence fine et interdit les nulls pour éviter l’ambiguïté sous gets concurrents.",
+    "reference": "java.util.concurrent.ConcurrentHashMap",
+    "id": "q426"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring Boot",
+    "question": "Que compose @SpringBootApplication, en pratique ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Seulement @Configuration — le component scanning doit toujours être déclaré séparément"
+      },
+      {
+        "id": "b",
+        "text": "@SpringBootConfiguration, @EnableAutoConfiguration et @ComponentScan (avec défauts depuis le package de la classe annotée)"
+      },
+      {
+        "id": "c",
+        "text": "@RestController et @EnableWebMvc uniquement"
+      },
+      {
+        "id": "d",
+        "text": "@EntityScan et @EnableJms exclusivement"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "@SpringBootApplication est une annotation composée qui configure configuration, auto-configuration et component scanning pour les apps Boot typiques.",
+    "reference": "Spring Boot Reference Documentation — Using the @SpringBootApplication annotation",
+    "id": "q427"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Testing",
+    "question": "Dans une codebase senior, quelle est une bonne raison de préférer @DataJpaTest à @SpringBootTest pour des tests de repositories ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "@DataJpaTest démarre toute la stack HTTP donc les contrôleurs sont toujours couverts"
+      },
+      {
+        "id": "b",
+        "text": "Elle charge une slice JPA (entités, repositories, DataSource) plus rapide et plus ciblée que tout le contexte applicatif"
+      },
+      {
+        "id": "c",
+        "text": "@DataJpaTest désactive les transactions pour que chaque test commit définitivement"
+      },
+      {
+        "id": "d",
+        "text": "@SpringBootTest ne peut pas accéder à une base par conception"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Les slice tests gardent un feedback rapide. @DataJpaTest rollback par défaut et ne charge pas toute la stack web.",
+    "reference": "Spring Boot Reference Documentation — @DataJpaTest",
+    "id": "q428"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Architecture",
+    "question": "Dans l’architecture hexagonale, où devraient vivre les détails de mapping SQL/JPA ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Dans les entités domaine comme seul modèle de persistance"
+      },
+      {
+        "id": "b",
+        "text": "Dans un adaptateur de persistance outbound qui implémente un port domaine, en gardant le domaine libre d’annotations JPA lorsque c’est la règle de l’équipe"
+      },
+      {
+        "id": "c",
+        "text": "Uniquement dans les contrôleurs comme méthodes @Query"
+      },
+      {
+        "id": "d",
+        "text": "L’architecture hexagonale interdit les bases, donc nulle part"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Les ports définissent ce dont le domaine a besoin ; les adaptateurs implémentent le comment avec JPA/SQL.",
+    "reference": "Alistair Cockburn — Hexagonal Architecture",
+    "id": "q429"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Security",
+    "question": "Un scan SCA signale une CVE dans une dépendance transitive. Quel est le chemin de remédiation habituel ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ignorer les CVE transitives car seules les dépendances directes comptent"
+      },
+      {
+        "id": "b",
+        "text": "Upgrader/remplacer le composant affecté (ou overrider la version transitive quand c’est sûr), vérifier la compatibilité et redéployer"
+      },
+      {
+        "id": "c",
+        "text": "Supprimer le lockfile pour que la CI arrête d’échouer"
+      },
+      {
+        "id": "d",
+        "text": "Marquer la CVE comme corrigée en renommant seulement l’artifactId dans la documentation"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Les vulnérabilités transitives sont quand même livrées dans le classpath runtime. Préférer upgrader la bibliothèque dépendante.",
+    "reference": "OWASP Dependency-Check / Software Composition Analysis",
+    "id": "q430"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "JavaScript and TypeScript",
+    "question": "Dans un appel HTTP client Angular, vous subscribe et mettez à jour l’état du composant. Quelle affirmation sur Observables vs Promises est correcte ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Les Observables sont toujours eager comme les Promises même avant subscribe"
+      },
+      {
+        "id": "b",
+        "text": "Beaucoup d’Observables sont lazy jusqu’au subscribe et peuvent émettre plusieurs valeurs ; les Promises sont eager et se résolvent une seule fois"
+      },
+      {
+        "id": "c",
+        "text": "Les Promises peuvent être annulées nativement avec unsubscribe"
+      },
+      {
+        "id": "d",
+        "text": "Angular interdit les Promises ; seuls les Observables existent en TypeScript"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "HttpClient renvoie des Observables froids qui s’exécutent au subscribe et peuvent être annulés via unsubscribe/async pipe. Les Promises démarrent immédiatement et se résolvent une fois.",
+    "reference": "RxJS / Angular HttpClient documentation",
+    "id": "q431"
   }
 ]

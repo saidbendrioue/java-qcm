@@ -4,7 +4,7 @@ A single-page Angular app for practicing Java with multiple-choice questions. St
 
 Live site: https://saidbendrioue.github.io/java-qcm/
 
-The mock exam used by this app is **80 questions, 60 minutes, and 85% to pass**. The bank covers types and OOP, collections, exceptions, generics, equals and hashCode, immutability, streams, concurrency basics, the JVM, Spring, Spring Boot, Hibernate, plus a fullstack senior interview set (design principles, REST, JavaScript/TypeScript, SQL, Git, Kafka, architecture, security, and testing).
+The mock exam used by this app is **80 questions, 60 minutes, and 85% to pass**. The bank covers types and OOP, collections, exceptions, generics, equals and hashCode, immutability, streams, concurrency basics, the JVM, Spring, Spring Boot, Hibernate, plus a fullstack senior interview set (design principles, REST, JavaScript/TypeScript, SQL, Git, Kafka, architecture, security, testing, and common FAQ traps such as OSIV, circular dependencies, optimistic locking, and proxy self-invocation). Interview items use plausible distractors rather than joke options.
 
 ## Run
 
