@@ -2,8 +2,7 @@ import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/c
 import { RouterLink } from '@angular/router';
 
 import { LanguageService } from '../../core/i18n/language.service';
-import { RECENT_QUESTION_IDS } from '../../core/recent-questions';
-import type { Question } from '../../core/models/question.model';
+import { selectRecentQuestions } from '../../core/recent-questions';
 import { formatWhen } from '../../core/format';
 import { formatPercent } from '../../core/scoring/scoring';
 import { ExamStore } from '../../core/stores/exam.store';
@@ -40,7 +39,7 @@ export class DashboardComponent {
   );
   protected readonly chartValues = computed(() => this.summary().categories.map((item) => item.percent));
   protected readonly recentQuestions = computed(() =>
-    RECENT_QUESTION_IDS.map((id) => this.bank.byId(id)).filter((question): question is Question => question !== undefined),
+    selectRecentQuestions(this.bank.questions()).slice(0, 8),
   );
 
   protected exportFile(): void {

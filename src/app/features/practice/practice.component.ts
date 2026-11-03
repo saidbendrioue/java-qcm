@@ -11,7 +11,7 @@ import { PracticeStore } from '../../core/stores/practice.store';
 import { ProgressService } from '../../core/services/progress.service';
 import { QuestionService } from '../../core/services/question.service';
 import { ToastService } from '../../core/services/toast.service';
-import { RECENT_QUESTION_IDS } from '../../core/recent-questions';
+import { selectRecentQuestionIds } from '../../core/recent-questions';
 import { dueIds, mistakeIds } from '../../core/stats/progress-stats';
 import { AnswerReviewComponent, type AnswerReviewRow } from '../../shared/answer-review.component';
 import { AnswerHotkeysDirective } from '../../shared/answer-hotkeys.directive';
@@ -127,7 +127,7 @@ export class PracticeComponent {
     if (set === 'bookmarks') return state.bookmarks;
     if (set === 'due') return dueIds(state.cards);
     if (set === 'mistakes') return mistakeIds(state);
-    if (set === 'recent') return RECENT_QUESTION_IDS;
+    if (set === 'recent') return selectRecentQuestionIds(this.bank.questions());
     return [];
   }
 }

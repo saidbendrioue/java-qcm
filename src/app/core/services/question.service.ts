@@ -5,6 +5,7 @@ import { firstValueFrom } from 'rxjs';
 import { LanguageService, type AppLang } from '../i18n/language.service';
 import type { Certification } from '../models/question.model';
 import { parseQuestions, type Question } from '../models/question.model';
+import { QUESTION_BANK_VERSION } from '../recent-questions';
 
 @Injectable({ providedIn: 'root' })
 export class QuestionService {
@@ -59,7 +60,12 @@ export class QuestionService {
   }
 
   private fetchBank(lang: AppLang): Promise<unknown> {
-    const request = (code: AppLang) => firstValueFrom(this.http.get<unknown>(`assets/i18n/questions/${code}.json`));
+    const request = (code: AppLang) =>
+      firstValueFrom(
+        this.http.get<unknown>(`assets/i18n/questions/${code}.json`, {
+          params: { v: QUESTION_BANK_VERSION },
+        }),
+      );
     if (lang === 'en') return request('en');
     return request(lang).catch(() => request('en'));
   }
