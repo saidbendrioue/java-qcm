@@ -77,7 +77,7 @@ Rules the app enforces when it loads the file:
 - Every correct id exists on an option, and ids are unique.
 - `cert` currently uses `Java`. `OCP` is allowed by the model for a later bank.
 
-`scripts/question-bank.mjs` is the authoring source for the English bank. Spring and Spring Boot items live in `scripts/spring-fundamentals-questions.mjs`, `scripts/spring-platform-questions.mjs`, and `scripts/spring-boot-questions.mjs`, and `scripts/spring-bank.mjs` combines them. Hibernate items live in `scripts/hibernate-questions.mjs`. Run `node scripts/question-bank.mjs` to regenerate `public/assets/i18n/questions/en.json`. The French bank is `public/assets/i18n/questions/fr.json`. UI copy is in `public/assets/i18n/en.json` and `public/assets/i18n/fr.json`.
+`scripts/question-bank.mjs` is the authoring source for the English bank. Spring and Spring Boot items live in `scripts/spring-fundamentals-questions.mjs`, `scripts/spring-platform-questions.mjs`, and `scripts/spring-boot-questions.mjs`, and `scripts/spring-bank.mjs` combines them. Hibernate items live in `scripts/hibernate-questions.mjs`. Java FAQ items live in `scripts/java-faq-questions.mjs` with French copy in `scripts/java-faq-questions-fr.mjs`. Spring Boot / Batch / transactions training items live in `scripts/spring-training-questions.mjs` with French copy in `scripts/spring-training-questions-fr.mjs`. Run `node scripts/question-bank.mjs` to regenerate `public/assets/i18n/questions/en.json` and update the matching French entries. UI copy is in `public/assets/i18n/en.json` and `public/assets/i18n/fr.json`.
 
 ## Design decisions and what to build next
 
