@@ -1,6 +1,8 @@
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { fullstackInterviewFrench } from './fullstack-interview-questions-fr.mjs';
+import { fullstackInterviewQuestions } from './fullstack-interview-questions.mjs';
 import { hibernateQuestions } from './hibernate-questions.mjs';
 import { javaFaqFrench } from './java-faq-questions-fr.mjs';
 import { javaFaqQuestions } from './java-faq-questions.mjs';
@@ -2174,6 +2176,7 @@ const questions = [
   ...welovedevsQuestions.map((fields) => q(fields)),
   ...javaFaqQuestions.map((fields) => q(fields)),
   ...springTrainingQuestions.map((fields) => q(fields)),
+  ...fullstackInterviewQuestions.map((fields) => q(fields)),
 ];
 
 const difficulties = new Set(['easy', 'medium', 'hard']);
@@ -2242,15 +2245,32 @@ if (
     `Expected 44 Spring training questions with French copy, found ${springTrainingQuestions.length} and ${springTrainingFrench.length}`,
   );
 }
+if (
+  fullstackInterviewQuestions.length !== 69 ||
+  fullstackInterviewFrench.length !== fullstackInterviewQuestions.length
+) {
+  throw new Error(
+    `Expected 69 fullstack interview questions with French copy, found ${fullstackInterviewQuestions.length} and ${fullstackInterviewFrench.length}`,
+  );
+}
 function takeFromEnd(list, offsetFromEnd, count) {
   const end = list.length - offsetFromEnd;
   return list.slice(end - count, end);
 }
-const trainingQuestions = takeFromEnd(questions, 0, springTrainingQuestions.length);
-const faqQuestions = takeFromEnd(questions, springTrainingQuestions.length, javaFaqQuestions.length);
+const fullstackQuestions = takeFromEnd(questions, 0, fullstackInterviewQuestions.length);
+const trainingQuestions = takeFromEnd(
+  questions,
+  fullstackInterviewQuestions.length,
+  springTrainingQuestions.length,
+);
+const faqQuestions = takeFromEnd(
+  questions,
+  fullstackInterviewQuestions.length + springTrainingQuestions.length,
+  javaFaqQuestions.length,
+);
 const welovedevsRecent = takeFromEnd(
   questions,
-  springTrainingQuestions.length + javaFaqQuestions.length,
+  fullstackInterviewQuestions.length + springTrainingQuestions.length + javaFaqQuestions.length,
   welovedevsQuestions.length,
 );
 if (welovedevsRecent[0]?.id !== 'q290' || welovedevsRecent.at(-1)?.id !== 'q302') {
@@ -2266,7 +2286,12 @@ if (trainingQuestions[0]?.id !== 'q319' || trainingQuestions.at(-1)?.id !== 'q36
     `Unexpected training ids ${trainingQuestions[0]?.id}..${trainingQuestions.at(-1)?.id}`,
   );
 }
-if (questions.length !== 362) throw new Error(`Expected 362 questions, found ${questions.length}`);
+if (fullstackQuestions[0]?.id !== 'q363' || fullstackQuestions.at(-1)?.id !== 'q431') {
+  throw new Error(
+    `Unexpected fullstack interview ids ${fullstackQuestions[0]?.id}..${fullstackQuestions.at(-1)?.id}`,
+  );
+}
+if (questions.length !== 431) throw new Error(`Expected 431 questions, found ${questions.length}`);
 if (coreTypeCount.single !== 105 || coreTypeCount.multiple !== 15 || coreTypeCount.truefalse !== 19) {
   throw new Error(`Unexpected core type mix ${JSON.stringify(coreTypeCount)}`);
 }
@@ -2326,6 +2351,7 @@ function applyFrenchCopy(englishQuestions, frenchCopies, label) {
 applyFrenchCopy(welovedevsRecent, welovedevsFrench, 'WeLoveDevs');
 applyFrenchCopy(faqQuestions, javaFaqFrench, 'Java FAQ');
 applyFrenchCopy(trainingQuestions, springTrainingFrench, 'Spring training');
+applyFrenchCopy(fullstackQuestions, fullstackInterviewFrench, 'Fullstack interview');
 if (frenchBank.length !== questions.length) {
   throw new Error(`French bank has ${frenchBank.length} questions, expected ${questions.length}`);
 }
