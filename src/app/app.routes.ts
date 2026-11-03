@@ -22,5 +22,9 @@ export const routes: Routes = [
     path: 'browser',
     loadChildren: () => import('./features/browser/browser.routes').then((m) => m.BROWSER_ROUTES),
   },
+  {
+    path: 'recent',
+    loadChildren: () => import('./features/recent/recent.routes').then((m) => m.RECENT_ROUTES),
+  },
   { path: '**', redirectTo: 'dashboard' },
 ];

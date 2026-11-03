@@ -12,7 +12,8 @@
     "examSession": "Examen en cours",
     "examResults": "Résultats",
     "review": "Révision",
-    "bank": "Banque de questions"
+    "bank": "Banque de questions",
+    "recent": "Questions récemment ajoutées"
   },
   "nav": {
     "dashboard": "Tableau de bord",
@@ -25,6 +26,8 @@
     "reviewShort": "Révision",
     "bank": "Banque de questions",
     "bankShort": "Banque",
+    "recent": "Questions récemment ajoutées",
+    "recentShort": "Récentes",
     "primary": "Navigation principale",
     "tagline": "QCM Java",
     "questionsPass": "{{count}} questions Java · 85 % pour réussir",
@@ -108,7 +111,9 @@
     "noExamsMessage": "Une simulation complète compte 80 questions, 60 minutes et 85 % pour réussir.",
     "startMock": "Lancer un examen blanc",
     "examMeta": "{{count}} questions · {{status}}",
-    "resume": "Reprendre"
+    "resume": "Reprendre",
+    "recentTitle": "Questions récemment ajoutées",
+    "recentOpen": "Ouvrir la section"
   },
   "practice": {
     "set": "Série d'entraînement",
@@ -178,6 +183,11 @@
     "practiceList": "S'entraîner sur cette liste",
     "emptyTitle": "Pas encore de {{list}}",
     "emptyMessage": "Entraînez-vous ou passez un examen blanc. Les questions ratées arrivent ici, les signets restent jusqu'à ce que vous les retiriez, et les cartes à revoir suivent un intervalle simple de répétition espacée."
+  },
+  "recent": {
+    "title": "Questions récemment ajoutées",
+    "intro": "{{count}} questions Java qui n'étaient pas encore dans la banque.",
+    "practice": "S'entraîner sur ces questions"
   },
   "bank": {
     "count": "{{count}} questions Java",

@@ -1,0 +1,15 @@
+export const RECENT_QUESTION_IDS: readonly string[] = [
+  'q290',
+  'q291',
+  'q292',
+  'q293',
+  'q294',
+  'q295',
+  'q296',
+  'q297',
+  'q298',
+  'q299',
+  'q300',
+  'q301',
+  'q302',
+];

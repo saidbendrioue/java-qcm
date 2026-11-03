@@ -1,0 +1,40 @@
+@if (loading()) {
+  <app-loading-block [count]="4" />
+} @else {
+  <section class="flex flex-wrap items-end justify-between gap-4">
+    <div>
+      <h1 class="font-serif text-4xl">{{ language.text('recent.title') }}</h1>
+      <p class="mt-2 max-w-2xl text-muted">{{ language.text('recent.intro', { count: questions().length }) }}</p>
+    </div>
+    <a class="btn btn-primary" routerLink="/practice" [queryParams]="{ set: 'recent' }">{{ language.text('recent.practice') }}</a>
+  </section>
+
+  <ul class="mt-6 grid gap-4">
+    @for (question of questions(); track question.id) {
+      <li class="panel p-5">
+        <p class="text-sm text-muted">
+          {{ language.categoryLabel(question.category) }} · {{ language.difficultyLabel(question.difficulty) }} · {{ question.id.toUpperCase() }}
+        </p>
+        <h2 class="mt-2 whitespace-pre-wrap font-serif text-2xl">{{ question.question }}</h2>
+        <button type="button" class="btn btn-ghost mt-4" (click)="toggleAnswer(question.id)">
+          {{ language.text(answerOpen(question.id) ? 'bank.hideAnswer' : 'bank.showAnswer') }}
+        </button>
+        @if (answerOpen(question.id)) {
+          <ul class="mt-4 grid gap-2">
+            @for (option of question.options; track option.id) {
+              <li
+                class="rounded-xl border px-3 py-2"
+                [class.border-good]="isCorrect(question, option.id)"
+                [class.bg-good-bg]="isCorrect(question, option.id)"
+              >
+                {{ option.text }}
+              </li>
+            }
+          </ul>
+          <p class="mt-4">{{ question.explanation }}</p>
+          <p class="mt-2 text-sm text-muted">{{ question.reference }}</p>
+        }
+      </li>
+    }
+  </ul>
+}

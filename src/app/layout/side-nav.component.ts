@@ -19,26 +19,15 @@ export class SideNavComponent {
   protected readonly language = inject(LanguageService);
 
   protected navLabel(path: string, short = false): string {
-    const key =
-      path === '/dashboard'
-        ? short
-          ? 'nav.dashboardShort'
-          : 'nav.dashboard'
-        : path === '/practice'
-          ? short
-            ? 'nav.practiceShort'
-            : 'nav.practice'
-          : path === '/exam'
-            ? short
-              ? 'nav.examShort'
-              : 'nav.exam'
-            : path === '/review'
-              ? short
-                ? 'nav.reviewShort'
-                : 'nav.review'
-              : short
-                ? 'nav.bankShort'
-                : 'nav.bank';
-    return this.language.text(key);
+    const keys: Record<string, readonly [string, string]> = {
+      '/dashboard': ['nav.dashboard', 'nav.dashboardShort'],
+      '/practice': ['nav.practice', 'nav.practiceShort'],
+      '/exam': ['nav.exam', 'nav.examShort'],
+      '/review': ['nav.review', 'nav.reviewShort'],
+      '/browser': ['nav.bank', 'nav.bankShort'],
+      '/recent': ['nav.recent', 'nav.recentShort'],
+    };
+    const pair = keys[path] ?? ['nav.bank', 'nav.bankShort'];
+    return this.language.text(short ? pair[1] : pair[0]);
   }
 }

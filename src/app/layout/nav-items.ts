@@ -10,4 +10,5 @@ export const NAV_ITEMS: readonly NavItem[] = [
   { path: '/exam', label: 'Mock exam', shortLabel: 'Exam' },
   { path: '/review', label: 'Review', shortLabel: 'Review' },
   { path: '/browser', label: 'Question bank', shortLabel: 'Bank' },
+  { path: '/recent', label: 'Recently added', shortLabel: 'New' },
 ];

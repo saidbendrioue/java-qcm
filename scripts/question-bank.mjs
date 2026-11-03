@@ -1,8 +1,10 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { hibernateQuestions } from './hibernate-questions.mjs';
 import { springQuestions } from './spring-bank.mjs';
+import { welovedevsFrench } from './welovedevs-questions-fr.mjs';
+import { welovedevsQuestions } from './welovedevs-questions.mjs';
 
 let sequence = 0;
 
@@ -2165,6 +2167,7 @@ const questions = [
   }),
   ...springQuestions.map((fields) => q(fields)),
   ...hibernateQuestions.map((fields) => q(fields)),
+  ...welovedevsQuestions.map((fields) => q(fields)),
 ];
 
 const difficulties = new Set(['easy', 'medium', 'hard']);
@@ -2202,7 +2205,7 @@ for (const question of questions) {
 
 const coreQuestions = questions.slice(0, 139);
 const addedQuestions = questions.slice(139, 239);
-const hibernateAdded = questions.slice(239);
+const hibernateAdded = questions.slice(239, 289);
 const coreTypeCount = { single: 0, multiple: 0, truefalse: 0 };
 const coreDifficultyCount = { easy: 0, medium: 0, hard: 0 };
 for (const question of coreQuestions) {
@@ -2215,7 +2218,18 @@ if (springQuestions.length !== 100) {
 if (hibernateQuestions.length !== 50) {
   throw new Error(`Expected 50 Hibernate questions, found ${hibernateQuestions.length}`);
 }
-if (questions.length !== 289) throw new Error(`Expected 289 questions, found ${questions.length}`);
+if (welovedevsQuestions.length !== 13 || welovedevsFrench.length !== welovedevsQuestions.length) {
+  throw new Error(
+    `Expected 13 WeLoveDevs questions with French copy, found ${welovedevsQuestions.length} and ${welovedevsFrench.length}`,
+  );
+}
+const recentQuestions = questions.slice(-welovedevsQuestions.length);
+if (recentQuestions[0]?.id !== 'q290' || recentQuestions.at(-1)?.id !== 'q302') {
+  throw new Error(
+    `Unexpected recent ids ${recentQuestions[0]?.id}..${recentQuestions.at(-1)?.id}`,
+  );
+}
+if (questions.length !== 302) throw new Error(`Expected 302 questions, found ${questions.length}`);
 if (coreTypeCount.single !== 105 || coreTypeCount.multiple !== 15 || coreTypeCount.truefalse !== 19) {
   throw new Error(`Unexpected core type mix ${JSON.stringify(coreTypeCount)}`);
 }
@@ -2243,8 +2257,34 @@ if (hibernateAdded.length !== 50 || hibernateAdded.some((question) => question.c
   throw new Error('Hibernate bank is missing or mixed with another category');
 }
 
-const output = resolve(dirname(fileURLToPath(import.meta.url)), '../public/assets/i18n/questions/en.json');
-await mkdir(dirname(output), { recursive: true });
+const questionsDir = resolve(dirname(fileURLToPath(import.meta.url)), '../public/assets/i18n/questions');
+const output = resolve(questionsDir, 'en.json');
+const frenchOutput = resolve(questionsDir, 'fr.json');
+await mkdir(questionsDir, { recursive: true });
 await writeFile(output, `${JSON.stringify(questions, null, 2)}\n`);
+
+const frenchBank = JSON.parse(await readFile(frenchOutput, 'utf8'));
+for (const [index, english] of recentQuestions.entries()) {
+  const copy = welovedevsFrench[index];
+  const translated = {
+    ...english,
+    question: copy.question,
+    explanation: copy.explanation,
+    options: english.options.map((option) => ({
+      id: option.id,
+      text: copy.options[option.id],
+    })),
+  };
+  if (translated.options.some((option) => !option.text)) {
+    throw new Error(`Missing French option for ${english.id}`);
+  }
+  const existing = frenchBank.findIndex((item) => item.id === english.id);
+  if (existing >= 0) frenchBank[existing] = translated;
+  else frenchBank.push(translated);
+}
+if (frenchBank.length !== questions.length) {
+  throw new Error(`French bank has ${frenchBank.length} questions, expected ${questions.length}`);
+}
+await writeFile(frenchOutput, `${JSON.stringify(frenchBank, null, 2)}\n`);
 console.log(`Wrote ${questions.length} questions to ${output}`);
 console.log(JSON.stringify({ difficultyCount, typeCount, categoryCount }, null, 2));

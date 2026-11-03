@@ -12,7 +12,8 @@
     "examSession": "Exam in progress",
     "examResults": "Exam results",
     "review": "Review",
-    "bank": "Question bank"
+    "bank": "Question bank",
+    "recent": "Recently added questions"
   },
   "nav": {
     "dashboard": "Dashboard",
@@ -25,6 +26,8 @@
     "reviewShort": "Review",
     "bank": "Question bank",
     "bankShort": "Bank",
+    "recent": "Recently added",
+    "recentShort": "New",
     "primary": "Primary",
     "tagline": "Java multiple-choice quiz",
     "questionsPass": "{{count}} Java questions · 85% to pass",
@@ -108,7 +111,9 @@
     "noExamsMessage": "A full simulation is 80 questions, 60 minutes, and 85% to pass.",
     "startMock": "Start a mock exam",
     "examMeta": "{{count}} questions · {{status}}",
-    "resume": "Resume"
+    "resume": "Resume",
+    "recentTitle": "Recently added questions",
+    "recentOpen": "Open the section"
   },
   "practice": {
     "set": "Practice set",
@@ -178,6 +183,11 @@
     "practiceList": "Practice this list",
     "emptyTitle": "No {{list}} yet",
     "emptyMessage": "Practice or take a mock exam. Missed questions land here, bookmarks stay until you remove them, and due cards follow a simple spaced-repetition interval."
+  },
+  "recent": {
+    "title": "Recently added questions",
+    "intro": "{{count}} Java questions that were not in the bank yet.",
+    "practice": "Practice these questions"
   },
   "bank": {
     "count": "{{count}} Java questions",

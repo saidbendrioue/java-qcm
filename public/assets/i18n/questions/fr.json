@@ -9341,5 +9341,426 @@
     "explanation": "Elle interagit directement avec la base, avec moins de surcharge mémoire. Elle convient aux imports et exports volumineux.",
     "reference": "Hibernate ORM User Guide — StatelessSession",
     "id": "q289"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "JVM",
+    "question": "Quelle instruction écrit les caractères welovedev sur la sortie standard, puis termine la ligne ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "System.out.println(\"welovedev\");"
+      },
+      {
+        "id": "b",
+        "text": "System.out.print(\"welovedev\");"
+      },
+      {
+        "id": "c",
+        "text": "console.log(\"welovedev\");"
+      },
+      {
+        "id": "d",
+        "text": "System.writeLine(\"welovedev\");"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "System.out est le flux de sortie standard. println écrit le texte, puis un séparateur de ligne. print écrit les mêmes caractères sans terminer la ligne. console.log appartient à JavaScript, et System n’a pas de méthode writeLine.",
+    "reference": "java.io.PrintStream.println",
+    "id": "q290"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Combien de fois la condition (a++ < 15) est-elle évaluée ?\n\nint a = 3;\nwhile (a++ < 15) {\n    if ((a++ % 5) == 0)\n        break;\n}",
+    "options": [
+      {
+        "id": "a",
+        "text": "4"
+      },
+      {
+        "id": "b",
+        "text": "3"
+      },
+      {
+        "id": "c",
+        "text": "5"
+      },
+      {
+        "id": "d",
+        "text": "6"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "La condition s’exécute quatre fois, avec a égal à 3, 5, 7 puis 9 avant chaque post-incrémentation. Chaque test est vrai. Le corps incrémente ensuite a une seconde fois, et le quatrième corps voit 10 : 10 % 5 == 0, donc break quitte la boucle. break n’évalue pas la condition une fois de plus.",
+    "reference": "Java Language Specification — while Statement (§14.12) and Postfix Increment (§15.14.2)",
+    "id": "q291"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Quel nom de paquet suit la convention habituelle en Java ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "com.company.model"
+      },
+      {
+        "id": "b",
+        "text": "Com.Company.Model"
+      },
+      {
+        "id": "c",
+        "text": "com-company-model"
+      },
+      {
+        "id": "d",
+        "text": "COM_COMPANY_MODEL"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Un nom de paquet est une suite d’identifiants séparés par des points. La convention est le tout en minuscules, souvent à partir d’un nom de domaine inversé : com.company.model est la forme habituelle. Un tiret n’est pas autorisé dans un identifiant, et un seul nom en majuscules n’est pas un paquet imbriqué.",
+    "reference": "Java Language Specification — Package Names (§6.1) and Naming Conventions (§6.1)",
+    "id": "q292"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Quelle affirmation distingue une interface d’une classe abstraite ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Une classe étend une seule classe et peut implémenter plusieurs interfaces. Une classe abstraite peut déclarer des constructeurs et des champs d’instance. Une interface ne peut déclarer ni constructeur ni champ d’instance"
+      },
+      {
+        "id": "b",
+        "text": "Une classe peut étendre plusieurs classes abstraites et une seule interface"
+      },
+      {
+        "id": "c",
+        "text": "Une interface se crée avec new, et une classe abstraite ne peut pas contenir de méthode concrète"
+      },
+      {
+        "id": "d",
+        "text": "Une classe abstraite ne peut pas déclarer de constructeur, alors qu’une interface le peut"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Une classe a une seule superclasse directe et peut implémenter autant d’interfaces qu’elle veut. Une classe abstraite peut porter un état d’instance et s’initialise par un constructeur, même si new ne peut pas l’instancier. Les champs d’une interface sont des constantes, et une interface n’a pas de constructeur. Elle peut toutefois fournir des méthodes par défaut et statiques.",
+    "reference": "Java Language Specification — Superclasses and Subclasses (§8.1.4) and Interfaces (§9)",
+    "id": "q293"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "truefalse",
+    "category": "JVM",
+    "question": "La sérialisation d’un objet peut être personnalisée en implémentant Externalizable.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Vrai"
+      },
+      {
+        "id": "b",
+        "text": "Faux"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Externalizable étend Serializable. La classe implémente writeExternal et readExternal, puis contrôle les octets qu’elle enregistre et restaure, au lieu de s’en remettre seulement à la sérialisation par défaut des champs.",
+    "reference": "java.io.Externalizable",
+    "id": "q294"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Concurrency",
+    "question": "Qu’est-ce qu’un moniteur en Java ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Le verrou intrinsèque d’un objet. synchronized l’utilise pour qu’un seul thread à la fois exécute le code protégé"
+      },
+      {
+        "id": "b",
+        "text": "Un thread d’arrière-plan qui affiche chaque appel de méthode"
+      },
+      {
+        "id": "c",
+        "text": "Le ramasse-miettes"
+      },
+      {
+        "id": "d",
+        "text": "Une option du lanceur qui fixe la taille maximale du tas"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Chaque objet possède un verrou intrinsèque, aussi appelé son moniteur. Entrer dans une méthode ou un bloc synchronized acquiert ce verrou, et en sortir le relâche. Les autres threads qui ont besoin du même moniteur attendent. Le ramasse-miettes et la taille du tas n’ont pas de rapport.",
+    "reference": "Java Language Specification — synchronized Methods (§8.4.3.6) and The synchronized Statement (§14.19)",
+    "id": "q295"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "JVM",
+    "question": "Combien d’instances de Integer le cache exigé garde-t-il accessibles, pour les valeurs que le boxing doit réutiliser ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "256, une pour chaque int de -128 à 127 inclus"
+      },
+      {
+        "id": "b",
+        "text": "128, une pour chaque int de 0 à 127"
+      },
+      {
+        "id": "c",
+        "text": "127, une pour chaque int de -127 à -1"
+      },
+      {
+        "id": "d",
+        "text": "Une seule instance partagée pour chaque valeur int"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Le boxing doit renvoyer le même Integer pour chaque valeur de -128 à 127 inclus. Cette plage contient 256 valeurs, et le cache garde ces instances accessibles : elles ne sont pas récupérées tant que le cache existe. 128 est en dehors de la plage exigée.",
+    "reference": "Java Language Specification — Boxing Conversion (§5.1.7)",
+    "id": "q296"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Exceptions",
+    "question": "ObjectOutputStream.writeObject est appelé avec une instance dont la classe n’implémente pas Serializable. Qu’est-ce qui est levé ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "NotSerializableException"
+      },
+      {
+        "id": "b",
+        "text": "Une erreur de compilation, car l’appel est rejeté avant de pouvoir s’exécuter"
+      },
+      {
+        "id": "c",
+        "text": "NullPointerException, et le flux n’écrit rien"
+      },
+      {
+        "id": "d",
+        "text": "L’objet est remplacé par null et aucune exception n’est levée"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "writeObject examine la classe à l’exécution. Si cette classe n’est pas sérialisable, il lève NotSerializableException, dont le message de détail est le nom de la classe. Le compilateur ne rejette pas l’appel, car le type du paramètre est Object.",
+    "reference": "java.io.ObjectOutputStream.writeObject and java.io.NotSerializableException",
+    "id": "q297"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "La classe Customer est dans le paquet com.company.model. L’une de ses méthodes n’a pas de modificateur d’accès. D’où le reste du code peut-il appeler cette méthode ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Depuis les classes du paquet com.company.model"
+      },
+      {
+        "id": "b",
+        "text": "Depuis toutes les classes de tous les paquets"
+      },
+      {
+        "id": "c",
+        "text": "Seulement depuis les sous-classes, y compris celles d’autres paquets"
+      },
+      {
+        "id": "d",
+        "text": "Seulement depuis le code du même fichier source"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Un membre sans modificateur d’accès est package-private. Il est visible pour la classe qui le déclare et pour les autres classes de com.company.model. Il n’est pas public, et il n’est pas visible pour une sous-classe qui vit dans un autre paquet. protected ajouterait les sous-classes. La visibilité limitée au fichier n’est pas un niveau d’accès Java.",
+    "reference": "Java Language Specification — Access Control (§6.6)",
+    "id": "q298"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Quel patron de conception applique une opération aux éléments d’un arbre sans que le client écrive le parcours ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Visitor"
+      },
+      {
+        "id": "b",
+        "text": "Singleton"
+      },
+      {
+        "id": "c",
+        "text": "Factory Method"
+      },
+      {
+        "id": "d",
+        "text": "Adapter"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Un visiteur déclare une opération pour chaque sorte de nœud. L’arbre accepte le visiteur et parcourt ses enfants : le client fournit l’opération sans écrire le parcours. Singleton limite le nombre d’instances, Factory Method crée des objets, et Adapter transforme une interface en une autre.",
+    "reference": "Gamma, Helm, Johnson, Vlissides — Design Patterns, Visitor",
+    "id": "q299"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Collections",
+    "question": "Quel appel ajoute un élément à la fin d’une ArrayList ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "list.add(element)"
+      },
+      {
+        "id": "b",
+        "text": "list.push(element)"
+      },
+      {
+        "id": "c",
+        "text": "list.insert(element)"
+      },
+      {
+        "id": "d",
+        "text": "list.append(element)"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "List.add(E) ajoute l’élément à la fin et renvoie true. ArrayList implémente cette méthode. push, insert et append ne sont pas des méthodes de List ni d’ArrayList.",
+    "reference": "java.util.ArrayList.add",
+    "id": "q300"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "JVM",
+    "question": "À quoi sert le classpath ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Il liste les emplacements où la JVM et les outils cherchent les classes et les ressources de l’application"
+      },
+      {
+        "id": "b",
+        "text": "Il fixe la taille maximale du tas"
+      },
+      {
+        "id": "c",
+        "text": "Il nomme la méthode que le lanceur appelle"
+      },
+      {
+        "id": "d",
+        "text": "C’est le dossier dans lequel les fichiers .java doivent être enregistrés"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Le classpath est un chemin de recherche composé de répertoires et de jars. Le lanceur et le compilateur s’en servent pour charger les classes et les ressources de l’application. La limite du tas est -Xmx, et le point d’entrée est la méthode main. Les sources n’ont pas à se trouver sur le classpath.",
+    "reference": "java launcher — classpath",
+    "id": "q301"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Où place-t-on @Override, et que fait le compilateur avec cette annotation ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Juste avant une méthode qui doit en redéfinir une autre. Le compilateur rejette la méthode si aucune méthode redéfinissable n’a une signature correspondante"
+      },
+      {
+        "id": "b",
+        "text": "Après le corps de la méthode, comme un commentaire que le compilateur ignore"
+      },
+      {
+        "id": "c",
+        "text": "Seulement sur une classe, où elle rend toutes les méthodes final"
+      },
+      {
+        "id": "d",
+        "text": "Seulement sur une méthode statique, où elle autorise la redéfinition"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "@Override est une annotation de méthode. Elle indique au compilateur que la méthode doit redéfinir une méthode de la superclasse ou implémenter une méthode d’interface. Un mauvais nom ou une mauvaise liste de paramètres fait alors échouer la compilation, au lieu de déclarer une nouvelle méthode. Les méthodes statiques sont masquées, pas redéfinies.",
+    "reference": "java.lang.Override",
+    "id": "q302"
   }
 ]

@@ -25,7 +25,7 @@
   <p class="px-3 text-xs text-nav-ink/70">{{ language.text('nav.questionsPass', { count: questions.questions().length }) }}</p>
 </aside>
 <nav class="fixed inset-x-0 bottom-0 z-30 border-t border-white/10 bg-nav text-nav-ink md:hidden" [attr.aria-label]="language.text('nav.primary')">
-  <ul class="grid grid-cols-5 pb-[env(safe-area-inset-bottom)]">
+  <ul class="grid grid-cols-6 pb-[env(safe-area-inset-bottom)]">
     @for (item of items; track item.path) {
       <li>
         <a
