@@ -57,7 +57,17 @@
     "JVM": "JVM",
     "Spring": "Spring",
     "Spring Boot": "Spring Boot",
-    "Hibernate": "Hibernate"
+    "Hibernate": "Hibernate",
+    "Design Principles": "Design Principles",
+    "Modern Java": "Modern Java",
+    "HTTP and REST": "HTTP and REST",
+    "JavaScript and TypeScript": "JavaScript and TypeScript",
+    "SQL": "SQL",
+    "Git": "Git",
+    "Kafka": "Kafka",
+    "Architecture": "Architecture",
+    "Security": "Security",
+    "Testing": "Testing"
   },
   "difficulty": {
     "easy": "Easy",
