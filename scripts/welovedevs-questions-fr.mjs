@@ -1,12 +1,12 @@
 export const welovedevsFrench = [
   {
     question:
-      'Quelle instruction écrit les caractères welovedev sur la sortie standard, puis termine la ligne ?',
+      'Quelle instruction écrit les caractères toto sur la sortie standard, puis termine la ligne ?',
     options: {
-      a: 'System.out.println("welovedev");',
-      b: 'System.out.print("welovedev");',
-      c: 'console.log("welovedev");',
-      d: 'System.writeLine("welovedev");',
+      a: 'System.out.println("toto");',
+      b: 'System.out.print("toto");',
+      c: 'console.log("toto");',
+      d: 'System.writeLine("toto");',
     },
     explanation:
       'System.out est le flux de sortie standard. println écrit le texte, puis un séparateur de ligne. print écrit les mêmes caractères sans terminer la ligne. console.log appartient à JavaScript, et System n’a pas de méthode writeLine.',

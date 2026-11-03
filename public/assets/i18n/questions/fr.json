@@ -9349,23 +9349,23 @@
     "difficulty": "easy",
     "type": "single",
     "category": "JVM",
-    "question": "Quelle instruction écrit les caractères welovedev sur la sortie standard, puis termine la ligne ?",
+    "question": "Quelle instruction écrit les caractères toto sur la sortie standard, puis termine la ligne ?",
     "options": [
       {
         "id": "a",
-        "text": "System.out.println(\"welovedev\");"
+        "text": "System.out.println(\"toto\");"
       },
       {
         "id": "b",
-        "text": "System.out.print(\"welovedev\");"
+        "text": "System.out.print(\"toto\");"
       },
       {
         "id": "c",
-        "text": "console.log(\"welovedev\");"
+        "text": "console.log(\"toto\");"
       },
       {
         "id": "d",
-        "text": "System.writeLine(\"welovedev\");"
+        "text": "System.writeLine(\"toto\");"
       }
     ],
     "correctOptionIds": [

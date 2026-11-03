@@ -3,12 +3,12 @@ export const welovedevsQuestions = [
     category: 'JVM',
     difficulty: 'easy',
     question:
-      'Which statement writes the characters welovedev to standard output and then ends the line?',
+      'Which statement writes the characters toto to standard output and then ends the line?',
     options: [
-      { id: 'a', text: 'System.out.println("welovedev");' },
-      { id: 'b', text: 'System.out.print("welovedev");' },
-      { id: 'c', text: 'console.log("welovedev");' },
-      { id: 'd', text: 'System.writeLine("welovedev");' },
+      { id: 'a', text: 'System.out.println("toto");' },
+      { id: 'b', text: 'System.out.print("toto");' },
+      { id: 'c', text: 'console.log("toto");' },
+      { id: 'd', text: 'System.writeLine("toto");' },
     ],
     correctOptionIds: ['a'],
     explanation:
