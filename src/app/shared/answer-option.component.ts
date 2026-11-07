@@ -18,12 +18,12 @@ export type OptionState = 'idle' | 'correct' | 'incorrect' | 'missed';
       (click)="onClick()"
     >
       <span
-        class="mt-0.5 grid h-7 w-7 shrink-0 place-items-center border border-current text-sm font-semibold"
+        class="mt-0.5 grid h-7 w-7 shrink-0 place-items-center border border-current text-[13px] font-medium"
         [class.rounded-full]="!multiple()"
-        [class.rounded-md]="multiple()"
+        [class.rounded-[6px]="multiple()"
       >
         @if (multiple() && checked()) {
-          <svg viewBox="0 0 24 24" class="h-4 w-4" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <svg viewBox="0 0 24 24" class="h-4 w-4" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12.5l4.2 4.2L19 7" />
           </svg>
           <span class="sr-only">{{ letter() }}</span>
@@ -50,8 +50,8 @@ export class AnswerOptionComponent {
 
   protected stateClass(): string {
     const layout =
-      'flex w-full items-start gap-3 rounded-[0.85rem] border px-4 py-3 text-left transition-[transform,background-color,border-color,color] duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.99]';
-    const base = this.checked() && this.state() === 'idle' ? 'border-accent bg-surface-2' : 'border-line bg-surface hover:border-accent/40 hover:bg-surface-2/70';
+      'flex w-full items-start gap-3 rounded-[8px] border px-4 py-3 text-left transition-[background-color,border-color,color,transform] duration-150 ease-[cubic-bezier(0.22,1,0.36,1)] active:scale-[0.98]';
+    const base = this.checked() && this.state() === 'idle' ? 'border-accent bg-surface-2' : 'border-line bg-surface hover:bg-surface-2';
     switch (this.state()) {
       case 'correct':
       case 'missed':

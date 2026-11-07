@@ -3,19 +3,19 @@
 } @else {
   <section class="flex flex-wrap items-end justify-between gap-4">
     <div>
-      <h1 class="text-3xl tracking-tight md:text-4xl">{{ language.text('recent.title') }}</h1>
-      <p class="mt-2 max-w-2xl text-muted leading-relaxed">{{ language.text('recent.intro', { count: questions().length }) }}</p>
+      <h1 class="text-[32px] font-medium tracking-[-0.02em]">{{ language.text('recent.title') }}</h1>
+      <p class="mt-2 max-w-2xl text-[14px] text-muted leading-relaxed">{{ language.text('recent.intro', { count: questions().length }) }}</p>
     </div>
     <a class="btn btn-primary" routerLink="/practice" [queryParams]="{ set: 'recent' }">{{ language.text('recent.practice') }}</a>
   </section>
 
-  <ul class="mt-6 divide-y divide-line overflow-hidden rounded-[1rem] border border-line bg-surface">
+  <ul class="mt-6 divide-y divide-line overflow-hidden rounded-[12px] border border-line bg-surface">
     @for (question of questions(); track question.id) {
       <li class="p-5">
-        <p class="font-mono text-[0.7rem] uppercase tracking-[0.12em] text-muted">
+        <p class="font-mono text-[12px] text-muted">
           {{ language.categoryLabel(question.category) }} · {{ language.difficultyLabel(question.difficulty) }} · {{ question.id.toUpperCase() }}
         </p>
-        <h2 class="mt-2 whitespace-pre-wrap text-2xl tracking-tight">{{ question.question }}</h2>
+        <h2 class="mt-2 whitespace-pre-wrap text-[22px] font-medium tracking-[-0.02em]">{{ question.question }}</h2>
         <button type="button" class="btn btn-ghost mt-4" (click)="toggleAnswer(question.id)">
           {{ language.text(answerOpen(question.id) ? 'bank.hideAnswer' : 'bank.showAnswer') }}
         </button>
@@ -23,7 +23,7 @@
           <ul class="mt-4 grid gap-2">
             @for (option of question.options; track option.id) {
               <li
-                class="rounded-[0.7rem] border px-3 py-2"
+                class="rounded-[8px] border px-3 py-2"
                 [class.border-good]="isCorrect(question, option.id)"
                 [class.bg-good-bg]="isCorrect(question, option.id)"
               >
@@ -32,7 +32,7 @@
             }
           </ul>
           <p class="mt-4 max-w-[65ch] leading-relaxed">{{ question.explanation }}</p>
-          <p class="mt-2 font-mono text-xs text-muted">{{ question.reference }}</p>
+          <p class="mt-2 font-mono text-[12px] text-muted">{{ question.reference }}</p>
         }
       </li>
     }
