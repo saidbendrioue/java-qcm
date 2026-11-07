@@ -20,7 +20,7 @@ export type OptionState = 'idle' | 'correct' | 'incorrect' | 'missed';
       <span
         class="mt-0.5 grid h-7 w-7 shrink-0 place-items-center border border-current text-[13px] font-medium"
         [class.rounded-full]="!multiple()"
-        [class.rounded-[6px]="multiple()"
+        [class.rounded-md]="multiple()"
       >
         @if (multiple() && checked()) {
           <svg viewBox="0 0 24 24" class="h-4 w-4" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
