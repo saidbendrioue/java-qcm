@@ -5,7 +5,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div
-      class="h-1.5 overflow-hidden rounded-full bg-surface-2"
+      class="h-1 overflow-hidden rounded-[4px] bg-surface-2"
       role="progressbar"
       [attr.aria-label]="label()"
       [attr.aria-valuemin]="0"
@@ -13,7 +13,7 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
       [attr.aria-valuenow]="value()"
     >
       <div
-        class="h-full rounded-full bg-accent transition-[width] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        class="h-full rounded-[4px] bg-accent transition-[width] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]"
         [style.width.%]="percent()"
       ></div>
     </div>

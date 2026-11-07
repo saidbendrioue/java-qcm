@@ -1,0 +1,11 @@
+---
+description: Apply heydamir/unslop when redesigning or polishing UI
+globs:
+  - "src/**/*.{css,html,ts}"
+  - "DESIGN.md"
+alwaysApply: false
+---
+
+Follow `.cursor/skills/unslop/SKILL.md` (heydamir/unslop, CC BY 4.0).
+
+Audit with `references/signs.md`, set Product / Character / World / Moments / Signature, then nine passes in order using `references/tokens.md`. Credit Damir Sokolovsky / @heydamir in adaptations.

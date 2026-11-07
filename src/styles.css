@@ -2,48 +2,51 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Graphite ramp + amber accent — unslop tokens, exam-room world */
 @theme {
-  --font-sans: 'Outfit', ui-sans-serif, sans-serif;
-  --font-serif: 'Outfit', ui-sans-serif, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
-  --color-canvas: oklch(0.965 0.012 230);
-  --color-surface: oklch(0.995 0.004 230);
-  --color-surface-2: oklch(0.94 0.016 230);
-  --color-ink: oklch(0.24 0.028 250);
-  --color-muted: oklch(0.48 0.03 250);
-  --color-line: oklch(0.88 0.02 235);
-  --color-accent: oklch(0.52 0.11 195);
-  --color-accent-ink: oklch(0.98 0.01 195);
-  --color-good: oklch(0.48 0.12 150);
-  --color-good-bg: oklch(0.95 0.04 150);
-  --color-bad: oklch(0.5 0.16 20);
-  --color-bad-bg: oklch(0.95 0.03 20);
-  --color-flag: oklch(0.52 0.12 75);
-  --color-flag-bg: oklch(0.95 0.05 85);
-  --color-nav: oklch(0.22 0.03 250);
-  --color-nav-ink: oklch(0.96 0.01 230);
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --shadow-panel: 0 12px 32px color-mix(in srgb, var(--color-ink) 6%, transparent);
+  --font-sans: 'IBM Plex Sans', ui-sans-serif, sans-serif;
+  --font-serif: 'IBM Plex Sans', ui-sans-serif, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --color-canvas: #fafafa;
+  --color-surface: #ffffff;
+  --color-surface-2: #f4f4f5;
+  --color-ink: #171717;
+  --color-muted: #737373;
+  --color-secondary: #525252;
+  --color-line: color-mix(in srgb, #171717 8%, transparent);
+  --color-accent: #b45309;
+  --color-accent-ink: #fffbeb;
+  --color-good: #16a34a;
+  --color-good-bg: #f0fdf4;
+  --color-bad: #dc2626;
+  --color-bad-bg: #fef2f2;
+  --color-flag: #a16207;
+  --color-flag-bg: #fefce8;
+  --color-nav: #0f0f10;
+  --color-nav-ink: #ededed;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --shadow-panel: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .dark {
-  --color-canvas: oklch(0.18 0.02 250);
-  --color-surface: oklch(0.23 0.025 250);
-  --color-surface-2: oklch(0.28 0.03 250);
-  --color-ink: oklch(0.93 0.015 230);
-  --color-muted: oklch(0.72 0.025 240);
-  --color-line: oklch(0.34 0.03 250);
-  --color-accent: oklch(0.78 0.09 195);
-  --color-accent-ink: oklch(0.2 0.03 250);
-  --color-good: oklch(0.82 0.1 150);
-  --color-good-bg: oklch(0.28 0.05 150);
-  --color-bad: oklch(0.82 0.08 20);
-  --color-bad-bg: oklch(0.3 0.06 20);
-  --color-flag: oklch(0.86 0.09 85);
-  --color-flag-bg: oklch(0.3 0.05 75);
-  --color-nav: oklch(0.14 0.02 250);
-  --color-nav-ink: oklch(0.96 0.01 230);
-  --shadow-panel: 0 16px 40px color-mix(in srgb, black 35%, transparent);
+  --color-canvas: #141415;
+  --color-surface: #19191b;
+  --color-surface-2: #232325;
+  --color-ink: #ededed;
+  --color-muted: #85858b;
+  --color-secondary: #a1a1a6;
+  --color-line: color-mix(in srgb, #ededed 8%, transparent);
+  --color-accent: #fbbf24;
+  --color-accent-ink: #171717;
+  --color-good: #4cc38a;
+  --color-good-bg: color-mix(in srgb, #4cc38a 14%, #19191b);
+  --color-bad: #e5484d;
+  --color-bad-bg: color-mix(in srgb, #e5484d 14%, #19191b);
+  --color-flag: #fbbf24;
+  --color-flag-bg: color-mix(in srgb, #fbbf24 12%, #19191b);
+  --color-nav: #0f0f10;
+  --color-nav-ink: #ededed;
+  --shadow-panel: none;
 }
 
 :root {
@@ -52,10 +55,6 @@
 
 .dark {
   color-scheme: dark;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 @media (pointer: fine) {
@@ -67,38 +66,27 @@ html {
 body {
   margin: 0;
   min-height: 100dvh;
-  background:
-    radial-gradient(1200px 600px at 8% -10%, color-mix(in srgb, var(--color-accent) 14%, transparent), transparent 60%),
-    radial-gradient(900px 500px at 100% 0%, color-mix(in srgb, var(--color-accent) 8%, transparent), transparent 55%),
-    var(--color-canvas);
+  background: var(--color-canvas);
   color: var(--color-ink);
   font-family: var(--font-sans);
-  font-feature-settings: 'ss01' on, 'cv11' on;
-  -webkit-tap-highlight-color: color-mix(in srgb, var(--color-accent) 18%, transparent);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.45;
+  -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
 }
 
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 60;
-  pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
 ::selection {
-  background: color-mix(in srgb, var(--color-accent) 28%, transparent);
+  background: color-mix(in srgb, var(--color-accent) 22%, transparent);
   color: var(--color-ink);
 }
 
 h1,
 h2,
 .font-serif {
-  font-family: var(--font-serif);
-  font-weight: 650;
-  letter-spacing: -0.025em;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: -0.02em;
 }
 
 .tabular,
@@ -120,7 +108,7 @@ summary:focus-visible {
 
 @layer components {
   .page {
-    width: min(100%, 72rem);
+    width: min(100%, 90rem);
     margin-inline: auto;
   }
 
@@ -129,22 +117,18 @@ summary:focus-visible {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    border-radius: 0.7rem;
+    border-radius: 8px;
     border: 1px solid transparent;
-    padding: 0.65rem 1.05rem;
-    font-size: 0.95rem;
-    font-weight: 600;
+    padding: 0.5rem 1rem;
+    min-height: 36px;
+    font-size: 14px;
+    font-weight: 500;
     line-height: 1.2;
     transition:
-      transform 180ms var(--ease-out-expo),
-      background-color 180ms var(--ease-out-expo),
-      border-color 180ms var(--ease-out-expo),
-      color 180ms var(--ease-out-expo),
-      box-shadow 180ms var(--ease-out-expo);
-  }
-
-  .btn:hover:not(:disabled) {
-    transform: translateY(-1px);
+      background-color 150ms var(--ease-out),
+      border-color 150ms var(--ease-out),
+      color 150ms var(--ease-out),
+      transform 150ms var(--ease-out);
   }
 
   .btn:active:not(:disabled) {
@@ -157,18 +141,27 @@ summary:focus-visible {
   }
 
   .btn-primary {
-    background: var(--color-accent);
-    color: var(--color-accent-ink);
-    box-shadow: 0 1px 0 color-mix(in srgb, white 18%, transparent) inset;
+    background: var(--color-ink);
+    color: var(--color-canvas);
+  }
+
+  .dark .btn-primary {
+    background: #ededed;
+    color: #171717;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
   }
 
   .btn-primary:hover:not(:disabled) {
-    filter: brightness(1.05);
+    background: color-mix(in srgb, var(--color-ink) 88%, white);
+  }
+
+  .dark .btn-primary:hover:not(:disabled) {
+    background: #ffffff;
   }
 
   .btn-ghost {
     border-color: var(--color-line);
-    background: color-mix(in srgb, var(--color-surface) 80%, transparent);
+    background: var(--color-surface);
     color: var(--color-ink);
   }
 
@@ -177,7 +170,7 @@ summary:focus-visible {
   }
 
   .btn-danger {
-    border-color: color-mix(in srgb, var(--color-bad) 40%, var(--color-line));
+    border-color: color-mix(in srgb, var(--color-bad) 28%, var(--color-line));
     background: var(--color-bad-bg);
     color: var(--color-bad);
   }
@@ -185,86 +178,97 @@ summary:focus-visible {
   .field {
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
-    font-size: 0.95rem;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--color-secondary);
   }
 
   .field input,
   .field select {
     border: 1px solid var(--color-line);
-    border-radius: 0.7rem;
+    border-radius: 8px;
     background: var(--color-surface);
     color: var(--color-ink);
-    padding: 0.7rem 0.85rem;
-    font-size: 1rem;
+    padding: 10px 12px;
+    font-size: 16px;
     transition:
-      border-color 180ms var(--ease-out-expo),
-      box-shadow 180ms var(--ease-out-expo);
+      border-color 150ms var(--ease-out),
+      background-color 150ms var(--ease-out);
   }
 
   .field input:hover,
   .field select:hover {
-    border-color: color-mix(in srgb, var(--color-accent) 35%, var(--color-line));
+    background: var(--color-surface-2);
   }
 
   .panel {
     border: 1px solid var(--color-line);
-    border-radius: 1rem;
+    border-radius: 12px;
     background: var(--color-surface);
     box-shadow: var(--shadow-panel);
   }
 
   .is-active {
-    background: color-mix(in srgb, var(--color-accent) 22%, transparent);
+    background: var(--color-surface-2);
     color: var(--color-nav-ink);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  .dark .is-active {
+    background: #232325;
   }
 
   .metric {
     display: grid;
-    gap: 0.35rem;
-    padding: 1.1rem 1.15rem;
+    gap: 4px;
+    padding: 20px;
     border-top: 1px solid var(--color-line);
   }
 
   .metric-value {
     font-family: var(--font-mono);
-    font-size: clamp(1.75rem, 3vw, 2.35rem);
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--color-ink);
   }
 
-  .reveal-up {
-    animation: reveal-up 420ms var(--ease-out-expo) both;
-    animation-delay: calc(var(--i, 0) * 50ms);
+  .kbd {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    border: 1px solid var(--color-line);
+    border-radius: 5px;
+    background: var(--color-surface-2);
+    color: var(--color-secondary);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1;
+    box-shadow: inset 0 -1px 0 color-mix(in srgb, var(--color-ink) 8%, transparent);
   }
 
-  @keyframes reveal-up {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .kbd-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    color: var(--color-muted);
+    font-size: 13px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
   .btn,
   .field input,
-  .field select,
-  .reveal-up {
-    animation: none !important;
+  .field select {
     transition: none !important;
   }
 
-  .btn:hover:not(:disabled),
   .btn:active:not(:disabled) {
     transform: none;
   }

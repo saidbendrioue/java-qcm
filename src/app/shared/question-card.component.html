@@ -1,18 +1,18 @@
 <article class="panel p-5 md:p-7">
-  <p class="font-mono text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-muted">
+  <p class="font-mono text-[12px] text-muted">
     {{ language.categoryLabel(question().category) }} · {{ language.difficultyLabel(question().difficulty) }}
     @if (positionLabel()) {
       <span> · {{ positionLabel() }}</span>
     }
   </p>
-  <h2 class="mt-3 text-2xl leading-snug tracking-tight md:text-[1.7rem]">{{ question().question }}</h2>
-  <p class="mt-2 text-sm text-muted" [id]="'hint-' + question().id">
+  <h2 class="mt-3 text-[22px] font-medium leading-snug tracking-[-0.02em] md:text-[24px]">{{ question().question }}</h2>
+  <p class="mt-2 text-[13px] text-muted" [id]="'hint-' + question().id">
     {{ prompt() }}
     @if (question().type === 'multiple' && !revealed()) {
       <span>{{ selectedIds().length === 0 ? language.text('card.noneSelected') : language.text('card.selected', { count: selectedIds().length }) }}</span>
     }
   </p>
-  <div class="mt-5 grid gap-2.5" role="group" [attr.aria-labelledby]="'hint-' + question().id">
+  <div class="mt-5 grid gap-2" role="group" [attr.aria-labelledby]="'hint-' + question().id">
     @for (option of question().options; track option.id; let index = $index) {
       <app-answer-option
         [option]="option"
@@ -26,10 +26,10 @@
     }
   </div>
   @if (revealed()) {
-    <div class="mt-5 rounded-[0.9rem] border border-line bg-surface-2 p-4" aria-live="polite">
-      <p class="font-semibold">{{ correctSelection() ? language.text('card.correct') : language.text('card.incorrect') }}</p>
+    <div class="mt-5 rounded-[8px] border border-line bg-surface-2 p-4" aria-live="polite">
+      <p class="font-medium">{{ correctSelection() ? language.text('card.correct') : language.text('card.incorrect') }}</p>
       <p class="mt-2 max-w-[65ch] leading-relaxed">{{ question().explanation }}</p>
-      <p class="mt-3 font-mono text-xs text-muted">{{ question().reference }}</p>
+      <p class="mt-3 font-mono text-[12px] text-muted">{{ question().reference }}</p>
     </div>
   }
 </article>
