@@ -1,0 +1,17 @@
+---
+description: Apply installed design skills for UI work on Java QCM
+globs:
+  - "src/**/*.{css,html,ts}"
+  - "DESIGN.md"
+alwaysApply: false
+---
+
+Before UI changes, follow in order:
+
+1. `.cursor/skills/taste-skill/SKILL.md` (knobs 7 / 5 / 4)
+2. `.cursor/skills/web-design-engineer/SKILL.md` (declare system → build → verify)
+3. `.cursor/skills/impeccable/SKILL.md` + `reference/craft-floor.md`
+4. `.cursor/skills/web-design-guidelines/SKILL.md` (Vercel Web Interface Guidelines)
+5. Project `DESIGN.md` as source of truth for tokens
+
+Operate mode: study tool, not marketing landing. Keep FR/EN copy via Transloco keys.

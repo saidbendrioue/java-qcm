@@ -1,25 +1,31 @@
 @if (progress.activeExam()) {
-  <section class="panel p-6">
-    <h2 class="font-serif text-3xl">{{ language.text('exam.runningTitle') }}</h2>
-    <p class="mt-2 text-muted">{{ language.text('exam.runningBody') }}</p>
+  <section class="panel p-6 md:p-7">
+    <h2 class="text-3xl tracking-tight">{{ language.text('exam.runningTitle') }}</h2>
+    <p class="mt-2 max-w-2xl text-muted leading-relaxed">{{ language.text('exam.runningBody') }}</p>
     <div class="mt-5 flex flex-wrap gap-2">
       <a class="btn btn-primary" routerLink="/exam/session">{{ language.text('exam.resume') }}</a>
       <button type="button" class="btn btn-danger" (click)="discard()">{{ language.text('exam.discard') }}</button>
     </div>
   </section>
 } @else {
-  <form class="panel grid gap-5 p-5 md:p-7" [formGroup]="form" (ngSubmit)="start()">
-    <div>
-      <h2 class="font-serif text-3xl">{{ language.text('exam.title') }}</h2>
-      <p class="mt-2 max-w-2xl text-muted">
-        {{ language.text('exam.intro') }}
-      </p>
+  <form class="panel grid gap-6 p-5 md:grid-cols-[1fr_1.1fr] md:p-7" [formGroup]="form" (ngSubmit)="start()">
+    <div class="grid content-start gap-5">
+      <div>
+        <h2 class="text-3xl tracking-tight">{{ language.text('exam.title') }}</h2>
+        <p class="mt-2 max-w-xl text-muted leading-relaxed">
+          {{ language.text('exam.intro') }}
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <button type="button" class="btn btn-ghost" (click)="applyPreset(80, 60)">{{ language.text('exam.fullPreset') }}</button>
+        <button type="button" class="btn btn-ghost" (click)="applyPreset(20, 20)">{{ language.text('exam.drillPreset') }}</button>
+      </div>
+      @if (submitted() && form.invalid) {
+        <p class="text-sm text-bad" role="alert">{{ language.text('exam.invalid') }}</p>
+      }
+      <button type="submit" class="btn btn-primary w-fit" [disabled]="available() === 0">{{ language.text('exam.start') }}</button>
     </div>
-    <div class="flex flex-wrap gap-2">
-      <button type="button" class="btn btn-ghost" (click)="applyPreset(80, 60)">{{ language.text('exam.fullPreset') }}</button>
-      <button type="button" class="btn btn-ghost" (click)="applyPreset(20, 20)">{{ language.text('exam.drillPreset') }}</button>
-    </div>
-    <div class="grid gap-4 md:grid-cols-2">
+    <div class="grid gap-4 rounded-[0.9rem] border border-line bg-surface-2/50 p-4 md:p-5">
       <label class="field">
         <span>{{ language.text('exam.questions') }}</span>
         <input type="number" formControlName="count" min="1" max="200" inputmode="numeric" />
@@ -47,9 +53,5 @@
         <span id="exam-category-hint" class="text-xs text-muted">{{ language.text('filters.examCategoryHint', { count: available() }) }}</span>
       </label>
     </div>
-    @if (submitted() && form.invalid) {
-      <p class="text-sm text-bad" role="alert">{{ language.text('exam.invalid') }}</p>
-    }
-    <button type="submit" class="btn btn-primary w-fit" [disabled]="available() === 0">{{ language.text('exam.start') }}</button>
   </form>
 }

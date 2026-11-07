@@ -10,9 +10,9 @@
       (confirm)="onConfirm()"
       (flag)="flag()"
     >
-      <div class="mb-4 flex flex-wrap items-center justify-between gap-4">
+      <div class="mb-4 flex flex-wrap items-end justify-between gap-4">
         <div>
-          <p class="text-sm text-muted">{{ language.text('exam.progress', { current: exam.currentIndex + 1, total: exam.questionIds.length }) }}</p>
+          <p class="font-mono text-xs uppercase tracking-[0.12em] text-muted">{{ language.text('exam.progress', { current: exam.currentIndex + 1, total: exam.questionIds.length }) }}</p>
           <app-timer-display [seconds]="examStore.remainingSeconds()" />
         </div>
         <button type="button" class="btn btn-ghost" [attr.aria-pressed]="bookmarked()" (click)="flag()">
@@ -42,10 +42,11 @@
         @for (questionId of exam.questionIds; track questionId; let index = $index) {
           <button
             type="button"
-            class="h-9 rounded-lg border text-sm"
+            class="h-9 rounded-[0.55rem] border text-sm font-mono transition-colors duration-200"
             [class.border-accent]="index === exam.currentIndex"
             [class.bg-flag-bg]="progress.isBookmarked(questionId)"
-            [class.bg-surface-2]="chosen(questionId)"
+            [class.bg-surface-2]="chosen(questionId) && !progress.isBookmarked(questionId)"
+            [class.border-line]="index !== exam.currentIndex"
             [attr.aria-current]="index === exam.currentIndex ? 'true' : null"
             [attr.aria-label]="language.text('exam.questionN', { n: index + 1 })"
             (click)="examStore.jump(index)"
@@ -63,10 +64,10 @@
 }
 
 @if (confirming()) {
-  <div class="fixed inset-0 z-50 grid place-items-center bg-ink/50 p-4" role="dialog" aria-modal="true" aria-labelledby="submit-title">
+  <div class="fixed inset-0 z-50 grid place-items-center bg-ink/45 p-4" role="dialog" aria-modal="true" aria-labelledby="submit-title" style="overscroll-behavior: contain">
     <div class="panel max-w-md p-6">
-      <h2 id="submit-title" class="font-serif text-2xl">{{ language.text('exam.submitTitle') }}</h2>
-      <p class="mt-2 text-muted">
+      <h2 id="submit-title" class="text-2xl tracking-tight">{{ language.text('exam.submitTitle') }}</h2>
+      <p class="mt-2 text-muted leading-relaxed">
         {{ language.text(unanswered() === 1 ? 'exam.unansweredOne' : 'exam.unansweredMany', { count: unanswered() }) }}
       </p>
       <div class="mt-5 flex flex-wrap gap-2">

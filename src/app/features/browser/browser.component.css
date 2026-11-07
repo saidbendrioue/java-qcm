@@ -2,13 +2,9 @@
   display: block;
 }
 
-.bank-filters {
-  box-shadow: 0 10px 28px color-mix(in srgb, var(--color-nav) 7%, transparent);
-}
-
 .bank-list {
   display: grid;
-  gap: 0.9rem;
+  gap: 0.85rem;
   margin: 1rem 0 0;
   padding: 0;
   list-style: none;
@@ -16,12 +12,12 @@
 
 .bank-card {
   display: grid;
-  gap: 0.9rem;
+  gap: 0.85rem;
   border: 1px solid var(--color-line);
-  border-radius: 1.25rem;
+  border-radius: 1rem;
   background: var(--color-surface);
   padding: 1rem 1rem 1.05rem;
-  box-shadow: 0 10px 28px color-mix(in srgb, var(--color-nav) 8%, transparent);
+  box-shadow: var(--shadow-panel);
 }
 
 .bank-card-top {
@@ -43,13 +39,15 @@
 .bank-q {
   display: inline-flex;
   align-items: center;
-  min-height: 1.7rem;
-  border-radius: 999px;
-  padding: 0.15rem 0.65rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  min-height: 1.65rem;
+  border-radius: 0.5rem;
+  padding: 0.15rem 0.55rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
   line-height: 1.2;
+  text-transform: uppercase;
 }
 
 .bank-tag-category,
@@ -77,9 +75,10 @@
   width: 2.75rem;
   height: 2.75rem;
   border: 1px solid var(--color-line);
-  border-radius: 999px;
+  border-radius: 0.7rem;
   background: var(--color-surface);
   color: var(--color-muted);
+  transition: background-color 180ms var(--ease-out-expo), border-color 180ms var(--ease-out-expo), color 180ms var(--ease-out-expo);
 }
 
 .bank-save svg {
@@ -96,7 +95,8 @@
 .bank-question {
   margin: 0;
   font-size: 1.15rem;
-  font-weight: 700;
+  font-weight: 650;
+  letter-spacing: -0.02em;
   line-height: 1.45;
 }
 
@@ -108,12 +108,12 @@
   width: 100%;
   min-height: 2.75rem;
   border: 0;
-  border-radius: 0.9rem;
+  border-radius: 0.7rem;
   background: color-mix(in srgb, var(--color-accent) 8%, var(--color-surface));
   color: var(--color-ink);
   padding: 0.55rem 0.85rem;
   font-size: 0.95rem;
-  font-weight: 700;
+  font-weight: 650;
   text-align: left;
 }
 
@@ -121,7 +121,7 @@
   width: 1.15rem;
   height: 1.15rem;
   flex: 0 0 auto;
-  transition: transform 220ms ease;
+  transition: transform 220ms var(--ease-out-expo);
 }
 
 .bank-chevron.is-open {
@@ -131,7 +131,7 @@
 .bank-answer-panel {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 220ms ease;
+  transition: grid-template-rows 220ms var(--ease-out-expo);
 }
 
 .bank-answer-panel.is-open {
@@ -156,7 +156,7 @@
   gap: 0.75rem;
   min-height: 3rem;
   border: 1px solid var(--color-line);
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   background: color-mix(in srgb, var(--color-surface) 82%, var(--color-canvas));
   color: var(--color-ink);
   padding: 0.75rem 0.85rem;
@@ -211,9 +211,10 @@
 .bank-explain h3 {
   margin: 0 0 0.35rem;
   color: var(--color-muted);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -223,6 +224,7 @@
 }
 
 .bank-explain p {
+  max-width: 65ch;
   line-height: 1.55;
 }
 
@@ -230,7 +232,8 @@
   border-top: 1px solid var(--color-line);
   padding-top: 0.75rem;
   color: var(--color-muted);
-  font-size: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
   line-height: 1.45;
 }
 

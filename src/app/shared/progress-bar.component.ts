@@ -5,14 +5,17 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <div
-      class="h-2 overflow-hidden rounded-full bg-surface-2"
+      class="h-1.5 overflow-hidden rounded-full bg-surface-2"
       role="progressbar"
       [attr.aria-label]="label()"
       [attr.aria-valuemin]="0"
       [attr.aria-valuemax]="max()"
       [attr.aria-valuenow]="value()"
     >
-      <div class="h-full bg-accent" [style.width.%]="percent()"></div>
+      <div
+        class="h-full rounded-full bg-accent transition-[width] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+        [style.width.%]="percent()"
+      ></div>
     </div>
   `,
 })

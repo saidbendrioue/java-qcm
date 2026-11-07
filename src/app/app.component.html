@@ -1,5 +1,5 @@
 <a
-  class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-surface focus:px-3 focus:py-2"
+  class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-[0.7rem] focus:bg-surface focus:px-3 focus:py-2"
   href="#main"
 >
   {{ language.text('nav.skip') }}
@@ -8,15 +8,15 @@
 <div class="transition-[padding] duration-200" [class.md:pl-60]="shell.desktopNavOpen()">
   <app-topbar />
   @if (persistError(); as message) {
-    <p class="mx-4 mt-4 rounded-2xl border border-bad bg-bad-bg px-4 py-3 text-bad md:mx-8" role="alert">{{ language.text(message) }}</p>
+    <p class="page mx-auto mt-4 rounded-[0.9rem] border border-bad bg-bad-bg px-4 py-3 text-bad md:px-8" role="alert">{{ language.text(message) }}</p>
   }
   @if (questions.status() === 'error') {
-    <div class="mx-4 mt-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-bad bg-bad-bg px-4 py-3 text-bad md:mx-8" role="alert">
+    <div class="page mx-auto mt-4 flex flex-wrap items-center justify-between gap-3 rounded-[0.9rem] border border-bad bg-bad-bg px-4 py-3 text-bad md:px-8" role="alert">
       <p>{{ language.text(questions.error() ?? 'errors.load') }}</p>
       <button type="button" class="btn btn-danger" (click)="reload()">{{ language.text('errors.tryAgain') }}</button>
     </div>
   }
-  <main id="main" class="px-4 pb-24 pt-6 md:px-8 md:pb-10">
+  <main id="main" class="page px-4 pb-24 pt-6 md:px-8 md:pb-10">
     <router-outlet />
   </main>
 </div>

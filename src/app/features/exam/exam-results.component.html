@@ -1,11 +1,11 @@
 @if (exam(); as result) {
   @if (!reviewing()) {
     <section class="panel p-6 md:p-8">
-      <p class="text-sm font-semibold uppercase tracking-[0.14em] text-muted">{{ when(result.startedAt) }} · {{ elapsed() }}</p>
-      <h2 class="mt-2 font-serif text-5xl" [class.text-good]="result.passed" [class.text-bad]="result.passed === false">
+      <p class="font-mono text-xs uppercase tracking-[0.12em] text-muted">{{ when(result.startedAt) }} · {{ elapsed() }}</p>
+      <h2 class="mt-2 font-mono text-5xl tracking-tight" [class.text-good]="result.passed" [class.text-bad]="result.passed === false">
         {{ result.scorePercent === null ? '—' : formatPercent(result.scorePercent) }}
       </h2>
-      <p class="mt-2 text-lg">{{ language.text(result.passed ? 'exam.passing' : 'exam.below') }}</p>
+      <p class="mt-3 text-lg font-semibold">{{ language.text(result.passed ? 'exam.passing' : 'exam.below') }}</p>
       <p class="mt-1 text-muted">{{ language.text('exam.scoreLine', { correct: result.correctCount, total: result.questionIds.length, status: language.statusLabel(result.status) }) }}</p>
       <div class="mt-5 flex flex-wrap gap-2">
         <a class="btn btn-primary" routerLink="/exam">{{ language.text('exam.newExam') }}</a>
