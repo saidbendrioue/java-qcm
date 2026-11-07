@@ -7,7 +7,10 @@ import { ChangeDetectionStrategy, Component, computed, input } from '@angular/co
     <div class="space-y-3" role="status">
       <span class="sr-only">Loading</span>
       @for (slot of slots(); track slot) {
-        <div class="h-14 animate-pulse rounded-2xl bg-surface-2"></div>
+        <div
+          class="h-14 animate-pulse rounded-[0.9rem] bg-surface-2"
+          [style.animation-delay.ms]="slot * 80"
+        ></div>
       }
     </div>
   `,

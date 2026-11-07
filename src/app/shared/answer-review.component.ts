@@ -83,7 +83,7 @@ export class AnswerReviewComponent {
   }
 
   protected optionClass(mark: OptionMark): string {
-    const layout = 'flex w-full items-center gap-3 rounded-2xl border px-4 py-3';
+    const layout = 'flex w-full items-center gap-3 rounded-[0.85rem] border px-4 py-3';
     if (mark === 'yours-wrong') return `${layout} border-dashed border-bad bg-bad-bg text-bad`;
     if (mark === 'yours-correct' || mark === 'correct') return `${layout} border-accent bg-surface-2`;
     return `${layout} border-line bg-surface`;

@@ -1,17 +1,19 @@
 <aside
   id="primary-nav"
-  class="fixed inset-y-0 left-0 z-30 hidden w-60 flex-col bg-nav px-4 py-6 text-nav-ink transition-transform duration-200 md:flex"
+  class="fixed inset-y-0 left-0 z-30 hidden w-60 flex-col border-r border-white/8 bg-nav px-3 py-6 text-nav-ink transition-transform duration-200 md:flex"
   [class.-translate-x-full]="!shell.desktopNavOpen()"
   [attr.inert]="shell.desktopNavOpen() ? null : ''"
 >
-  <p class="px-3 font-serif text-3xl leading-none">Java QCM</p>
-  <p class="mt-2 px-3 text-sm text-nav-ink/70">{{ language.text('nav.tagline') }}</p>
+  <div class="px-3">
+    <p class="text-[1.65rem] font-semibold leading-none tracking-tight">Java QCM</p>
+    <p class="mt-2 text-sm text-nav-ink/65">{{ language.text('nav.tagline') }}</p>
+  </div>
   <nav class="mt-8 flex-1" [attr.aria-label]="language.text('nav.primary')">
     <ul class="grid gap-1">
       @for (item of items; track item.path) {
         <li>
           <a
-            class="block rounded-xl px-3 py-2 text-sm font-semibold text-nav-ink/80"
+            class="block rounded-[0.7rem] px-3 py-2.5 text-sm font-semibold text-nav-ink/75 transition-colors duration-200 hover:bg-white/5 hover:text-nav-ink"
             [routerLink]="item.path"
             routerLinkActive="is-active"
             ariaCurrentWhenActive="page"
@@ -22,14 +24,16 @@
       }
     </ul>
   </nav>
-  <p class="px-3 text-xs text-nav-ink/70">{{ language.text('nav.questionsPass', { count: questions.questions().length }) }}</p>
+  <p class="px-3 font-mono text-[0.7rem] uppercase tracking-[0.12em] text-nav-ink/55">
+    {{ language.text('nav.questionsPass', { count: questions.questions().length }) }}
+  </p>
 </aside>
 <nav class="fixed inset-x-0 bottom-0 z-30 border-t border-white/10 bg-nav text-nav-ink md:hidden" [attr.aria-label]="language.text('nav.primary')">
   <ul class="grid grid-cols-6 pb-[env(safe-area-inset-bottom)]">
     @for (item of items; track item.path) {
       <li>
         <a
-          class="flex min-h-14 items-center justify-center px-1 py-2 text-center text-[11px] font-semibold text-nav-ink/75"
+          class="flex min-h-14 items-center justify-center px-1 py-2 text-center text-[11px] font-semibold text-nav-ink/75 transition-colors duration-200"
           [routerLink]="item.path"
           routerLinkActive="is-active"
           ariaCurrentWhenActive="page"
