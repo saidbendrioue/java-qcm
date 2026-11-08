@@ -12340,7 +12340,7 @@
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "404 signifie que le serveur ne trouve pas de représentation courante pour la ressource cible.",
+    "explanation": "404 signifie que le serveur ne trouve pas de représentation courante pour la ressource cible. 401/403 concernent l’authz ; 409 est un conflit avec l’état courant.",
     "reference": "RFC 9110 — 404 Not Found",
     "id": "q380"
   },
@@ -12439,7 +12439,7 @@
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "5 == \"5\" est true après coercition ; 5 === \"5\" est false.",
+    "explanation": "5 == \"5\" est true après coercition ; 5 === \"5\" est false. Pour les objets, les deux comparent l’identité, mais === refuse aussi les correspondances entre types différents.",
     "reference": "MDN Web Docs — Equality comparisons",
     "id": "q383"
   },
@@ -13000,7 +13000,7 @@
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "L’indépendance vis-à-vis de l’infrastructure est le but : les tests domaine ne devraient pas exiger Spring, JPA ou Kafka.",
+    "explanation": "L’indépendance vis-à-vis de l’infrastructure est le but : les tests domaine ne devraient pas exiger Spring, JPA ou Kafka. Les tests d’intégration larges ont toujours leur place plus haut dans la pyramide.",
     "reference": "Alistair Cockburn — Hexagonal Architecture",
     "id": "q400"
   },
@@ -13660,7 +13660,7 @@
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Les iterators fail-fast détectent une modification structurelle concurrente et lèvent CME.",
+    "explanation": "Les iterators fail-fast détectent une modification structurelle concurrente et lèvent CME. Utilisez Iterator.remove, CopyOnWrite, ou une synchronisation adaptée si besoin.",
     "reference": "java.util.ArrayList — Fail-fast iterators",
     "id": "q420"
   },
@@ -13858,7 +13858,7 @@
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "ConcurrentHashMap utilise une concurrence fine et interdit les nulls pour éviter l’ambiguïté sous gets concurrents.",
+    "explanation": "ConcurrentHashMap utilise une concurrence fine et interdit les nulls pour éviter l’ambiguïté sous gets concurrents. Elle ne se comporte pas comme une Hashtable entièrement verrouillée pour les lectures.",
     "reference": "java.util.concurrent.ConcurrentHashMap",
     "id": "q426"
   },
@@ -13957,7 +13957,7 @@
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Les ports définissent ce dont le domaine a besoin ; les adaptateurs implémentent le comment avec JPA/SQL.",
+    "explanation": "Les ports définissent ce dont le domaine a besoin ; les adaptateurs implémentent le comment avec JPA/SQL. Certaines équipes placent encore JPA sur les types domaine par pragmatisme — l’hexagone pur garde l’infrastructure à l’extérieur.",
     "reference": "Alistair Cockburn — Hexagonal Architecture",
     "id": "q429"
   },
