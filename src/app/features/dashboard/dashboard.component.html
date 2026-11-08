@@ -65,7 +65,7 @@
       @for (question of recentQuestions(); track question.id) {
         <li class="px-4 py-3">
           <p class="font-mono text-[12px] text-muted">{{ language.categoryLabel(question.category) }} · {{ language.difficultyLabel(question.difficulty) }}</p>
-          <p class="mt-1 whitespace-pre-wrap leading-relaxed">{{ question.question }}</p>
+          <p class="mt-1 whitespace-pre-wrap font-mono text-[14px] leading-relaxed">{{ question.question }}</p>
         </li>
       }
     </ul>

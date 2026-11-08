@@ -4,10 +4,11 @@ import { LanguageService } from '../core/i18n/language.service';
 import type { Question } from '../core/models/question.model';
 import { isAnswerCorrect } from '../core/scoring/scoring';
 import { AnswerOptionComponent, type OptionState } from './answer-option.component';
+import { QuestionStemComponent } from './question-stem.component';
 
 @Component({
   selector: 'app-question-card',
-  imports: [AnswerOptionComponent],
+  imports: [AnswerOptionComponent, QuestionStemComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './question-card.component.html',
 })

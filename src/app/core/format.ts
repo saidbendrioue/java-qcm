@@ -34,3 +34,14 @@ export function createId(prefix: string): string {
   const uuid = globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(16).slice(2)}`;
   return `${prefix}-${uuid}`;
 }
+
+/** Split a stem that puts prose above a blank line and code below. */
+export function splitQuestionStem(text: string): { title: string; code: string | null } {
+  const normalized = text.replace(/\r\n/g, '\n').trim();
+  const gap = normalized.search(/\n\s*\n/);
+  if (gap === -1) return { title: normalized, code: null };
+  const title = normalized.slice(0, gap).trim();
+  const code = normalized.slice(gap).trim();
+  if (!title || !code) return { title: normalized, code: null };
+  return { title, code };
+}

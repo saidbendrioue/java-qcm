@@ -21,7 +21,7 @@
       @for (question of questions(); track question.id) {
         <li class="p-4 md:p-5">
           <p class="font-mono text-[12px] text-flag">{{ language.categoryLabel(question.category) }}</p>
-          <h2 class="mt-2 text-[20px] font-medium tracking-[-0.02em]">{{ question.question }}</h2>
+          <app-question-stem class="mt-2 block" [text]="question.question" titleClassName="text-[20px] font-medium tracking-[-0.02em]" />
           <p class="mt-3 max-w-[65ch] leading-relaxed">{{ question.explanation }}</p>
           <p class="mt-2 font-mono text-[12px] text-muted">{{ question.reference }}</p>
         </li>

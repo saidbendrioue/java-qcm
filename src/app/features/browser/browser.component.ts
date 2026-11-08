@@ -9,10 +9,11 @@ import { ToastService } from '../../core/services/toast.service';
 import { EmptyStateComponent } from '../../shared/empty-state.component';
 import { LoadingBlockComponent } from '../../shared/loading-block.component';
 import { QuestionFiltersComponent } from '../../shared/question-filters.component';
+import { QuestionStemComponent } from '../../shared/question-stem.component';
 
 @Component({
   selector: 'app-browser',
-  imports: [EmptyStateComponent, LoadingBlockComponent, QuestionFiltersComponent],
+  imports: [EmptyStateComponent, LoadingBlockComponent, QuestionFiltersComponent, QuestionStemComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './browser.component.html',
   styleUrl: './browser.component.css',

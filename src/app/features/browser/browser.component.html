@@ -47,7 +47,7 @@
                 }
               </button>
             </header>
-            <h2 class="bank-question">{{ question.question }}</h2>
+            <app-question-stem class="block" [text]="question.question" titleClassName="bank-question" />
             <section class="bank-answer">
               <button
                 type="button"
