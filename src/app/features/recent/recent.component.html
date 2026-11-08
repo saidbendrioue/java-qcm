@@ -15,7 +15,7 @@
         <p class="font-mono text-[12px] text-muted">
           {{ language.categoryLabel(question.category) }} · {{ language.difficultyLabel(question.difficulty) }} · {{ question.id.toUpperCase() }}
         </p>
-        <h2 class="mt-2 whitespace-pre-wrap text-[22px] font-medium tracking-[-0.02em]">{{ question.question }}</h2>
+        <app-question-stem class="mt-2 block" [text]="question.question" />
         <button type="button" class="btn btn-ghost mt-4" (click)="toggleAnswer(question.id)">
           {{ language.text(answerOpen(question.id) ? 'bank.hideAnswer' : 'bank.showAnswer') }}
         </button>

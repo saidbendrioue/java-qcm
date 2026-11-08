@@ -8,12 +8,13 @@ import { QuestionService } from '../../core/services/question.service';
 import { dueIds, mistakeIds } from '../../core/stats/progress-stats';
 import { EmptyStateComponent } from '../../shared/empty-state.component';
 import { LoadingBlockComponent } from '../../shared/loading-block.component';
+import { QuestionStemComponent } from '../../shared/question-stem.component';
 
 type ReviewTab = 'mistakes' | 'bookmarks' | 'due';
 
 @Component({
   selector: 'app-review',
-  imports: [RouterLink, EmptyStateComponent, LoadingBlockComponent],
+  imports: [RouterLink, EmptyStateComponent, LoadingBlockComponent, QuestionStemComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './review.component.html',
 })

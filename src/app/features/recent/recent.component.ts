@@ -6,10 +6,11 @@ import { RECENT_QUESTION_IDS } from '../../core/recent-questions';
 import type { Question } from '../../core/models/question.model';
 import { QuestionService } from '../../core/services/question.service';
 import { LoadingBlockComponent } from '../../shared/loading-block.component';
+import { QuestionStemComponent } from '../../shared/question-stem.component';
 
 @Component({
   selector: 'app-recent',
-  imports: [RouterLink, LoadingBlockComponent],
+  imports: [RouterLink, LoadingBlockComponent, QuestionStemComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './recent.component.html',
 })

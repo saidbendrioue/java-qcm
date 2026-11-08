@@ -4,6 +4,7 @@ import { LanguageService } from '../core/i18n/language.service';
 import type { Question } from '../core/models/question.model';
 import { optionLetter } from '../core/scoring/scoring';
 import { EmptyStateComponent } from './empty-state.component';
+import { QuestionStemComponent } from './question-stem.component';
 
 export type AnswerReviewFilter = 'wrong' | 'correct' | 'all';
 export type OptionMark = 'yours-correct' | 'yours-wrong' | 'correct' | 'plain';
@@ -18,7 +19,7 @@ export interface AnswerReviewRow {
 
 @Component({
   selector: 'app-answer-review',
-  imports: [EmptyStateComponent],
+  imports: [EmptyStateComponent, QuestionStemComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './answer-review.component.html',
 })
