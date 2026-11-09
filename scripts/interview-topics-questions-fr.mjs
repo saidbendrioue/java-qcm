@@ -524,4 +524,16 @@ export const interviewTopicsFrench = [
     explanation:
       'Runnable/Callable/Comparator précèdent java.util.function mais sont des types SAM. Les interfaces marqueurs comme Serializable ne sont pas des interfaces fonctionnelles.',
   },
+  {
+    question:
+      'Les interfaces A et B déclarent chacune la même méthode default avec le même nom et la même signature. La classe concrète X implémente à la fois A et B sans redéfinir cette méthode. Que se passe-t-il, et comment résoudre le problème ?',
+    options: {
+      a: 'X compile ; le compilateur garde silencieusement le default de A car A apparaît en premier dans implements',
+      b: 'X ne compile pas ; il faut redéfinir la méthode dans X (en pouvant appeler A.super.method() et/ou B.super.method()) pour lever le conflit',
+      c: 'X compile et les deux defaults s’exécutent à l’exécution dans l’ordre de déclaration',
+      d: 'X compile seulement si l’on supprime une interface ; InterfaceName.super.method() est illégal dans une classe',
+    },
+    explanation:
+      'Deux méthodes default indépendantes de même signature créent un conflit. Une classe concrète qui les hérite toutes les deux ne compile pas tant qu’elle ne fournit pas sa propre redéfinition. Dans cette redéfinition, on peut choisir explicitement un default parent avec A.super.method() ou B.super.method(), ou écrire un nouveau corps. Déclarer la classe abstract ne suffit pas si elle hérite encore des deux defaults sans les redéfinir.',
+  },
 ];
