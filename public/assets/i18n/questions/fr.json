@@ -12340,7 +12340,7 @@
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "404 signifie que le serveur ne trouve pas de représentation courante pour la ressource cible. 401/403 concernent l’authz ; 409 est un conflit avec l’état courant.",
+    "explanation": "404 signifie que le serveur ne trouve pas de représentation courante pour la ressource cible.",
     "reference": "RFC 9110 — 404 Not Found",
     "id": "q380"
   },
@@ -12439,7 +12439,7 @@
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "5 == \"5\" est true après coercition ; 5 === \"5\" est false. Pour les objets, les deux comparent l’identité, mais === refuse aussi les correspondances entre types différents.",
+    "explanation": "5 == \"5\" est true après coercition ; 5 === \"5\" est false.",
     "reference": "MDN Web Docs — Equality comparisons",
     "id": "q383"
   },
@@ -13000,7 +13000,7 @@
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "L’indépendance vis-à-vis de l’infrastructure est le but : les tests domaine ne devraient pas exiger Spring, JPA ou Kafka. Les tests d’intégration larges ont toujours leur place plus haut dans la pyramide.",
+    "explanation": "L’indépendance vis-à-vis de l’infrastructure est le but : les tests domaine ne devraient pas exiger Spring, JPA ou Kafka.",
     "reference": "Alistair Cockburn — Hexagonal Architecture",
     "id": "q400"
   },
@@ -13660,7 +13660,7 @@
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Les iterators fail-fast détectent une modification structurelle concurrente et lèvent CME. Utilisez Iterator.remove, CopyOnWrite, ou une synchronisation adaptée si besoin.",
+    "explanation": "Les iterators fail-fast détectent une modification structurelle concurrente et lèvent CME.",
     "reference": "java.util.ArrayList — Fail-fast iterators",
     "id": "q420"
   },
@@ -13858,7 +13858,7 @@
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "ConcurrentHashMap utilise une concurrence fine et interdit les nulls pour éviter l’ambiguïté sous gets concurrents. Elle ne se comporte pas comme une Hashtable entièrement verrouillée pour les lectures.",
+    "explanation": "ConcurrentHashMap utilise une concurrence fine et interdit les nulls pour éviter l’ambiguïté sous gets concurrents.",
     "reference": "java.util.concurrent.ConcurrentHashMap",
     "id": "q426"
   },
@@ -13957,7 +13957,7 @@
     "correctOptionIds": [
       "b"
     ],
-    "explanation": "Les ports définissent ce dont le domaine a besoin ; les adaptateurs implémentent le comment avec JPA/SQL. Certaines équipes placent encore JPA sur les types domaine par pragmatisme — l’hexagone pur garde l’infrastructure à l’extérieur.",
+    "explanation": "Les ports définissent ce dont le domaine a besoin ; les adaptateurs implémentent le comment avec JPA/SQL.",
     "reference": "Alistair Cockburn — Hexagonal Architecture",
     "id": "q429"
   },
@@ -14026,5 +14026,1556 @@
     "explanation": "HttpClient renvoie des Observables froids qui s’exécutent au subscribe et peuvent être annulés via unsubscribe/async pipe. Les Promises démarrent immédiatement et se résolvent une fois.",
     "reference": "RxJS / Angular HttpClient documentation",
     "id": "q431"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "JVM",
+    "question": "Pourquoi Java est-il souvent décrit comme indépendant de la plateforme, et quel est le rôle de la JVM et du JRE ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Les fichiers source .java s’exécutent nativement sur chaque CPU ; la JVM n’est qu’un outil d’empaquetage"
+      },
+      {
+        "id": "b",
+        "text": "javac produit du bytecode exécutable par toute JVM compatible ; le JRE est l’environnement d’exécution qui fournit une JVM et les bibliothèques standard"
+      },
+      {
+        "id": "c",
+        "text": "Le JRE compile Java en code machine à la construction, donc aucune JVM n’est nécessaire à l’exécution"
+      },
+      {
+        "id": "d",
+        "text": "L’indépendance de plateforme signifie qu’un seul binaire tourne sur chaque OS sans machine virtuelle"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "« Write once, run anywhere » repose sur le bytecode plus une JVM par plateforme. Le JRE regroupe historiquement la JVM et les bibliothèques pour exécuter les programmes ; le JDK ajoute des outils comme le compilateur.",
+    "reference": "Java Virtual Machine Specification — Introduction; Java SE documentation — JRE/JDK",
+    "id": "q432"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "JVM",
+    "question": "De quoi un ClassLoader est-il responsable ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Allouer la mémoire du tas pour chaque nouvelle instance d’objet"
+      },
+      {
+        "id": "b",
+        "text": "Trouver, charger et définir le bytecode des classes pour que la JVM puisse créer des objets Class"
+      },
+      {
+        "id": "c",
+        "text": "Compiler les fichiers source .java au démarrage de l’application"
+      },
+      {
+        "id": "d",
+        "text": "Planifier les threads sur les cœurs CPU"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Les ClassLoaders localisent les ressources de classes ou de modules, lisent le bytecode et définissent les classes. L’instanciation, le GC et l’ordonnancement des threads sont d’autres responsabilités de la JVM.",
+    "reference": "Java Virtual Machine Specification — Loading, Linking, and Initializing (§5)",
+    "id": "q433"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "JVM",
+    "question": "Quelle est la distinction habituelle entre ClassNotFoundException et NoClassDefFoundError ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ce sont des alias ; les deux sont des exceptions checked levées uniquement par Class.forName"
+      },
+      {
+        "id": "b",
+        "text": "ClassNotFoundException est levée quand le code charge explicitement une classe introuvable ; NoClassDefFoundError signifie qu’une classe présente à la compilation ne peut pas être chargée à l’exécution"
+      },
+      {
+        "id": "c",
+        "text": "NoClassDefFoundError est checked et doit être déclarée ; ClassNotFoundException est une Error"
+      },
+      {
+        "id": "d",
+        "text": "ClassNotFoundException ne survient que pour des types primitifs manquants"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Les chargements réflexifs explicites lèvent ClassNotFoundException. NoClassDefFoundError apparaît typiquement quand la JVM a besoin d’une classe compilée avec succès mais absente ou en échec d’initialisation à l’exécution.",
+    "reference": "Java Language Specification / Java SE API — ClassNotFoundException and NoClassDefFoundError",
+    "id": "q434"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Concernant le String pool et intern(), quelle affirmation est correcte ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Chaque new String(\"x\") renvoie toujours la même instance poolée que le littéral \"x\""
+      },
+      {
+        "id": "b",
+        "text": "Les littéraux String sont internés ; intern() renvoie l’instance canonique du pool pour une séquence de caractères égale"
+      },
+      {
+        "id": "c",
+        "text": "intern() alloue toujours une toute nouvelle String sur le tas et ne réutilise jamais le contenu poolé"
+      },
+      {
+        "id": "d",
+        "text": "Le String pool stocke des char[] mutables partagés entre toutes les chaînes sans copie"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Les littéraux et constantes de compilation sont internés. Appeler intern() sur une String construite renvoie l’instance poolée égale (ou en ajoute une). new String(...) crée un objet distinct sauf internement.",
+    "reference": "Java Language Specification — String Literals (§3.10.5) and String.intern",
+    "id": "q435"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Que signifie l’encapsulation en POO ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Rendre chaque champ public pour que les appelants lisent et écrivent l’état directement"
+      },
+      {
+        "id": "b",
+        "text": "Regrouper l’état avec les opérations qui l’utilisent et restreindre l’accès externe direct aux détails internes"
+      },
+      {
+        "id": "c",
+        "text": "Permettre à une classe d’étendre plusieurs classes concrètes"
+      },
+      {
+        "id": "d",
+        "text": "Convertir chaque méthode en utilitaire static"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "L’encapsulation cache la représentation derrière une interface contrôlée (souvent champs private et méthodes public), ce qui protège les invariants et permet de faire évoluer l’implémentation en sécurité.",
+    "reference": "Object-oriented design — encapsulation",
+    "id": "q436"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Que signifie implémenter java.io.Serializable ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "La classe peut être écrite via ObjectOutputStream grâce au mécanisme de sérialisation Java (interface marqueur)"
+      },
+      {
+        "id": "b",
+        "text": "La classe doit redéfinir les méthodes abstraites serialize() et deserialize()"
+      },
+      {
+        "id": "c",
+        "text": "Les instances sont automatiquement persistées dans une base relationnelle"
+      },
+      {
+        "id": "d",
+        "text": "La classe devient immuable et thread-safe"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Serializable est une interface marqueur qui active la sérialisation Java par défaut. Cela n’implique ni persistance JPA, ni immuabilité, ni méthodes serialize obligatoires.",
+    "reference": "Java SE API — java.io.Serializable",
+    "id": "q437"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Quelle affirmation sur les classes nested et top-level static, final ou private est correcte ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Une classe top-level peut être private ou static comme un champ"
+      },
+      {
+        "id": "b",
+        "text": "Une classe top-level peut être final ; les classes nested peuvent être static ou private ; une classe top-level ne peut pas être private ni static"
+      },
+      {
+        "id": "c",
+        "text": "Aucune classe en Java ne peut jamais être déclarée final"
+      },
+      {
+        "id": "d",
+        "text": "Seules les interfaces peuvent être static ; les classes jamais"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Les classes top-level sont public ou package-private et peuvent être final/abstract/sealed, mais pas private ni static. Les classes nested (membres) peuvent être static et private.",
+    "reference": "Java Language Specification — Class Modifiers (§8.1.1) and Nested Classes (§8.5)",
+    "id": "q438"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Exceptions",
+    "question": "Quelle est la superclasse de toutes les exceptions et erreurs en Java ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Exception"
+      },
+      {
+        "id": "b",
+        "text": "RuntimeException"
+      },
+      {
+        "id": "c",
+        "text": "Throwable"
+      },
+      {
+        "id": "d",
+        "text": "Error"
+      }
+    ],
+    "correctOptionIds": [
+      "c"
+    ],
+    "explanation": "Throwable est la racine. Exception et Error étendent Throwable ; RuntimeException étend Exception.",
+    "reference": "Java Language Specification — The Throwable Class Hierarchy",
+    "id": "q439"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Exceptions",
+    "question": "En quoi Error et Exception diffèrent-elles dans leur intention ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Error représente des défaillances JVM/système graves rarement récupérées dans le code applicatif ; Exception représente des conditions que l’application peut attraper et traiter"
+      },
+      {
+        "id": "b",
+        "text": "Error est checked et Exception est toujours unchecked"
+      },
+      {
+        "id": "c",
+        "text": "Exception est uniquement pour les IO ; Error uniquement pour NullPointerException"
+      },
+      {
+        "id": "d",
+        "text": "Elles sont identiques ; les noms sont des synonymes historiques"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Les Error (OutOfMemoryError, StackOverflowError, …) signalent des situations anormales rarement gérées. Les Exception modélisent des échecs récupérables ou attendus ; certaines sont checked, d’autres non.",
+    "reference": "Java Language Specification — Exceptions (§11)",
+    "id": "q440"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Exceptions",
+    "question": "Quelle affirmation sur les exceptions checked vs unchecked est correcte ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Toutes les sous-classes de Throwable doivent apparaître dans une clause throws"
+      },
+      {
+        "id": "b",
+        "text": "Les exceptions checked (hors RuntimeException/Error) doivent être attrapées ou déclarées ; RuntimeException et Error sont unchecked"
+      },
+      {
+        "id": "c",
+        "text": "Seule Error est checked ; Exception est toujours unchecked"
+      },
+      {
+        "id": "d",
+        "text": "Les exceptions checked ne sont vérifiées que par le JIT à l’exécution"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Le compilateur impose la gestion des exceptions checked. RuntimeException, Error et leurs sous-classes sont unchecked.",
+    "reference": "Java Language Specification — Compile-Time Checking of Exceptions (§11.2)",
+    "id": "q441"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Exceptions",
+    "question": "Que signifie la propagation des exceptions ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "La JVM duplique automatiquement chaque exception sur chaque thread"
+      },
+      {
+        "id": "b",
+        "text": "Si une méthode n’attrape pas une exception levée, elle se termine et l’exception continue vers l’appelant jusqu’à être attrapée ou jusqu’à la fin du thread"
+      },
+      {
+        "id": "c",
+        "text": "Les exceptions sont converties en codes de retour avant de quitter une méthode"
+      },
+      {
+        "id": "d",
+        "text": "La propagation ne s’applique qu’aux checked ; les unchecked s’arrêtent immédiatement"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Les throwables non gérés déroulent la pile d’appels. finally/try-with-resources s’exécutent pendant ce déroulement. Les unchecked se propagent de la même façon.",
+    "reference": "Java Language Specification — Exception Handling and abrupt completion",
+    "id": "q442"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Qu’est-ce que l’autoboxing en Java ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "La conversion automatique entre primitives et leurs wrappers, par ex. int ↔ Integer"
+      },
+      {
+        "id": "b",
+        "text": "L’empaquetage automatique de plusieurs classes dans un JAR à la compilation"
+      },
+      {
+        "id": "c",
+        "text": "La conversion des tableaux en ArrayList sans appel d’API"
+      },
+      {
+        "id": "d",
+        "text": "L’inlining des méthodes virtuelles en appels static"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Le compilateur insère des conversions valueOf/xxxValue entre primitives et wrappers. Attention au unboxing de null (NPE) et aux surprises d’identité avec le cache d’Integer.",
+    "reference": "Java Language Specification — Boxing Conversion (§5.1.7)",
+    "id": "q443"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Modern Java",
+    "question": "Quel ensemble résume le mieux les fonctionnalités majeures de Java 8 ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Exceptions checked, méthodes synchronized et AWT uniquement"
+      },
+      {
+        "id": "b",
+        "text": "Lambdas, interfaces fonctionnelles, Streams API, et méthodes default/static sur les interfaces"
+      },
+      {
+        "id": "c",
+        "text": "Records, sealed classes et pattern matching pour switch uniquement"
+      },
+      {
+        "id": "d",
+        "text": "Modules (JPMS) et var pour les variables locales uniquement"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Java 8 a introduit les lambdas, java.util.function, les Streams et les méthodes default/static d’interface. Records/sealed/pattern matching et les modules sont venus plus tard.",
+    "reference": "Java SE 8 documentation — Lambda Expressions and Streams",
+    "id": "q444"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Pourquoi une interface Java ne peut-elle pas déclarer de constructeur ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Les interfaces peuvent être instanciées directement, donc les constructeurs seraient redondants"
+      },
+      {
+        "id": "b",
+        "text": "Les interfaces ne sont pas des types instanciables avec un état d’instance initialisé via constructeurs ; la construction appartient aux classes"
+      },
+      {
+        "id": "c",
+        "text": "Les constructeurs ne sont autorisés que sur les enums, jamais sur les classes ou interfaces"
+      },
+      {
+        "id": "d",
+        "text": "La JVM interdit tout membre de type méthode sur les interfaces"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Les interfaces définissent des contrats (et depuis Java 8 des méthodes default/static/private) mais ne sont pas construites comme des classes. Les classes d’implémentation fournissent les constructeurs.",
+    "reference": "Java Language Specification — Interface Declarations (§9)",
+    "id": "q445"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Collections",
+    "question": "Pour parcourir un ArrayList de taille n, comment se comparent typiquement une boucle for indexée classique et un for-each ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "for-each est toujours asymptotiquement plus lent car il copie d’abord la liste"
+      },
+      {
+        "id": "b",
+        "text": "Les deux sont en O(n) ; for-each utilise l’iterator (ou un parcours de tableau), tandis qu’une boucle indexée utilise get(i)—les perfs sont souvent proches pour ArrayList, avec des micro-différences selon le JIT et le motif d’accès"
+      },
+      {
+        "id": "c",
+        "text": "Les boucles indexées sont interdites sur ArrayList ; seul for-each compile"
+      },
+      {
+        "id": "d",
+        "text": "for-each s’exécute en O(1) quelle que soit la taille de la liste"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Les deux visitent chaque élément une fois. Préférez la clarté sauf si un profilage montre un hotspot ; une modification structurelle pendant for-each risque toujours ConcurrentModificationException.",
+    "reference": "Java SE API — java.util — ArrayList and Iterator",
+    "id": "q446"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Concurrency",
+    "question": "Vous devez faire imprimer 1,2,3,4,5 dans cet ordre par cinq threads. Quelle approche est appropriée ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Démarrer cinq threads sans coordination ; l’ordonnanceur garantit l’ordre numérique"
+      },
+      {
+        "id": "b",
+        "text": "Coordonner avec wait/notify, locks, sémaphores ou un executor mono-thread pour que chaque impression n’ait lieu qu’après le tour précédent"
+      },
+      {
+        "id": "c",
+        "text": "Marquer chaque méthode run() synchronized ; cela seul force un ordre numérique global entre threads"
+      },
+      {
+        "id": "d",
+        "text": "Utiliser des compteurs volatile int sans attente ; la visibilité seule ordonne les impressions"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "L’ordre de démarrage des threads ne définit pas l’ordre d’exécution. Le séquencement exige un passage de témoin explicite (conditions, sémaphores, Phaser, files, ou exécution série).",
+    "reference": "Java Concurrency in Practice / java.util.concurrent",
+    "id": "q447"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Concurrency",
+    "question": "En quoi volatile et AtomicInteger diffèrent-ils ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "volatile assure la visibilité des lectures/écritures du champ ; AtomicInteger offre aussi des mises à jour composées atomiques comme incrementAndGet"
+      },
+      {
+        "id": "b",
+        "text": "volatile rend ++i atomique pour les champs int"
+      },
+      {
+        "id": "c",
+        "text": "AtomicInteger n’améliore que la lisibilité ; il a les mêmes garanties qu’un int simple"
+      },
+      {
+        "id": "d",
+        "text": "Les variables volatile ne peuvent pas être lues par d’autres threads"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "volatile assure visibilité et ordre pour des lectures/écritures individuelles, pas l’atomicité read-modify-write. Les atomics utilisent CAS pour les mises à jour composées.",
+    "reference": "Java Language Specification — volatile (§8.3.1.4); java.util.concurrent.atomic",
+    "id": "q448"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Design Principles",
+    "question": "Quand le pattern Builder est-il un bon choix ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Quand un objet a de nombreux paramètres de construction optionnels et que l’on veut un assemblage lisible et progressif (souvent avec immuabilité)"
+      },
+      {
+        "id": "b",
+        "text": "Quand on a besoin d’exactement une instance d’une classe pour toute la JVM"
+      },
+      {
+        "id": "c",
+        "text": "Quand deux interfaces doivent être adaptées l’une à l’autre"
+      },
+      {
+        "id": "d",
+        "text": "Quand on a seulement besoin d’itérer une collection"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Builder remplace les constructeurs télescopiques par une API fluide qui peut valider et produire un objet complet (Lombok @Builder, StringBuilder, et de nombreux builders métier).",
+    "reference": "Gang of Four — Builder; Effective Java — Builder pattern",
+    "id": "q449"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Design Principles",
+    "question": "Quelle préoccupation d’implémentation Singleton est la plus juste en Java ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un champ public static non final est toujours initialisé paresseusement et thread-safe sans autre soin"
+      },
+      {
+        "id": "b",
+        "text": "Les singletons lazy naïfs peuvent courir des courses ; les singletons enum ou static-holder / formes correctement synchronisées évitent les instances dupliquées"
+      },
+      {
+        "id": "c",
+        "text": "Les singletons sont fournis automatiquement par la JVM pour chaque classe"
+      },
+      {
+        "id": "d",
+        "text": "Implémenter Cloneable est requis pour un Singleton correct"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Le double-checked locking nécessite volatile ; les singletons enum et les holders à initialisation à la demande sont des approches sûres courantes. Les beans Spring « singleton » par scope sont un autre mécanisme.",
+    "reference": "Effective Java — Enforce the singleton property; Java Language Specification",
+    "id": "q450"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Design Principles",
+    "question": "Quelle est l’idée centrale du pattern Factory ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Les appelants créent les classes concrètes avec new partout pour maximiser le couplage"
+      },
+      {
+        "id": "b",
+        "text": "La création d’objets est déléguée à une méthode/classe qui renvoie des produits (souvent derrière une interface) pour que les appelants dépendent d’abstractions"
+      },
+      {
+        "id": "c",
+        "text": "Chaque objet doit être cloné depuis un prototype stocké dans une Map"
+      },
+      {
+        "id": "d",
+        "text": "Tous les constructeurs doivent être public et sans argument"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Les simple factory methods, Factory Method et Abstract Factory encapsulent la création pour que les types de produits puissent varier sans réécrire les clients.",
+    "reference": "Gang of Four — Factory Method / Abstract Factory",
+    "id": "q451"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Design Principles",
+    "question": "Pourquoi les équipes utilisent-elles les design patterns ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ils fournissent un vocabulaire partagé et des structures éprouvées pour des problèmes de conception récurrents, améliorant communication et maintenabilité s’ils sont appliqués avec discernement"
+      },
+      {
+        "id": "b",
+        "text": "Ils remplacent le besoin de tests et de revue de code"
+      },
+      {
+        "id": "c",
+        "text": "Chaque classe doit implémenter exactement un pattern GoF sinon elle ne compile pas"
+      },
+      {
+        "id": "d",
+        "text": "Les patterns garantissent à eux seuls des performances runtime optimales"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Les patterns documentent des compromis pour des problèmes courants. Les surutiliser ajoute du cérémonial ; les sous-utiliser laisse des conceptions ad hoc difficiles à discuter.",
+    "reference": "Gang of Four — Design Patterns introduction",
+    "id": "q452"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring Boot",
+    "question": "Qu’est-ce que Spring Boot et pourquoi est-il largement utilisé ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Une JVM de remplacement qui exécute du XML Spring sans bytecode"
+      },
+      {
+        "id": "b",
+        "text": "Une boîte à outils opinionnée sur Spring qui auto-configure les applications, embarque des serveurs et réduit le boilerplate pour livrer plus vite des apps de production"
+      },
+      {
+        "id": "c",
+        "text": "Un moteur de base de données livré dans spring-boot-starter-web"
+      },
+      {
+        "id": "d",
+        "text": "Un framework UI qui interdit l’injection de dépendances"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Boot applique l’auto-configuration, les starters et des défauts Actuator tout en utilisant le conteneur Spring. On peut surcharger les conventions au besoin.",
+    "reference": "Spring Boot Reference Documentation — Spring Boot Introduction",
+    "id": "q453"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "En quoi @Component et @Bean diffèrent-ils typiquement ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "@Component marque une classe pour le component scanning ; @Bean déclare un objet produit par une méthode dans une classe @Configuration"
+      },
+      {
+        "id": "b",
+        "text": "@Bean est uniquement pour les controllers ; @Component uniquement pour les repositories"
+      },
+      {
+        "id": "c",
+        "text": "Ce sont des annotations identiques avec des noms différents"
+      },
+      {
+        "id": "d",
+        "text": "@Component désactive l’injection de dépendances pour ce type"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Les stéréotypes (@Component/@Service/…) enregistrent la classe annotée. Les méthodes @Bean créent et configurent des instances (souvent de types tiers) en configuration Java.",
+    "reference": "Spring Framework Reference Documentation — Bean definition and annotation-based configuration",
+    "id": "q454"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "À quoi sert @Qualifier lors de l’injection ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Choisir un bean précis lorsque plusieurs candidats partagent le même type"
+      },
+      {
+        "id": "b",
+        "text": "Marquer un bean comme lazy-initialized exclusivement"
+      },
+      {
+        "id": "c",
+        "text": "Désactiver Spring Security pour une méthode"
+      },
+      {
+        "id": "d",
+        "text": "Déclarer un nouveau fichier de property source"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Quand plusieurs beans implémentent la même interface, @Qualifier (ou @Primary) lève l’ambiguïté sur la dépendance à injecter.",
+    "reference": "Spring Framework Reference Documentation — Fine-tuning annotation-based autowiring with qualifiers",
+    "id": "q455"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "Quelle est la différence entre @Controller et @RestController ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "@RestController est @Controller plus @ResponseBody sur chaque handler, renvoyant des données (souvent JSON) plutôt qu’un nom de vue par défaut"
+      },
+      {
+        "id": "b",
+        "text": "@Controller ne peut renvoyer que du JSON ; @RestController ne renvoie que des vues HTML"
+      },
+      {
+        "id": "c",
+        "text": "Ils se comportent de façon identique dans toutes les versions de Spring"
+      },
+      {
+        "id": "d",
+        "text": "@RestController désactive les mappings HTTP"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "@Controller est le stéréotype des contrôleurs MVC (souvent avec view resolvers). @RestController compose @Controller et @ResponseBody pour les API REST.",
+    "reference": "Spring Framework Reference Documentation — @RestController",
+    "id": "q456"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Testing",
+    "question": "En Mockito, en quoi @Mock et @InjectMocks diffèrent-ils ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "@Mock crée un collaborateur mock ; @InjectMocks crée la classe sous test et y injecte les mocks"
+      },
+      {
+        "id": "b",
+        "text": "@InjectMocks crée les mocks ; @Mock crée le vrai système sous test"
+      },
+      {
+        "id": "c",
+        "text": "Les deux annotations démarrent un contexte Spring Boot complet"
+      },
+      {
+        "id": "d",
+        "text": "@Mock est requis pour JUnit 5 ; @InjectMocks ne fonctionne qu’avec TestNG"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Utilisez @Mock/@MockBean pour les dépendances et @InjectMocks (ou une construction manuelle) pour l’unité sous test. @MockBean de Spring est une idée voisine mais liée au conteneur.",
+    "reference": "Mockito documentation",
+    "id": "q457"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Security",
+    "question": "Dans une app Spring avec contrôle d’accès basé sur les rôles, quelle affirmation est la plus juste ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "L’authentification établit l’identité ; l’autorisation (rôles/authorities) décide si cette identité peut effectuer une action"
+      },
+      {
+        "id": "b",
+        "text": "Avoir un rôle quelconque accorde automatiquement chaque méthode HTTP sur chaque URL"
+      },
+      {
+        "id": "c",
+        "text": "Le contrôle par rôles remplace le besoin de HTTPS et de hachage de mots de passe"
+      },
+      {
+        "id": "d",
+        "text": "L’autorisation a toujours lieu avant l’authentification dans les filtres Spring Security"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "On authentifie d’abord, puis on autorise avec des rôles/permissions sur les méthodes ou les règles HTTP. La sécurité du transport et le stockage des identifiants restent des sujets séparés.",
+    "reference": "Spring Security Reference — Authentication and Authorization",
+    "id": "q458"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "Quelles interfaces sont centrales aux repositories Spring Data JPA ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "JdbcTemplate et NamedParameterJdbcTemplate uniquement"
+      },
+      {
+        "id": "b",
+        "text": "Repository / CrudRepository / JpaRepository (et variantes de pagination) qui exposent le CRUD et la dérivation de requêtes"
+      },
+      {
+        "id": "c",
+        "text": "Uniquement EntityManagerFactoryBean sans abstraction repository"
+      },
+      {
+        "id": "d",
+        "text": "Servlet et Filter comme API de persistance"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Spring Data définit des marqueurs Repository ; CrudRepository et JpaRepository ajoutent CRUD, pagination et opérations JPA. Les implémentations sont générées à l’exécution.",
+    "reference": "Spring Data JPA — Repository interfaces",
+    "id": "q459"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Spring",
+    "question": "Comment les exceptions sont-elles couramment gérées dans les controllers Spring MVC/Web ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Uniquement en laissant Tomcat afficher une stack trace brute sans support Spring"
+      },
+      {
+        "id": "b",
+        "text": "Avec @ExceptionHandler, @ControllerAdvice, et des mappings de type ProblemDetail/ResponseEntityExceptionHandler vers des réponses HTTP"
+      },
+      {
+        "id": "c",
+        "text": "En renvoyant null depuis chaque méthode de controller"
+      },
+      {
+        "id": "d",
+        "text": "Les exceptions dans les controllers sont impossibles car Spring enveloppe tous les retours en Optional"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Des méthodes @ExceptionHandler locales ou un @ControllerAdvice global mappent les exceptions vers des codes de statut et des corps de façon cohérente.",
+    "reference": "Spring Framework Reference Documentation — Exception handling in Spring MVC",
+    "id": "q460"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "hard",
+    "type": "single",
+    "category": "Spring",
+    "question": "Que contrôle la propagation @Transactional de Spring (par ex. REQUIRED vs REQUIRES_NEW) ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Si une méthode appelée rejoint une transaction existante, la suspend et en démarre une nouvelle, ou s’exécute hors transaction"
+      },
+      {
+        "id": "b",
+        "text": "Quel dialecte SQL Hibernate génère pour les SELECT"
+      },
+      {
+        "id": "c",
+        "text": "Le code de statut HTTP renvoyé par les controllers REST"
+      },
+      {
+        "id": "d",
+        "text": "L’ordre des BeanPostProcessors pendant le refresh du contexte"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "REQUIRED rejoint ou crée une transaction ; REQUIRES_NEW démarre toujours une transaction indépendante (en suspendant l’externe). D’autres niveaux couvrent supports, mandatory, never, not supported, nested.",
+    "reference": "Spring Framework Reference Documentation — Transaction propagation",
+    "id": "q461"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring Boot",
+    "question": "Quel est le rôle de application.properties (ou application.yml) ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Stocker la configuration externalisée (ports, datasources, feature flags) que Boot lie dans l’Environment"
+      },
+      {
+        "id": "b",
+        "text": "Remplacer le besoin d’une méthode main"
+      },
+      {
+        "id": "c",
+        "text": "Compiler les sources Java dans le dossier resources"
+      },
+      {
+        "id": "d",
+        "text": "Définir exclusivement des templates HTML"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Boot charge ces fichiers (plus profils et variables d’environnement) dans l’Environment pour @Value, @ConfigurationProperties et l’auto-configuration.",
+    "reference": "Spring Boot Reference Documentation — Externalized Configuration",
+    "id": "q462"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Comment Spring Data JPA / Hibernate génèrent-ils typiquement le SQL ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Ils ne génèrent jamais de SQL ; les développeurs doivent écrire chaque instruction à la main"
+      },
+      {
+        "id": "b",
+        "text": "L’ORM mappe les opérations et requêtes d’entités (JPQL/Criteria/noms de méthodes) vers du SQL via un dialecte pour la base cible"
+      },
+      {
+        "id": "c",
+        "text": "Le SQL est généré uniquement par le vérifieur JVM avant le chargement des classes"
+      },
+      {
+        "id": "d",
+        "text": "Hibernate envoie du bytecode Java à la base au lieu de SQL"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Persist/merge/flush et les API de requête sont traduits en SQL. On peut encore utiliser des requêtes natives ; show_sql / les logs aident à inspecter la sortie.",
+    "reference": "Jakarta Persistence Specification / Hibernate ORM User Guide",
+    "id": "q463"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Spring",
+    "question": "Dans une app Spring MVC en couches typique, quelles sont les responsabilités de Controller, Service et Repository ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Controller gère le HTTP ; Service porte la logique métier ; Repository (ou DAO) accède à la persistance"
+      },
+      {
+        "id": "b",
+        "text": "Controller parle à la base ; Repository rend le HTML ; Service se contente de logger"
+      },
+      {
+        "id": "c",
+        "text": "Les trois couches doivent exécuter des requêtes SQL identiques"
+      },
+      {
+        "id": "d",
+        "text": "Repository doit dépendre de Controller pour charger les entités"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Séparer web, domaine et persistance clarifie les tests et les évolutions. Les controllers restent fins ; les services orchestrent les règles ; les repositories abstrait le stockage.",
+    "reference": "Spring Framework Reference Documentation — Classic Spring web layering",
+    "id": "q464"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Hibernate",
+    "question": "Quelle affirmation sur la pagination et les contraintes d’unicité avec JPA/Hibernate est correcte ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "La pagination Pageable/LIMIT-OFFSET page les résultats ; les contraintes unique (@Column(unique)/@UniqueConstraint) imposent l’unicité dans le schéma"
+      },
+      {
+        "id": "b",
+        "text": "Les contraintes unique remplacent le besoin de clés primaires"
+      },
+      {
+        "id": "c",
+        "text": "La pagination ne peut se faire qu’en chargeant toutes les lignes en mémoire puis en faisant un subList"
+      },
+      {
+        "id": "d",
+        "text": "Hibernate ignore les contraintes unique et ne crée jamais d’index DB pour elles"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Pageable de Spring Data s’intègre aux méthodes de requête. Les contraintes d’unicité appartiennent à la base ; l’ORM peut les émettre à la génération de schéma, mais les BDD de production doivent garder l’intégrité.",
+    "reference": "Jakarta Persistence Specification / Hibernate ORM User Guide; Spring Data — Pagination",
+    "id": "q465"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Collections",
+    "question": "Comment fonctionne HashMap en interne, à haut niveau ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Il stocke les entrées dans un arbre équilibré indexé uniquement par temps d’insertion"
+      },
+      {
+        "id": "b",
+        "text": "Il hache les clés dans des buckets (tableau de nœuds/arbres) ; equals résout les collisions dans un bucket, avec redimensionnement selon le load factor"
+      },
+      {
+        "id": "c",
+        "text": "Il utilise uniquement une recherche linéaire sur une ArrayList d’entrées"
+      },
+      {
+        "id": "d",
+        "text": "Il exige que les clés implémentent Comparable sinon l’insertion échoue"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "hashCode sélectionne un bucket ; equals trouve la clé correspondante. Les gros buckets en collision peuvent être treeifiés. Une clé null est autorisée une fois dans HashMap.",
+    "reference": "Java SE API — java.util — HashMap",
+    "id": "q466"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Collections",
+    "question": "En quoi HashMap, Hashtable et ConcurrentHashMap diffèrent-ils ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "HashMap n’est pas synchronisé et autorise une clé null ; Hashtable est legacy synchronisé et refuse les null ; ConcurrentHashMap est concurrent sans verrouiller toute la map à chaque accès"
+      },
+      {
+        "id": "b",
+        "text": "Les trois sont identiques ; les noms ne sont que du marketing"
+      },
+      {
+        "id": "c",
+        "text": "Seul Hashtable autorise les clés null ; HashMap les interdit"
+      },
+      {
+        "id": "d",
+        "text": "ConcurrentHashMap ne peut plus être mis à jour après construction"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Préférez HashMap en usage mono-thread, ConcurrentHashMap pour les maps concurrentes, et évitez le nouveau code Hashtable.",
+    "reference": "Java SE API — java.util — HashMap, Hashtable, ConcurrentHashMap",
+    "id": "q467"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Collections",
+    "question": "Quand choisir List, Set ou Map ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "List : séquence ordonnée (doublons OK) ; Set : éléments uniques ; Map : associations clé → valeur"
+      },
+      {
+        "id": "b",
+        "text": "Set remplace Map pour tous les cas clé/valeur"
+      },
+      {
+        "id": "c",
+        "text": "Map interdit toujours les valeurs en double"
+      },
+      {
+        "id": "d",
+        "text": "List ne préserve jamais l’ordre de rencontre"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Choisissez l’abstraction qui correspond aux accès : index/ordre (List), unicité (Set) ou recherche par clé (Map).",
+    "reference": "Java SE API — java.util — Collection interfaces",
+    "id": "q468"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Collections",
+    "question": "Qu’est-ce qui caractérise LinkedList dans java.util ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Une liste doublement chaînée implémentant List et Deque ; bonne pour des insertions fréquentes aux extrémités, accès indexé aléatoire moins bon qu’ArrayList"
+      },
+      {
+        "id": "b",
+        "text": "Un tableau redimensionnable comme ArrayList avec un accès indexé O(1) toujours plus rapide que les tableaux"
+      },
+      {
+        "id": "c",
+        "text": "Une map concurrente de clés string"
+      },
+      {
+        "id": "d",
+        "text": "Un ensemble trié d’éléments uniques"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "LinkedList brille comme deque. Pour la plupart des listes à accès aléatoire, ArrayList est préférable.",
+    "reference": "Java SE API — java.util — LinkedList",
+    "id": "q469"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Collections",
+    "question": "Que définit l’interface Comparable ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Un ordre naturel via compareTo, utilisé par les collections triées et Arrays/Collections.sort"
+      },
+      {
+        "id": "b",
+        "text": "L’égalité uniquement ; elle remplace equals et hashCode"
+      },
+      {
+        "id": "c",
+        "text": "Une façon de cloner profondément des objets"
+      },
+      {
+        "id": "d",
+        "text": "L’itération thread-safe de toute Collection"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Comparable est l’ordre naturel du type. Comparator fournit des ordres externes. La cohérence avec equals est recommandée pour les sets/maps triés.",
+    "reference": "Java SE API — java.util — Comparable",
+    "id": "q470"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "equals and hashCode",
+    "question": "Quelle affirmation sur hashCode est correcte ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "hashCode doit être cohérent avec equals : des objets égaux doivent avoir le même hash code ; des objets inégaux devraient idéalement se répartir dans les buckets"
+      },
+      {
+        "id": "b",
+        "text": "hashCode doit être unique pour chaque objet de la JVM"
+      },
+      {
+        "id": "c",
+        "text": "Changer hashCode après avoir inséré un objet comme clé HashMap est toujours sûr"
+      },
+      {
+        "id": "d",
+        "text": "hashCode n’est utilisé que par TreeMap"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Les collections basées sur le hachage s’appuient sur le contrat equals/hashCode. Des clés mutables dont les champs entrent dans hashCode peuvent « disparaître » de la map.",
+    "reference": "Java Language Specification / Object.hashCode contract; Effective Java",
+    "id": "q471"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Collections",
+    "question": "À quoi sert l’interface Iterable ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Elle expose iterator() (et forEach) pour qu’un type puisse être utilisé dans la boucle for améliorée"
+      },
+      {
+        "id": "b",
+        "text": "Elle marque une classe comme sérialisable en JSON uniquement"
+      },
+      {
+        "id": "c",
+        "text": "Elle impose le support de get(int) en accès aléatoire"
+      },
+      {
+        "id": "d",
+        "text": "Elle remplace Collection et interdit les iterators"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "for (T t : iterable) se désucre en usage d’iterator. Collection étend Iterable ; des types personnalisés peuvent aussi l’implémenter.",
+    "reference": "Java SE API — java.util — Iterable",
+    "id": "q472"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Streams",
+    "question": "À quoi sert principalement l’API Streams ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Remplacer InputStream/OutputStream pour tous les IO fichiers"
+      },
+      {
+        "id": "b",
+        "text": "Déclarer des opérations en masse sur des séquences d’éléments avec des opérations intermédiaires et terminales (filter/map/collect, …)"
+      },
+      {
+        "id": "c",
+        "text": "Gérer exclusivement les connexions JDBC"
+      },
+      {
+        "id": "d",
+        "text": "Démarrer des processus système"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "java.util.stream permet des pipelines de style fonctionnel sur collections, tableaux, générateurs et lignes IO—distinct des flux java.io.",
+    "reference": "Java SE API — java.util.stream",
+    "id": "q473"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Streams",
+    "question": "En quoi les opérations intermédiaires et terminales d’un Stream diffèrent-elles ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Les ops intermédiaires (map/filter/…) sont lazy et renvoient un stream ; une op terminale (collect/forEach/…) déclenche l’exécution et produit un résultat ou un effet de bord"
+      },
+      {
+        "id": "b",
+        "text": "Les ops terminales sont lazy ; les intermédiaires s’exécutent toujours immédiatement à l’écriture"
+      },
+      {
+        "id": "c",
+        "text": "Il n’y a aucune différence ; les deux mutent toujours la collection source"
+      },
+      {
+        "id": "d",
+        "text": "Les ops intermédiaires doivent être le dernier appel d’un pipeline"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Les pipelines fusionnent et s’exécutent quand une opération terminale commence. Après une op terminale, le stream est consommé.",
+    "reference": "Java SE API — java.util.stream",
+    "id": "q474"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Streams",
+    "question": "Quelle est la différence entre map et flatMap sur un Stream ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "map applique une fonction 1-pour-1 ; flatMap mappe chaque élément vers un stream (ou optional) et aplatit les résultats en un seul stream"
+      },
+      {
+        "id": "b",
+        "text": "flatMap ne fonctionne que sur les streams primitifs ; map uniquement sur les objets"
+      },
+      {
+        "id": "c",
+        "text": "map aplatit les listes imbriquées ; flatMap ne change jamais la structure"
+      },
+      {
+        "id": "d",
+        "text": "Ce sont des synonymes introduits pour la lisibilité"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Utilisez flatMap pour éviter Stream<Stream<T>> (ou pour dérouler Optional). map garde un élément de sortie par entrée.",
+    "reference": "Java SE API — java.util.stream",
+    "id": "q475"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Streams",
+    "question": "Streams séquentiels vs parallèles — quelle affirmation est correcte ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "parallel() peut utiliser le ForkJoinPool commun ; la correction exige des splits sûrs/réductions associatives, et le parallèle n’est pas toujours plus rapide"
+      },
+      {
+        "id": "b",
+        "text": "Les streams parallèles surpassent toujours les séquentiels pour toute charge"
+      },
+      {
+        "id": "c",
+        "text": "Les streams séquentiels sont illégaux après Java 8"
+      },
+      {
+        "id": "d",
+        "text": "parallel() garantit un ordre de rencontre identique au séquentiel pour chaque opération y compris forEach"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Le parallélisme aide les charges CPU-bound, splittables et volumineuses avec des ops indépendantes. Le surcoût et la contention peuvent ralentir les petits pipelines ; préférez le séquentiel par défaut.",
+    "reference": "Java SE API — java.util.stream",
+    "id": "q476"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Modern Java",
+    "question": "Qu’est-ce qu’une interface fonctionnelle, et peut-elle déclarer des méthodes default ou static ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Une interface avec exactement une méthode abstraite ; elle peut aussi avoir des méthodes default et static"
+      },
+      {
+        "id": "b",
+        "text": "Toute interface avec au moins cinq méthodes abstraites"
+      },
+      {
+        "id": "c",
+        "text": "Une classe annotée uniquement avec @Override"
+      },
+      {
+        "id": "d",
+        "text": "Une interface qui interdit entièrement les méthodes default et static"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "@FunctionalInterface documente le contrat SAM utilisé par les lambdas. Les helpers default/static ne comptent pas dans la unique méthode abstraite.",
+    "reference": "Java Language Specification — Functional Interfaces; java.util.function",
+    "id": "q477"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "easy",
+    "type": "single",
+    "category": "Modern Java",
+    "question": "Lesquels des suivants sont des exemples classiques d’interfaces fonctionnelles ?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Runnable, Callable et Comparator (chacune avec une unique méthode abstraite ciblée par les lambdas)"
+      },
+      {
+        "id": "b",
+        "text": "Serializable, Cloneable et RandomAccess uniquement"
+      },
+      {
+        "id": "c",
+        "text": "List, Set et Map"
+      },
+      {
+        "id": "d",
+        "text": "Object, Class et System"
+      }
+    ],
+    "correctOptionIds": [
+      "a"
+    ],
+    "explanation": "Runnable/Callable/Comparator précèdent java.util.function mais sont des types SAM. Les interfaces marqueurs comme Serializable ne sont pas des interfaces fonctionnelles.",
+    "reference": "Java SE API — Runnable, Callable, Comparator",
+    "id": "q478"
   }
 ]
