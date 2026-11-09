@@ -15577,5 +15577,38 @@
     "explanation": "Runnable/Callable/Comparator predate java.util.function but are SAM types. Marker interfaces like Serializable are not functional interfaces.",
     "reference": "Java SE API — Runnable, Callable, Comparator",
     "id": "q478"
+  },
+  {
+    "cert": [
+      "Java"
+    ],
+    "difficulty": "medium",
+    "type": "single",
+    "category": "Types and OOP",
+    "question": "Interfaces A and B each declare the same default method with the same name and signature. Concrete class X implements both A and B and does not override that method. What happens, and how do you fix it?",
+    "options": [
+      {
+        "id": "a",
+        "text": "X compiles; the compiler silently keeps A’s default because A appears first in implements"
+      },
+      {
+        "id": "b",
+        "text": "X does not compile; override the method in X (optionally calling A.super.method() and/or B.super.method()) to resolve the conflict"
+      },
+      {
+        "id": "c",
+        "text": "X compiles and both defaults execute in declaration order at runtime"
+      },
+      {
+        "id": "d",
+        "text": "X compiles only if you delete one interface; InterfaceName.super.method() is illegal in classes"
+      }
+    ],
+    "correctOptionIds": [
+      "b"
+    ],
+    "explanation": "Two unrelated default methods with the same signature create a conflict. A concrete class that inherits both fails to compile until it provides its own override. Inside that override you may explicitly choose a parent default with A.super.method() or B.super.method(), or write a new body. Declaring the class abstract does not remove the need to resolve the conflict if the class still inherits both defaults without overriding them.",
+    "reference": "Java Language Specification — Inheritance and Overriding (§9.4.1)",
+    "id": "q479"
   }
 ]

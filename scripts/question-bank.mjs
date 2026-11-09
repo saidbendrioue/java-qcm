@@ -2257,11 +2257,11 @@ if (
   );
 }
 if (
-  interviewTopicsQuestions.length !== 47 ||
+  interviewTopicsQuestions.length !== 48 ||
   interviewTopicsFrench.length !== interviewTopicsQuestions.length
 ) {
   throw new Error(
-    `Expected 47 interview-topic questions with French copy, found ${interviewTopicsQuestions.length} and ${interviewTopicsFrench.length}`,
+    `Expected 48 interview-topic questions with French copy, found ${interviewTopicsQuestions.length} and ${interviewTopicsFrench.length}`,
   );
 }
 function takeFromEnd(list, offsetFromEnd, count) {
@@ -2312,12 +2312,12 @@ if (fullstackQuestions[0]?.id !== 'q363' || fullstackQuestions.at(-1)?.id !== 'q
     `Unexpected fullstack interview ids ${fullstackQuestions[0]?.id}..${fullstackQuestions.at(-1)?.id}`,
   );
 }
-if (interviewTopicsBank[0]?.id !== 'q432' || interviewTopicsBank.at(-1)?.id !== 'q478') {
+if (interviewTopicsBank[0]?.id !== 'q432' || interviewTopicsBank.at(-1)?.id !== 'q479') {
   throw new Error(
     `Unexpected interview-topic ids ${interviewTopicsBank[0]?.id}..${interviewTopicsBank.at(-1)?.id}`,
   );
 }
-if (questions.length !== 478) throw new Error(`Expected 478 questions, found ${questions.length}`);
+if (questions.length !== 479) throw new Error(`Expected 479 questions, found ${questions.length}`);
 if (coreTypeCount.single !== 105 || coreTypeCount.multiple !== 15 || coreTypeCount.truefalse !== 19) {
   throw new Error(`Unexpected core type mix ${JSON.stringify(coreTypeCount)}`);
 }
